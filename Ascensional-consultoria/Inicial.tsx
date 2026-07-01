@@ -21,24 +21,32 @@ const heroScreenImageSrc = "";
 const steps = [
   {
     number: "01",
+    shortLabel: "Mapeamento",
+    orbitLabel: "Levantamento",
     title: "Levantamento legal aplicável",
     description:
       "Identificamos leis, normas, licenças e obrigações regulatórias aplicáveis ao segmento, unidade e operação da empresa.",
   },
   {
     number: "02",
+    shortLabel: "Processos",
+    orbitLabel: "Processos",
     title: "Enquadramento por processo",
     description:
       "Relacionamos cada requisito às atividades, áreas responsáveis, riscos e evidências exigidas para garantir clareza operacional.",
   },
   {
     number: "03",
+    shortLabel: "Avaliacao",
+    orbitLabel: "Atendimento",
     title: "Avaliação de atendimento",
     description:
       "A equipe responde avaliações, acompanha pendências, anexa evidências e registra o status de conformidade de cada obrigação.",
   },
   {
     number: "04",
+    shortLabel: "Resultados",
+    orbitLabel: "Relatorios",
     title: "Planos de ação e relatórios",
     description:
       "Dashboards intuitivos e relatórios detalhados orientam prioridades, reduzem exposição legal e sustentam auditorias e decisões.",
@@ -816,7 +824,38 @@ const styles = `
     line-height: 1.42;
   }
 
-  .method-showcase {
+  .method-classic-section {
+    background: #fbf8f4;
+    color: #241715;
+    padding: 58px 0 28px;
+  }
+
+  .method-classic-intro {
+    max-width: 920px;
+    margin: 0 auto 16px;
+    text-align: center;
+  }
+
+  .method-classic-intro .title-lg {
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: auto;
+    color: #241715;
+    font-size: clamp(1.5rem, 1.95vw, 2.05rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  .method-classic-intro .lead {
+    color: #5b4b45;
+    max-width: 42ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.98rem;
+    line-height: 1.42;
+  }
+
+  .method-classic-showcase {
     position: relative;
     display: grid;
     grid-template-columns: 82px minmax(0, 1fr);
@@ -835,7 +874,7 @@ const styles = `
     overflow: hidden;
   }
 
-  .method-showcase::before {
+  .method-classic-showcase::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -845,7 +884,7 @@ const styles = `
     pointer-events: none;
   }
 
-  .method-showcase::after {
+  .method-classic-showcase::after {
     content: "";
     position: absolute;
     left: 18px;
@@ -858,13 +897,13 @@ const styles = `
     pointer-events: none;
   }
 
-  .method-showcase-nav,
-  .method-showcase-stage {
+  .method-classic-nav,
+  .method-classic-stage {
     position: relative;
     z-index: 1;
   }
 
-  .method-showcase-nav {
+  .method-classic-nav {
     display: grid;
     gap: 2px;
     align-content: center;
@@ -874,7 +913,7 @@ const styles = `
     border-left: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .method-showcase-tab {
+  .method-classic-tab {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -887,17 +926,18 @@ const styles = `
     color: inherit;
     text-align: left;
     position: relative;
+    cursor: pointer;
     transition: opacity 0.22s ease, transform 0.22s ease;
     opacity: 0.42;
   }
 
-  .method-showcase-tab:hover,
-  .method-showcase-tab-active {
+  .method-classic-tab:hover,
+  .method-classic-tab-active {
     opacity: 1;
     transform: translateX(2px);
   }
 
-  .method-showcase-tab::before {
+  .method-classic-tab::before {
     content: "";
     position: absolute;
     left: -1px;
@@ -910,23 +950,23 @@ const styles = `
     transition: background 0.22s ease, box-shadow 0.22s ease;
   }
 
-  .method-showcase-tab-active::before {
+  .method-classic-tab-active::before {
     background: linear-gradient(180deg, rgba(240, 207, 147, 0.98), rgba(213, 161, 79, 0.92));
     box-shadow: 0 0 18px rgba(213, 161, 79, 0.28);
   }
 
-  .method-showcase-tab-copy strong,
-  .method-showcase-tab-copy small {
+  .method-classic-tab-copy strong,
+  .method-classic-tab-copy small {
     display: block;
   }
 
-  .method-showcase-tab-copy strong {
+  .method-classic-tab-copy strong {
     font-size: 0.56rem;
     line-height: 1.02;
     color: #f8ede4;
   }
 
-  .method-showcase-tab-copy small {
+  .method-classic-tab-copy small {
     margin-top: 2px;
     color: rgba(226, 212, 203, 0.34);
     font-size: 0.34rem;
@@ -934,7 +974,7 @@ const styles = `
     text-transform: uppercase;
   }
 
-  .method-showcase-stage {
+  .method-classic-stage {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
     grid-template-areas:
@@ -945,20 +985,18 @@ const styles = `
     padding-top: 6px;
   }
 
-  .method-showcase-copy {
+  .method-classic-copy {
     grid-area: copy;
     color: #fff6ee;
   }
 
-  .method-showcase-kicker { display: none; }
-
-  .method-showcase-step {
+  .method-classic-step {
     display: grid;
     gap: 6px;
     margin-top: 0;
   }
 
-  .method-showcase-step strong {
+  .method-classic-step strong {
     font-size: clamp(1.8rem, 2.7vw, 2.5rem);
     line-height: 1;
     letter-spacing: -0.04em;
@@ -966,7 +1004,7 @@ const styles = `
     color: #fff6ee;
   }
 
-  .method-showcase-description {
+  .method-classic-description {
     margin-top: 12px;
     color: #e6d0c3;
     font-size: 0.94rem;
@@ -974,14 +1012,14 @@ const styles = `
     max-width: 44ch;
   }
 
-  .method-showcase-points {
+  .method-classic-points {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 16px;
   }
 
-  .method-showcase-point {
+  .method-classic-point {
     padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid rgba(214, 163, 87, 0.14);
@@ -990,7 +1028,7 @@ const styles = `
     font-size: 0.8rem;
   }
 
-  .method-showcase-visual {
+  .method-classic-visual {
     grid-area: visual;
     position: relative;
     min-height: 250px;
@@ -1003,13 +1041,13 @@ const styles = `
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
-  .method-showcase-screen,
-  .method-showcase-card,
-  .method-showcase-orb {
+  .method-classic-screen,
+  .method-classic-card,
+  .method-classic-orb {
     position: absolute;
   }
 
-  .method-showcase-screen {
+  .method-classic-screen {
     inset: 18px 18px 62px 18px;
     padding: 18px;
     border-radius: 24px;
@@ -1021,7 +1059,7 @@ const styles = `
     -webkit-backdrop-filter: blur(8px);
   }
 
-  .method-showcase-screen-badge {
+  .method-classic-screen-badge {
     display: inline-flex;
     padding: 7px 10px;
     border-radius: 999px;
@@ -1032,7 +1070,7 @@ const styles = `
     text-transform: uppercase;
   }
 
-  .method-showcase-screen strong {
+  .method-classic-screen strong {
     display: block;
     margin-top: 14px;
     font-size: 1.18rem;
@@ -1041,34 +1079,34 @@ const styles = `
     max-width: 11ch;
   }
 
-  .method-showcase-lines {
+  .method-classic-lines {
     display: grid;
     gap: 8px;
     margin-top: 12px;
   }
 
-  .method-showcase-lines span {
+  .method-classic-lines span {
     display: block;
     height: 6px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.16);
   }
 
-  .method-showcase-lines span:nth-child(2) {
+  .method-classic-lines span:nth-child(2) {
     width: 82%;
   }
 
-  .method-showcase-lines span:nth-child(3) {
+  .method-classic-lines span:nth-child(3) {
     width: 68%;
   }
 
-  .method-showcase-card {
+  .method-classic-card {
     border-radius: 18px;
     background: linear-gradient(180deg, rgba(255, 248, 242, 0.98), rgba(241, 230, 220, 0.94));
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
   }
 
-  .method-showcase-card-a {
+  .method-classic-card-a {
     width: 74px;
     height: 102px;
     left: 18px;
@@ -1076,7 +1114,7 @@ const styles = `
     transform: rotate(-10deg);
   }
 
-  .method-showcase-card-b {
+  .method-classic-card-b {
     width: 88px;
     height: 112px;
     left: 54px;
@@ -1085,7 +1123,7 @@ const styles = `
     transform: rotate(6deg);
   }
 
-  .method-showcase-card-c {
+  .method-classic-card-c {
     width: 58px;
     height: 58px;
     right: 14px;
@@ -1094,7 +1132,7 @@ const styles = `
     background: linear-gradient(180deg, rgba(213, 161, 79, 0.98), rgba(181, 101, 37, 0.92));
   }
 
-  .method-showcase-orb {
+  .method-classic-orb {
     width: 92px;
     height: 92px;
     right: -10px;
@@ -1104,7 +1142,7 @@ const styles = `
     filter: blur(8px);
   }
 
-  .method-showcase-stage-02 .method-showcase-card-a {
+  .method-classic-stage-02 .method-classic-card-a {
     width: 82px;
     height: 120px;
     left: 22px;
@@ -1112,23 +1150,23 @@ const styles = `
     transform: rotate(-7deg);
   }
 
-  .method-showcase-stage-02 .method-showcase-card-b {
+  .method-classic-stage-02 .method-classic-card-b {
     width: 98px;
     height: 130px;
     left: 62px;
     bottom: 10px;
   }
 
-  .method-showcase-stage-03 .method-showcase-card-a,
-  .method-showcase-stage-03 .method-showcase-card-b {
+  .method-classic-stage-03 .method-classic-card-a,
+  .method-classic-stage-03 .method-classic-card-b {
     background: linear-gradient(180deg, rgba(8, 18, 36, 0.96), rgba(5, 10, 21, 0.96));
   }
 
-  .method-showcase-stage-03 .method-showcase-card-c {
+  .method-classic-stage-03 .method-classic-card-c {
     background: conic-gradient(from 90deg, rgba(226, 178, 97, 0.94), rgba(103, 63, 209, 0.92), rgba(41, 195, 162, 0.92), rgba(226, 178, 97, 0.94));
   }
 
-  .method-showcase-stage-04 .method-showcase-card-a {
+  .method-classic-stage-04 .method-classic-card-a {
     width: 88px;
     height: 118px;
     left: 18px;
@@ -1136,7 +1174,7 @@ const styles = `
     background: linear-gradient(180deg, rgba(255, 248, 242, 0.98), rgba(241, 230, 220, 0.98));
   }
 
-  .method-showcase-stage-04 .method-showcase-card-b {
+  .method-classic-stage-04 .method-classic-card-b {
     width: 74px;
     height: 40px;
     left: 26px;
@@ -1144,7 +1182,7 @@ const styles = `
     background: linear-gradient(180deg, rgba(88, 17, 33, 0.88), rgba(36, 11, 17, 0.96));
   }
 
-  .method-showcase-footer {
+  .method-classic-footer {
     grid-area: footer;
     display: flex;
     align-items: center;
@@ -1157,8 +1195,685 @@ const styles = `
     background: transparent;
   }
 
-  .method-showcase-footer p {
+  .method-classic-footer p {
     display: none;
+  }
+
+  .method-classic-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .method-classic-progress span {
+    width: 34px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    transition: width 0.24s ease, background 0.24s ease;
+  }
+
+  .method-classic-progress-active {
+    width: 56px !important;
+    background: linear-gradient(90deg, rgba(240, 207, 147, 0.98), rgba(213, 161, 79, 0.92)) !important;
+  }
+
+  .method-break-section {
+    background: #fbf8f4;
+    color: #241715;
+    padding: 0 0 12px;
+  }
+
+  .method-break-fullbleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .method-break-banner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+    gap: clamp(24px, 4vw, 48px);
+    align-items: center;
+    min-height: min(56vh, 460px);
+    padding: clamp(22px, 3vw, 34px) clamp(28px, 4.8vw, 56px);
+    border-radius: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 50%, rgba(213, 161, 79, 0.1), transparent 22%),
+      radial-gradient(circle at 84% 20%, rgba(123, 26, 43, 0.12), transparent 18%),
+      linear-gradient(135deg, #220812 0%, #3a0d1b 46%, #5a1325 100%);
+    box-shadow:
+      0 18px 38px rgba(34, 10, 17, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .method-break-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 26%),
+      radial-gradient(circle at right center, rgba(213, 161, 79, 0.08), transparent 24%);
+    pointer-events: none;
+  }
+
+  .method-break-copy,
+  .method-break-visual {
+    position: relative;
+    z-index: 1;
+  }
+
+  .method-break-copy {
+    max-width: 600px;
+    color: #fff6ee;
+  }
+
+  .method-break-copy .kicker {
+    color: rgba(240, 223, 212, 0.7);
+  }
+
+  .method-break-copy .title-lg {
+    max-width: 12ch;
+    font-size: clamp(1.9rem, 3.4vw, 3.6rem);
+    line-height: 0.92;
+    color: #fff8f2;
+  }
+
+  .method-break-copy .lead {
+    max-width: 46ch;
+    color: rgba(252, 237, 226, 0.9);
+    font-size: 0.96rem;
+    line-height: 1.58;
+  }
+
+  .method-break-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .method-break-button {
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .method-break-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .method-break-button-primary {
+    background: linear-gradient(135deg, #f0cf93, #d5a14f);
+    color: #2a0d10;
+    box-shadow: 0 14px 26px rgba(213, 161, 79, 0.22);
+  }
+
+  .method-break-button-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 226, 199, 0.24);
+    color: #fff6ee;
+  }
+
+  .method-break-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    color: rgba(255, 233, 220, 0.82);
+    font-size: 0.88rem;
+  }
+
+  .method-break-note strong {
+    color: #f0cf93;
+  }
+
+  .method-break-visual {
+    min-height: 250px;
+    display: grid;
+    place-items: center;
+  }
+
+  .method-break-visual::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(213, 161, 79, 0.14), transparent 66%);
+    filter: blur(8px);
+  }
+
+  .method-break-figure {
+    position: relative;
+    width: min(100%, 320px);
+    aspect-ratio: 1;
+  }
+
+  .method-break-shield {
+    position: absolute;
+    inset: 8% 12% 14% 12%;
+    border-radius: 38% 38% 44% 44% / 24% 24% 58% 58%;
+    border: 10px solid rgba(240, 207, 147, 0.92);
+    background: rgba(255, 227, 180, 0.04);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 245, 231, 0.12),
+      0 0 40px rgba(240, 207, 147, 0.16);
+  }
+
+  .method-break-shield::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: 22%;
+    height: 40%;
+    border-radius: 999px;
+    background: rgba(240, 207, 147, 0.96);
+    transform: translateX(-50%);
+  }
+
+  .method-break-shield::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    width: 52%;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(240, 207, 147, 0.96);
+    transform: translateX(-50%);
+  }
+
+  .method-break-card {
+    position: absolute;
+    display: grid;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 228, 205, 0.14);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04)),
+      rgba(59, 14, 26, 0.42);
+    color: #fff4ea;
+    box-shadow: 0 16px 36px rgba(27, 9, 14, 0.24);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .method-break-card strong {
+    font-size: 0.78rem;
+    color: #f0cf93;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .method-break-card span {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: rgba(255, 238, 226, 0.86);
+  }
+
+  .method-break-card-a {
+    top: 6%;
+    left: 2%;
+    max-width: 160px;
+  }
+
+  .method-break-card-b {
+    right: -2%;
+    bottom: 10%;
+    max-width: 170px;
+  }
+
+  .method-break-badge {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #5a2d14;
+    font-weight: 800;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, rgba(240, 207, 147, 0.98), rgba(213, 161, 79, 0.96));
+    box-shadow: 0 20px 34px rgba(213, 161, 79, 0.22);
+  }
+
+  .method-break-badge::before {
+    content: "OK";
+  }
+
+  .method-showcase {
+    position: relative;
+    padding: clamp(24px, 4vw, 36px);
+    max-width: 1120px;
+    margin: 0 auto;
+    border-radius: 40px;
+    border: 1px solid rgba(214, 163, 87, 0.12);
+    background:
+      radial-gradient(circle at 20% 50%, rgba(213, 161, 79, 0.16), transparent 20%),
+      radial-gradient(circle at 74% 18%, rgba(145, 30, 53, 0.14), transparent 24%),
+      linear-gradient(135deg, #18070d 0%, #210912 38%, #4a0f20 100%);
+    box-shadow:
+      0 30px 60px rgba(24, 7, 13, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+  }
+
+  .method-showcase::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 85%, rgba(0, 0, 0, 0.48), transparent 24%),
+      radial-gradient(circle at 92% 0, rgba(0, 0, 0, 0.46), transparent 20%);
+    opacity: 0.92;
+    pointer-events: none;
+  }
+
+  .method-showcase::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.7px, transparent 0.7px);
+    background-size: 22px 22px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .method-showcase-shell,
+  .method-showcase-orbit,
+  .method-showcase-panel {
+    position: relative;
+    z-index: 1;
+  }
+
+  .method-showcase-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+    gap: clamp(24px, 4vw, 40px);
+    align-items: center;
+  }
+
+  .method-showcase-orbit {
+    min-height: 420px;
+    display: grid;
+    place-items: center;
+  }
+
+  .method-showcase-orbit::before,
+  .method-showcase-orbit::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(214, 163, 87, 0.12);
+  }
+
+  .method-showcase-orbit::before {
+    width: min(100%, 420px);
+    aspect-ratio: 1;
+  }
+
+  .method-showcase-orbit::after {
+    width: min(100%, 320px);
+    aspect-ratio: 1;
+  }
+
+  .method-showcase-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(214, 163, 87, 0.08);
+  }
+
+  .method-showcase-ring-a {
+    width: min(100%, 500px);
+    aspect-ratio: 1;
+  }
+
+  .method-showcase-ring-b {
+    width: min(100%, 246px);
+    aspect-ratio: 1;
+  }
+
+  .method-showcase-spark {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f0cf93;
+    box-shadow: 0 0 18px rgba(240, 207, 147, 0.95);
+  }
+
+  .method-showcase-spark-a {
+    top: 22%;
+    right: 18%;
+  }
+
+  .method-showcase-spark-b {
+    left: 16%;
+    bottom: 18%;
+    width: 8px;
+    height: 8px;
+    background: rgba(213, 161, 79, 0.9);
+    box-shadow: 0 0 16px rgba(213, 161, 79, 0.88);
+  }
+
+  .method-showcase-photo {
+    position: relative;
+    width: min(100%, 280px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 10px;
+    background: linear-gradient(180deg, rgba(255, 248, 242, 0.98), rgba(241, 230, 220, 0.92));
+    box-shadow: 0 22px 46px rgba(0, 0, 0, 0.28);
+  }
+
+  .method-showcase-photo::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(116, 78, 48, 0.18);
+    pointer-events: none;
+  }
+
+  .method-showcase-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed rgba(116, 78, 48, 0.22);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.06)),
+      radial-gradient(circle at 30% 30%, rgba(213, 161, 79, 0.16), transparent 28%),
+      linear-gradient(180deg, rgba(95, 30, 45, 0.16), rgba(95, 30, 45, 0.06));
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: rgba(72, 43, 33, 0.76);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .method-showcase-photo-placeholder span {
+    display: block;
+    max-width: 12ch;
+    line-height: 1.4;
+  }
+
+  .method-showcase-tab {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    opacity: 0.76;
+  }
+
+  .method-showcase-tab:hover,
+  .method-showcase-tab-active {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  .method-showcase-tab-top {
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .method-showcase-tab-top:hover,
+  .method-showcase-tab-top.method-showcase-tab-active {
+    transform: translateX(-50%) scale(1.02);
+  }
+
+  .method-showcase-tab-left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .method-showcase-tab-left:hover,
+  .method-showcase-tab-left.method-showcase-tab-active {
+    transform: translateY(-50%) scale(1.02);
+  }
+
+  .method-showcase-tab-right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .method-showcase-tab-right:hover,
+  .method-showcase-tab-right.method-showcase-tab-active {
+    transform: translateY(-50%) scale(1.02);
+  }
+
+  .method-showcase-tab-bottom {
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .method-showcase-tab-bottom:hover,
+  .method-showcase-tab-bottom.method-showcase-tab-active {
+    transform: translateX(-50%) scale(1.02);
+  }
+
+  .method-showcase-tab-reverse {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .method-showcase-tab-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.92);
+    color: #34131b;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .method-showcase-tab-active .method-showcase-tab-dot {
+    background: linear-gradient(180deg, rgba(213, 161, 79, 0.98), rgba(182, 122, 47, 0.94));
+    color: #fff7ef;
+    box-shadow:
+      0 0 0 8px rgba(213, 161, 79, 0.14),
+      0 14px 28px rgba(0, 0, 0, 0.24);
+  }
+
+  .method-showcase-tab-dot span {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    position: relative;
+  }
+
+  .method-showcase-tab-dot span::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .method-showcase-tab-copy {
+    display: grid;
+    gap: 4px;
+  }
+
+  .method-showcase-tab-copy strong,
+  .method-showcase-tab-copy small {
+    display: block;
+  }
+
+  .method-showcase-tab-copy strong {
+    font-size: 0.72rem;
+    line-height: 1.02;
+    color: #f8ede4;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .method-showcase-tab-copy small {
+    color: rgba(230, 212, 203, 0.44);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .method-showcase-panel {
+    padding: clamp(24px, 3vw, 34px);
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at top right, rgba(213, 161, 79, 0.08), transparent 26%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(95, 30, 45, 0.22);
+    border: 1px solid rgba(214, 163, 87, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 30px 60px rgba(24, 7, 13, 0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .method-showcase-panel-header {
+    display: grid;
+    gap: 14px;
+  }
+
+  .method-showcase-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(240, 223, 212, 0.68);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .method-showcase-kicker::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(213, 161, 79, 0.98), rgba(213, 161, 79, 0.26));
+  }
+
+  .method-showcase-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .method-showcase-icon {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, rgba(213, 161, 79, 0.98), rgba(182, 122, 47, 0.92));
+    box-shadow: 0 14px 26px rgba(182, 122, 47, 0.24);
+  }
+
+  .method-showcase-icon span {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #3a2310;
+    position: relative;
+  }
+
+  .method-showcase-icon span::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: #3a2310;
+  }
+
+  .method-showcase-step {
+    display: grid;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .method-showcase-step strong {
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+    max-width: 11ch;
+    color: #fff6ee;
+  }
+
+  .method-showcase-description {
+    margin-top: 0;
+    color: #e6d0c3;
+    font-size: 1rem;
+    line-height: 1.78;
+    max-width: 42ch;
+  }
+
+  .method-showcase-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .method-showcase-point {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(214, 163, 87, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: #f3e5d8;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .method-showcase-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(214, 163, 87, 0.08);
+  }
+
+  .method-showcase-footer p {
+    color: rgba(230, 212, 203, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 26ch;
   }
 
   .method-showcase-progress {
@@ -1169,7 +1884,7 @@ const styles = `
   }
 
   .method-showcase-progress span {
-    width: 34px;
+    width: 26px;
     height: 6px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.12);
@@ -1177,8 +1892,8 @@ const styles = `
   }
 
   .method-showcase-progress-active {
-    width: 56px !important;
-    background: linear-gradient(90deg, rgba(240, 207, 147, 0.98), rgba(213, 161, 79, 0.92)) !important;
+    width: 48px !important;
+    background: linear-gradient(90deg, rgba(213, 161, 79, 0.98), rgba(182, 122, 47, 0.92)) !important;
   }
 
   .benefits-section {
@@ -2028,8 +2743,8 @@ const styles = `
   }
 
   .contact-section .title-lg {
-    font-size: clamp(1.58rem, 2.2vw, 2.15rem);
-    max-width: 30ch;
+    font-size: clamp(1.9rem, 2.8vw, 2.7rem);
+    max-width: 14ch;
   }
 
   .contact-header .title-lg {
@@ -2196,16 +2911,36 @@ const styles = `
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .method-showcase {
+    .method-classic-showcase {
       grid-template-columns: 1fr;
     }
 
-    .method-showcase-nav {
+    .method-classic-nav {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .method-showcase-stage {
+    .method-classic-stage {
       grid-template-columns: minmax(0, 1fr) minmax(260px, 0.88fr);
+    }
+
+    .method-break-banner {
+      grid-template-columns: 1fr;
+    }
+
+    .method-break-copy {
+      max-width: 100%;
+    }
+
+    .method-showcase {
+      max-width: 100%;
+    }
+
+    .method-showcase-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .method-showcase-orbit {
+      min-height: 460px;
     }
 
     .title-xl {
@@ -2324,15 +3059,19 @@ const styles = `
       padding: 54px 0 60px;
     }
 
-    .method-showcase {
+    .method-classic-section {
+      padding: 54px 0 18px;
+    }
+
+    .method-classic-showcase {
       padding: 22px;
     }
 
-    .method-showcase-nav {
+    .method-classic-nav {
       grid-template-columns: 1fr;
     }
 
-    .method-showcase-stage {
+    .method-classic-stage {
       grid-template-columns: 1fr;
       grid-template-areas:
         "copy"
@@ -2340,18 +3079,66 @@ const styles = `
         "footer";
     }
 
-    .method-showcase-step strong,
-    .method-showcase-description {
+    .method-classic-step strong,
+    .method-classic-description {
       max-width: 100%;
     }
 
-    .method-showcase-visual {
+    .method-classic-visual {
       min-height: 320px;
+    }
+
+    .method-classic-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .method-break-section {
+      padding: 2px 0 14px;
+    }
+
+    .method-break-banner {
+      min-height: 0;
+      padding: 24px 20px;
+    }
+
+    .method-break-copy .title-lg,
+    .method-break-copy .lead {
+      max-width: 100%;
+    }
+
+    .method-break-visual {
+      min-height: 280px;
+    }
+
+    .method-showcase {
+      padding: 24px 20px;
     }
 
     .method-showcase-footer {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .method-showcase-orbit {
+      min-height: 420px;
+    }
+
+    .method-showcase-photo {
+      width: min(100%, 240px);
+    }
+
+    .method-showcase-tab-dot {
+      width: 50px;
+      height: 50px;
+    }
+
+    .method-showcase-tab-copy strong {
+      font-size: 0.64rem;
+    }
+
+    .method-showcase-tab-copy small {
+      font-size: 0.62rem;
     }
 
     .showcase-stage {
@@ -2399,6 +3186,14 @@ const styles = `
 
     .method-section {
       padding: 46px 0 52px;
+    }
+
+    .method-classic-section {
+      padding: 46px 0 12px;
+    }
+
+    .method-break-section {
+      padding: 0 0 10px;
     }
 
     .benefits-header .title-lg {
@@ -2489,14 +3284,107 @@ const styles = `
       padding: 18px;
     }
 
-    .method-showcase-tab {
+    .method-break-banner {
+      padding: 20px 18px;
+      border-radius: 0;
+    }
+
+    .method-break-copy .title-lg {
+      font-size: clamp(2rem, 10vw, 3rem);
+      max-width: 100%;
+    }
+
+    .method-break-stats {
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .method-break-stat + .method-break-stat {
+      padding-left: 0;
+      border-left: 0;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 226, 199, 0.2);
+    }
+
+    .method-break-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .method-break-button {
+      width: 100%;
+    }
+
+    .method-break-visual {
+      min-height: 240px;
+    }
+
+    .method-break-visual::before {
+      width: 220px;
+      height: 220px;
+    }
+
+    .method-break-card {
+      padding: 12px 14px;
+      max-width: 150px;
+    }
+
+    .method-break-badge {
+      width: 64px;
+      height: 64px;
+      font-size: 0.72rem;
+    }
+
+    .method-classic-showcase {
+      padding: 18px;
+    }
+
+    .method-classic-tab {
       grid-template-columns: 42px minmax(0, 1fr);
       padding: 12px;
     }
 
-    .method-showcase-tab-number {
-      width: 42px;
-      height: 42px;
+    .method-classic-step strong {
+      font-size: clamp(1.8rem, 9vw, 2.45rem);
+    }
+
+    .method-classic-description {
+      font-size: 0.94rem;
+      line-height: 1.62;
+    }
+
+    .method-classic-point {
+      font-size: 0.82rem;
+      padding: 9px 12px;
+    }
+
+    .method-classic-visual {
+      min-height: 280px;
+    }
+
+    .method-classic-screen {
+      inset: 18px 18px 70px 18px;
+      padding: 18px;
+    }
+
+    .method-classic-screen strong {
+      font-size: 1.24rem;
+    }
+
+    .method-classic-footer {
+      padding: 14px 16px;
+    }
+
+    .method-classic-progress span {
+      width: 28px;
+    }
+
+    .method-classic-progress-active {
+      width: 48px !important;
+    }
+
+    .method-showcase-tab {
+      gap: 8px;
     }
 
     .method-showcase-step strong {
@@ -2513,17 +3401,39 @@ const styles = `
       padding: 9px 12px;
     }
 
-    .method-showcase-visual {
-      min-height: 280px;
+    .method-showcase-shell {
+      gap: 22px;
     }
 
-    .method-showcase-screen {
-      inset: 18px 18px 70px 18px;
-      padding: 18px;
+    .method-showcase-orbit {
+      min-height: 360px;
     }
 
-    .method-showcase-screen strong {
-      font-size: 1.24rem;
+    .method-showcase-ring-a {
+      width: min(100%, 340px);
+    }
+
+    .method-showcase-orbit::before {
+      width: min(100%, 286px);
+    }
+
+    .method-showcase-orbit::after,
+    .method-showcase-ring-b {
+      width: min(100%, 208px);
+    }
+
+    .method-showcase-photo {
+      width: min(100%, 190px);
+    }
+
+    .method-showcase-tab-dot {
+      width: 42px;
+      height: 42px;
+    }
+
+    .method-showcase-tab-copy strong,
+    .method-showcase-tab-copy small {
+      display: none;
     }
 
     .method-showcase-footer {
@@ -2680,6 +3590,7 @@ export default function Inicial() {
   const tickerItems = [...approachTags, ...approachTags];
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
+  const orbitPositions = ["top", "left", "right", "bottom"];
 
   return (
     <main className="landing-shell">
@@ -2732,7 +3643,7 @@ export default function Inicial() {
                   Começar Agora
                 </a>
                 <a className="button button-secondary" href="https://wa.me/5511999999999">
-                  Fale Conosco
+                  Fale Conosco:
                 </a>
               </div>
 
@@ -2817,7 +3728,122 @@ export default function Inicial() {
         </div>
       </section>
 
-      <section className="section method-section" id="metodo">
+      <section className="section method-classic-section" id="metodo">
+        <div className="container">
+          <div className="method-transition" aria-hidden="true" />
+
+
+
+          <div className="method-classic-showcase">
+            <div className="method-classic-nav" aria-label="Etapas do metodo em cards">
+              {steps.map((step, index) => (
+                <button
+                  className={`method-classic-tab ${index === activeStep ? "method-classic-tab-active" : ""}`}
+                  key={`classic-${step.number}`}
+                  onClick={() => setActiveStep(index)}
+                  type="button"
+                >
+                  <span className="method-classic-tab-copy">
+                    <strong>{step.title}</strong>
+                    <small>{stepHighlights[index][0]}</small>
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <div className={`method-classic-stage method-classic-stage-${currentStep.number}`}>
+              <div className="method-classic-copy">
+                <div className="method-classic-step">
+                  <strong>{currentStep.title}</strong>
+                </div>
+                <p className="method-classic-description">{currentStep.description}</p>
+
+                <div className="method-classic-points">
+                  {currentHighlights.map((item) => (
+                    <span className="method-classic-point" key={`classic-point-${item}`}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="method-classic-visual" aria-hidden="true">
+                <div className="method-classic-screen">
+                  <span className="method-classic-screen-badge">Metodo Ascensional</span>
+                  <strong>{currentStep.title}</strong>
+                  <div className="method-classic-lines">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </div>
+                <span className="method-classic-card method-classic-card-a" />
+                <span className="method-classic-card method-classic-card-b" />
+                <span className="method-classic-card method-classic-card-c" />
+                <span className="method-classic-orb" />
+              </div>
+
+              <div className="method-classic-footer">
+                <p>Selecione uma etapa na lateral para atualizar o painel.</p>
+                <div className="method-classic-progress" aria-hidden="true">
+                  {steps.map((step, index) => (
+                    <span
+                      className={index === activeStep ? "method-classic-progress-active" : ""}
+                      key={`classic-progress-${step.number}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section method-break-section" id="metodo-conexao">
+        <div className="method-break-fullbleed">
+          <div className="method-break-banner">
+            <div className="method-break-copy">
+              <p className="kicker">Conformidade com resultado</p>
+              <h2 className="title-lg">A estrutura certa para reduzir passivo e ganhar clareza operacional.</h2>
+              <p className="lead">
+                Chega de controles soltos. A Ascensional organiza requisitos legais, responsáveis,
+                evidências e planos de ação em uma operação mais previsível, auditável e segura.
+              </p>
+
+              <div className="method-break-actions">
+                <a className="method-break-button method-break-button-primary" href="#contato">
+                  Quero estruturar minha operacao
+                </a>
+                <a className="method-break-button method-break-button-secondary" href="#metodo-destaque">
+                  Ver painel visual
+                </a>
+              </div>
+
+              <div className="method-break-note">
+                <span>Veja a atuação da</span>
+                <strong>Ascensional Consultoria</strong>
+              </div>
+            </div>
+
+            <div className="method-break-visual" aria-hidden="true">
+              <div className="method-break-figure">
+                <span className="method-break-shield" />
+                <div className="method-break-card method-break-card-a">
+                  <strong>Requisitos</strong>
+                  <span>Controle central de leis, normas, licencas e condicionantes.</span>
+                </div>
+                <div className="method-break-card method-break-card-b">
+                  <strong>Acao</strong>
+                  <span>Planos, pendencias e evidencias organizados por responsavel.</span>
+                </div>
+                <span className="method-break-badge" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section method-section" id="metodo-destaque">
         <div className="container">
           <div className="method-transition" aria-hidden="true" />
 
@@ -2825,28 +3851,56 @@ export default function Inicial() {
 
 
             <div className="method-showcase">
-              <div className="method-showcase-nav" aria-label="Etapas do metodo">
-                {steps.map((step, index) => (
-                  <button
-                    className={`method-showcase-tab ${index === activeStep ? "method-showcase-tab-active" : ""}`}
-                    key={step.number}
-                    onClick={() => setActiveStep(index)}
-                    type="button"
-                  >
-                    <span className="method-showcase-tab-copy">
-                      <strong>{step.title}</strong>
-                      <small>{stepHighlights[index][0]}</small>
-                    </span>
-                  </button>
-                ))}
-              </div>
+              <div className="method-showcase-shell">
+                <div className="method-showcase-orbit" aria-label="Etapas do metodo">
+                  <span className="method-showcase-ring method-showcase-ring-a" aria-hidden="true" />
+                  <span className="method-showcase-ring method-showcase-ring-b" aria-hidden="true" />
+                  <span className="method-showcase-spark method-showcase-spark-a" aria-hidden="true" />
+                  <span className="method-showcase-spark method-showcase-spark-b" aria-hidden="true" />
 
-              <div className={`method-showcase-stage method-showcase-stage-${currentStep.number}`}>
-                <div className="method-showcase-copy">
-                  <div className="method-showcase-step">
-                    <strong>{currentStep.title}</strong>
+                  {steps.map((step, index) => {
+                    const position = orbitPositions[index] ?? "top";
+                    const reverse = position === "left";
+
+                    return (
+                      <button
+                        aria-pressed={index === activeStep}
+                        className={`method-showcase-tab method-showcase-tab-${position} ${reverse ? "method-showcase-tab-reverse" : ""} ${index === activeStep ? "method-showcase-tab-active" : ""}`}
+                        key={step.number}
+                        onClick={() => setActiveStep(index)}
+                        type="button"
+                      >
+                        <span className="method-showcase-tab-copy">
+                          <strong>{step.orbitLabel}</strong>
+                          <small>{step.shortLabel}</small>
+                        </span>
+                        <span className="method-showcase-tab-dot" aria-hidden="true">
+                          <span />
+                        </span>
+                      </button>
+                    );
+                  })}
+
+                  <div className="method-showcase-photo" aria-label="Espaco reservado para foto">
+                    <div className="method-showcase-photo-placeholder">
+                      <span>Foto reservada</span>
+                    </div>
                   </div>
-                  <p className="method-showcase-description">{currentStep.description}</p>
+                </div>
+
+                <div className="method-showcase-panel">
+                  <div className="method-showcase-panel-header">
+                    <span className="method-showcase-kicker">Metodo Ascensional</span>
+                    <div className="method-showcase-heading">
+                      <div className="method-showcase-icon" aria-hidden="true">
+                        <span />
+                      </div>
+                      <div className="method-showcase-step">
+                        <strong>{currentStep.title}</strong>
+                        <p className="method-showcase-description">{currentStep.description}</p>
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="method-showcase-points">
                     {currentHighlights.map((item) => (
@@ -2855,33 +3909,17 @@ export default function Inicial() {
                       </span>
                     ))}
                   </div>
-                </div>
 
-                <div className="method-showcase-visual" aria-hidden="true">
-                  <div className="method-showcase-screen">
-                    <span className="method-showcase-screen-badge">Metodo Ascensional</span>
-                    <strong>{currentStep.title}</strong>
-                    <div className="method-showcase-lines">
-                      <span />
-                      <span />
-                      <span />
+                  <div className="method-showcase-footer">
+                    <p>Clique nos pontos ao redor da foto para trocar o conteudo do painel.</p>
+                    <div className="method-showcase-progress" aria-hidden="true">
+                      {steps.map((step, index) => (
+                        <span
+                          className={index === activeStep ? "method-showcase-progress-active" : ""}
+                          key={step.number}
+                        />
+                      ))}
                     </div>
-                  </div>
-                  <span className="method-showcase-card method-showcase-card-a" />
-                  <span className="method-showcase-card method-showcase-card-b" />
-                  <span className="method-showcase-card method-showcase-card-c" />
-                  <span className="method-showcase-orb" />
-                </div>
-
-                <div className="method-showcase-footer">
-                  <p>Selecione uma etapa na lateral para atualizar o painel e visualizar o foco de cada fase.</p>
-                  <div className="method-showcase-progress" aria-hidden="true">
-                    {steps.map((step, index) => (
-                      <span
-                        className={index === activeStep ? "method-showcase-progress-active" : ""}
-                        key={step.number}
-                      />
-                    ))}
                   </div>
                 </div>
               </div>
@@ -2954,11 +3992,7 @@ export default function Inicial() {
       <section className="section contact-section" id="contato">
         <div className="container">
           <header className="section-header contact-header">
-            <h2 className="title-lg">
-              Fale com a equipe e entenda como estruturar
-              <br />
-              sua conformidade.
-            </h2>
+            <h2 className="title-lg">Fale Conosco</h2>
           </header>
 
           <div className="contact-grid">
@@ -2972,16 +4006,13 @@ export default function Inicial() {
               <div className="contact-list">
                 <div className="contact-item">
                   <span>Telefone</span>
-                  <strong>(11) 99999-9999</strong>
+                  <strong>(21) 99999-9999</strong>
                 </div>
                 <div className="contact-item">
                   <span>E-mail</span>
                   <strong>contato@ascensional.com.br</strong>
                 </div>
-                <div className="contact-item">
-                  <span>Base de atendimento</span>
-                  <strong>São Paulo, SP - Brasil</strong>
-                </div>
+
               </div>
             </article>
 
