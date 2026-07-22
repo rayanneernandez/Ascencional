@@ -2,6 +2,9 @@ import { useState } from "react";
 
 const companyLogoSrc = new URL("./assets/logo.jpg", import.meta.url).href;
 const heroScreenImageSrc = "";
+// Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
+// Para trocar por outra foto, substitua o arquivo ./assets/atuacao.jpg.
+const sectorsImageSrc = new URL("./assets/atuacao.jpg", import.meta.url).href;
 
 const steps = [
   {
@@ -84,7 +87,7 @@ const serviceAreas = [
         label: "Treinamentos",
         items: [
           "Normas Regulamentadoras (NRs) do Trabalho",
-          "Interpretação, implementação e auditoria interna — ISO 45001:2018",
+          "Interpretação, implementação e auditoria interna ISO 45001:2018",
           "Gerenciamento de perigos e riscos (APR, HAZOP)",
           "Análise de Riscos e Permissão de Trabalho (PT)",
           "Higiene ocupacional",
@@ -94,11 +97,11 @@ const serviceAreas = [
       {
         label: "Serviços",
         items: [
-          "Implantação e manutenção do SGSSO — ISO 45001:2018",
+          "Implantação e manutenção do SGSSO ISO 45001:2018",
           "Plano de gestão das NRs e adequação ao eSocial",
           "Laudos técnicos (LTCAT, NR-20, NR-12, entre outros)",
           "Programas de SST (PGR, PCMSO, PCMAT, PPR, PCA, PPEOB, PPP)",
-          "Higiene ocupacional — avaliação quantitativa de riscos",
+          "Higiene ocupacional avaliação quantitativa de riscos",
           "Análise Ergonômica do Trabalho (AET)",
           "Estudos de risco (HAZOP, APP, APR, FMEA)",
           "Licença AVCB junto ao Corpo de Bombeiros",
@@ -109,7 +112,7 @@ const serviceAreas = [
       {
         label: "Auditorias",
         items: [
-          "Auditoria interna do SGSSO — ISO 45001:2018",
+          "Auditoria interna do SGSSO ISO 45001:2018",
           "Auditoria de conformidade legal (requisitos legais e outros)",
           "Auditoria de qualificação de provedores externos",
         ],
@@ -126,17 +129,17 @@ const serviceAreas = [
       {
         label: "Treinamentos",
         items: [
-          "Interpretação, implementação e auditoria — ISO 14001:2015 e versão 2026",
+          "Interpretação, implementação e auditoria ISO 14001:2015 e versão 2026",
           "Gerenciamento de aspectos e impactos ambientais",
         ],
       },
       {
         label: "Serviços",
         items: [
-          "Implantação e manutenção do SGA — ISO 14001:2015 e versão 2026",
+          "Implantação e manutenção do SGA ISO 14001:2015 e versão 2026",
           "Estudos de risco (AIA, avaliação preliminar e detalhada)",
           "Monitoramento de condicionantes ambientais",
-          "Laudo de ruído externo — NBR 10.151 e CONAMA 01/86",
+          "Laudo de ruído externo NBR 10.151 e CONAMA 01/86",
           "Programas de educação e responsabilidade socioambiental",
           "Gerenciamento de resíduos sólidos (PGRS)",
           "Plano de Recuperação de Áreas Degradadas (PRAD)",
@@ -148,8 +151,8 @@ const serviceAreas = [
       {
         label: "Auditorias",
         items: [
-          "Auditoria ambiental — DZ 056 R.3 e SMAC 550/2014",
-          "Auditoria interna do SGA — ISO 14001:2015",
+          "Auditoria ambiental  DZ 056 R.3 e SMAC 550/2014",
+          "Auditoria interna do SGA ISO 14001:2015",
           "Auditoria de qualificação de provedores externos",
         ],
       },
@@ -165,21 +168,21 @@ const serviceAreas = [
       {
         label: "Treinamentos",
         items: [
-          "Interpretação, implementação e auditoria — ISO 9001:2015 e versão 2026",
+          "Interpretação, implementação e auditoria ISO 9001:2015 e versão 2026",
           "Análise e tratamento de não conformidades (5 Porquês, Ishikawa, 8D)",
         ],
       },
       {
         label: "Serviços",
         items: [
-          "Implantação e manutenção do SGQ — ISO 9001:2015 e versão 2026",
+          "Implantação e manutenção do SGQ ISO 9001:2015 e versão 2026",
           "Mapeamento, redesenho e gestão por processos",
           "Planejamento estratégico e indicadores (KPIs)",
         ],
       },
       {
         label: "Auditorias",
-        items: ["Auditoria interna do SGQ — ISO 9001:2015 e versão 2026"],
+        items: ["Auditoria interna do SGQ ISO 9001:2015 e versão 2026"],
       },
     ],
   },
@@ -212,9 +215,9 @@ const serviceAreas = [
       {
         label: "Nossa atuação",
         items: [
-          "E — gestão ambiental, eficiência energética e economia circular",
-          "S — diversidade e inclusão, direitos humanos e responsabilidade social",
-          "G — código de ética, compliance e gestão de riscos corporativos",
+          "Gestão ambiental, eficiência energética e economia circular",
+          "diversidade e inclusão, direitos humanos e responsabilidade social",
+          "Código de ética, compliance e gestão de riscos corporativos",
           "Relatórios de sustentabilidade (GRI e SASB)",
           "Rating ESG e obtenção de selos de sustentabilidade",
         ],
@@ -2447,6 +2450,80 @@ const styles = `
     color: var(--muted);
   }
 
+  .sectors-media {
+    position: relative;
+    margin-top: 24px;
+    max-width: 420px;
+    aspect-ratio: 3 / 2;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 82% 14%, rgba(194, 150, 58, 0.16), transparent 32%),
+      linear-gradient(150deg, var(--wine-soft), #ffffff);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sectors-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sectors-media-ph {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 14px;
+    padding: 22px;
+    text-align: center;
+  }
+
+  .sectors-media-ph::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 16px;
+    border: 1.5px dashed var(--line-strong);
+    pointer-events: none;
+  }
+
+  .sectors-media-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .sectors-media-icons span {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: linear-gradient(140deg, var(--wine), var(--wine-strong));
+    box-shadow: 0 12px 24px rgba(127, 33, 53, 0.2);
+  }
+
+  .sectors-media-icons span svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .sectors-media-ph strong {
+    color: var(--ink);
+    font-size: 0.98rem;
+  }
+
+  .sectors-media-ph small {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    max-width: 30ch;
+  }
+
   .sector-list {
     order: 1;
     display: grid;
@@ -2921,6 +2998,11 @@ const styles = `
       max-width: 100%;
     }
 
+    .sectors-media {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .showcase-stage {
       grid-template-columns: 1fr;
     }
@@ -3207,7 +3289,7 @@ export default function Inicial() {
               <p className="lead">
                 Consultoria especializada em Qualidade, Meio Ambiente, Saúde e Segurança
                 Ocupacional e Governança. Transformamos exigências regulatórias em performance,
-                conformidade e reputação — com experiência em setores de alta exigência como Óleo e Gás.
+                conformidade e reputação com experiência em setores de alta exigência como Óleo e Gás.
               </p>
 
               <div className="cta-row">
@@ -3614,6 +3696,22 @@ export default function Inicial() {
                 Atuamos nos principais eixos regulatórios e de gestão, adaptando o escopo à realidade,
                 ao porte e ao segmento de cada empresa.
               </p>
+
+              <div className="sectors-media">
+                {sectorsImageSrc ? (
+                  <img alt="Atuação da Ascensional Consultoria" src={sectorsImageSrc} />
+                ) : (
+                  <div className="sectors-media-ph" aria-hidden="true">
+                    <div className="sectors-media-icons">
+                      <span>{renderIcon(areaIconPaths.sso)}</span>
+                      <span>{renderIcon(areaIconPaths.ambiente)}</span>
+                      <span>{renderIcon(areaIconPaths.esg)}</span>
+                    </div>
+                    <strong>Imagem reservada</strong>
+                    <small>Adicione aqui uma foto da equipe, da operação ou de campo.</small>
+                  </div>
+                )}
+              </div>
             </header>
 
             <div className="sector-list">
