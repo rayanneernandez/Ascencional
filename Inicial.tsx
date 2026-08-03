@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const companyLogoSrc = new URL("./assets/logo.jpg", import.meta.url).href;
-const heroScreenImageSrc = "";
+const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
+const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.url).href;
 // Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
 // Para trocar por outra foto, substitua o arquivo ./assets/atuacao.jpg.
 const sectorsImageSrc = new URL("./assets/atuacao.jpg", import.meta.url).href;
@@ -9,256 +9,194 @@ const sectorsImageSrc = new URL("./assets/atuacao.jpg", import.meta.url).href;
 const steps = [
   {
     number: "01",
-    shortLabel: "Diagnostico",
-    orbitLabel: "Diagnóstico",
-    title: "Diagnóstico e gap analysis",
+    shortLabel: "Identificacao",
+    orbitLabel: "Identificação",
+    title: "Identificação dos requisitos",
     description:
-      "Avaliamos processos, documentação e requisitos legais aplicáveis ao seu segmento para revelar lacunas e prioridades com precisão.",
+      "Identificamos os requisitos legais do escopo do seu negócio, além dos aspectos ambientais e perigos de SSO relevantes.",
   },
   {
     number: "02",
-    shortLabel: "Implementacao",
-    orbitLabel: "Implementação",
-    title: "Implementação dos requisitos",
+    shortLabel: "Controle",
+    orbitLabel: "Controle",
+    title: "Controle dinâmico",
     description:
-      "Estruturamos programas, laudos, procedimentos e sistemas de gestão (ISO 9001, 14001 e 45001) alinhados à operação real da empresa.",
+      "Acompanhe revogações e alterações da legislação, mantendo sua base de dados sempre alinhada às normas vigentes.",
   },
   {
     number: "03",
-    shortLabel: "Auditoria",
-    orbitLabel: "Auditoria",
-    title: "Auditoria e monitoramento",
+    shortLabel: "Evidencias",
+    orbitLabel: "Evidências",
+    title: "Lançamento de evidências",
     description:
-      "Conduzimos auditorias internas, de conformidade legal e simulados PEOTRAM, acompanhando condicionantes e evidências continuamente.",
+      "Registre as evidências de conformidade de forma ágil, com interface intuitiva, sem múltiplas telas ou etapas complexas.",
   },
   {
     number: "04",
-    shortLabel: "Melhoria",
-    orbitLabel: "Resultados",
-    title: "Melhoria contínua e resultados",
+    shortLabel: "Avaliacao",
+    orbitLabel: "Avaliação",
+    title: "Avaliação e relatórios",
     description:
-      "Tratamos não conformidades pela causa-raiz e entregamos relatórios executivos que sustentam decisões, certificações e a nota ADT.",
+      "Avalie o atendimento aos requisitos pela sua equipe ou pela equipe técnica da Synergy EB e acompanhe os resultados.",
   },
 ];
 
 const stepHighlights = [
-  ["Levantamento legal", "Gap analysis PEOTRAM", "Prioridades definidas"],
-  ["Programas e laudos", "Sistemas de gestão ISO", "Procedimentos aplicados"],
-  ["Auditorias internas", "Simulados PEOTRAM", "Condicionantes acompanhadas"],
-  ["Causa-raiz tratada", "Relatórios executivos", "Certificação sustentada"],
+  ["Requisitos do escopo", "Aspectos e perigos de SSO", "Enquadramento claro"],
+  ["Revogações e alterações", "Legislação na íntegra", "Base sempre atualizada"],
+  ["Registro ágil", "Interface intuitiva", "Sem retrabalho"],
+  ["Equipe do cliente ou EB", "Atualização mensal", "Visão de conformidade"],
 ];
 
 const pillars = [
   {
-    title: "Segurança e Saúde Ocupacional",
-    description: "NRs, ISO 45001, PGR, PCMSO, LTCAT, higiene ocupacional, AET e planos de emergência.",
+    title: "Lançamento simplificado",
+    description: "Registre evidências de conformidade de forma ágil, sem múltiplas telas ou etapas complexas.",
   },
   {
-    title: "Meio Ambiente e Sustentabilidade",
-    description: "ISO 14001, licenciamento, condicionantes, resíduos, PRAD e produtos perigosos.",
+    title: "Condução intuitiva",
+    description: "O sistema guia o usuário pelo processo fácil de usar mesmo sem experiência prévia.",
   },
   {
-    title: "Qualidade e Excelência",
-    description: "ISO 9001, mapeamento e redesenho de processos, planejamento estratégico e KPIs.",
+    title: "Identificação precisa",
+    description: "Requisitos legais do escopo do negócio, aspectos ambientais e perigos de SSO relevantes.",
   },
   {
-    title: "Consultoria PEOTRAM",
-    description: "Gap analysis, implementação, auditorias de preparação e gestão da nota ADT (Petrobras).",
+    title: "Controle dinâmico",
+    description: "Acompanhamento contínuo de revogações e alterações da legislação vigente.",
   },
   {
-    title: "Estratégia e Governança ESG",
-    description: "Estratégia ESG, relatórios GRI/SASB, rating, compliance e gestão de riscos corporativos.",
+    title: "Legislação na íntegra",
+    description: "Acesso à íntegra das legislações aplicáveis, direto no sistema, para consulta e referência.",
   },
   {
-    title: "Requisitos Legais e Outros",
-    description: "Levantamento, avaliação e atualização contínua de requisitos legais e qualificação de fornecedores.",
+    title: "Atualização mensal",
+    description: "A equipe técnica insere novas legislações todo mês; você nunca perde uma mudança importante.",
   },
 ];
 
 const serviceAreas = [
   {
-    key: "sso",
-    tag: "SSO",
-    name: "Segurança e Saúde Ocupacional",
+    key: "facilidade",
+    tag: "Fácil de usar",
+    name: "Sua conformidade, nossa prioridade: um sistema desenvolvido para você",
     lead:
-      "Proteção da vida e da saúde dos trabalhadores com uma abordagem proativa, focada em prevenção e conformidade com as normas nacionais e internacionais.",
+      "Nosso sistema de gerenciamento de requisitos legais foi cuidadosamente desenvolvido para atender às necessidades específicas da sua organização, proporcionando uma ferramenta robusta e, acima de tudo, fácil de usar. Entendemos que o tempo é um recurso valioso, e por isso, eliminamos a burocracia e o retrabalho:",
     groups: [
       {
-        label: "Treinamentos",
+        label: "Destaques",
         items: [
-          "Normas Regulamentadoras (NRs) do Trabalho",
-          "Interpretação, implementação e auditoria interna ISO 45001:2018",
-          "Gerenciamento de perigos e riscos (APR, HAZOP)",
-          "Análise de Riscos e Permissão de Trabalho (PT)",
-          "Higiene ocupacional",
-          "Abandono e situações de emergência",
-        ],
-      },
-      {
-        label: "Serviços",
-        items: [
-          "Implantação e manutenção do SGSSO ISO 45001:2018",
-          "Plano de gestão das NRs e adequação ao eSocial",
-          "Laudos técnicos (LTCAT, NR-20, NR-12, entre outros)",
-          "Programas de SST (PGR, PCMSO, PCMAT, PPR, PCA, PPEOB, PPP)",
-          "Higiene ocupacional avaliação quantitativa de riscos",
-          "Análise Ergonômica do Trabalho (AET)",
-          "Estudos de risco (HAZOP, APP, APR, FMEA)",
-          "Licença AVCB junto ao Corpo de Bombeiros",
-          "Plano de Emergência e Auxílio Mútuo (PAM) com simulados",
-          "Gerenciamento de requisitos legais e FISPQ",
-        ],
-      },
-      {
-        label: "Auditorias",
-        items: [
-          "Auditoria interna do SGSSO ISO 45001:2018",
-          "Auditoria de conformidade legal (requisitos legais e outros)",
-          "Auditoria de qualificação de provedores externos",
+          "Lançamento simplificado de evidências: diga adeus às múltiplas telas e etapas complexas. Com uma interface intuitiva e direta, você registra as evidências de conformidade de forma ágil, focando no que realmente importa.",
+          "Condução intuitiva: o sistema guia você através do processo, tornando a gestão de requisitos legais uma tarefa descomplicada e eficiente, mesmo para usuários sem experiência prévia.",
         ],
       },
     ],
   },
   {
-    key: "ambiente",
-    tag: "Meio Ambiente",
-    name: "Meio Ambiente e Sustentabilidade",
+    key: "funcionalidades",
+    tag: "Funcionalidades",
+    name: "Funcionalidades essenciais para uma gestão completa",
     lead:
-      "Gestão responsável dos recursos naturais, minimização de impactos e promoção da sustentabilidade, garantindo conformidade legal e reputação corporativa.",
+      "O sistema da Synergy EB Consultoria oferece um conjunto abrangente de funcionalidades para garantir que sua organização esteja sempre à frente em termos de conformidade:",
     groups: [
       {
-        label: "Treinamentos",
+        label: "Recursos",
         items: [
-          "Interpretação, implementação e auditoria ISO 14001:2015 e versão 2026",
-          "Gerenciamento de aspectos e impactos ambientais",
-        ],
-      },
-      {
-        label: "Serviços",
-        items: [
-          "Implantação e manutenção do SGA ISO 14001:2015 e versão 2026",
-          "Estudos de risco (AIA, avaliação preliminar e detalhada)",
-          "Monitoramento de condicionantes ambientais",
-          "Laudo de ruído externo NBR 10.151 e CONAMA 01/86",
-          "Programas de educação e responsabilidade socioambiental",
-          "Gerenciamento de resíduos sólidos (PGRS)",
-          "Plano de Recuperação de Áreas Degradadas (PRAD)",
-          "SIPROQUIM e ficha de emergência",
-          "Conformidade no transporte rodoviário de produtos perigosos",
-          "Gerenciamento de requisitos legais e qualificação de fornecedores",
-        ],
-      },
-      {
-        label: "Auditorias",
-        items: [
-          "Auditoria ambiental  DZ 056 R.3 e SMAC 550/2014",
-          "Auditoria interna do SGA ISO 14001:2015",
-          "Auditoria de qualificação de provedores externos",
+          "Identificação precisa: realizamos a identificação dos requisitos legais associados ao escopo de negócio da sua organização, bem como dos aspectos ambientais e perigos de Saúde e Segurança Ocupacional (SSO) relevantes.",
+          "Controle dinâmico: mantenha-se atualizado com o controle contínuo das revogações e alterações dos requisitos legais, garantindo que sua base de dados esteja sempre alinhada com a legislação vigente.",
+          "Legislação na íntegra: tenha acesso facilitado à íntegra das legislações aplicáveis, diretamente no sistema, para consulta e referência sempre que necessário.",
+          "Atualização mensal garantida: nossa equipe técnica realiza atualizações mensais dos requisitos legais, inserindo novas legislações aplicáveis e garantindo que você nunca perca uma mudança importante.",
         ],
       },
     ],
   },
   {
-    key: "qualidade",
-    tag: "Qualidade",
-    name: "Qualidade e Excelência Operacional",
+    key: "avaliacao",
+    tag: "Avaliação",
+    name: "Avaliação e suporte personalizado",
     lead:
-      "Otimização de processos, satisfação do cliente e busca pela excelência operacional como diferencial competitivo que impulsiona o crescimento do negócio.",
+      "A avaliação do atendimento aos requisitos legais pode ser realizada de duas formas, adaptando-se à sua preferência e capacidade interna:",
     groups: [
       {
-        label: "Treinamentos",
+        label: "Como avaliar",
         items: [
-          "Interpretação, implementação e auditoria ISO 9001:2015 e versão 2026",
-          "Análise e tratamento de não conformidades (5 Porquês, Ishikawa, 8D)",
+          "Equipe do cliente: sua própria equipe pode conduzir as avaliações, utilizando a ferramenta para registrar e monitorar a conformidade.",
+          "Equipe técnica da Synergy EB Consultoria: conte com a expertise dos nossos especialistas para realizar as avaliações, garantindo um olhar técnico e aprofundado sobre sua conformidade.",
         ],
       },
       {
-        label: "Serviços",
+        label: "Nota importante",
         items: [
-          "Implantação e manutenção do SGQ ISO 9001:2015 e versão 2026",
-          "Mapeamento, redesenho e gestão por processos",
-          "Planejamento estratégico e indicadores (KPIs)",
-        ],
-      },
-      {
-        label: "Auditorias",
-        items: ["Auditoria interna do SGQ ISO 9001:2015 e versão 2026"],
-      },
-    ],
-  },
-  {
-    key: "peotram",
-    tag: "PEOTRAM",
-    name: "Consultoria Especializada PEOTRAM",
-    lead:
-      "Programa de Excelência Operacional para Transporte Aéreo e Marítimo da Petrobras. Preparamos sua empresa para atender e superar as exigências, garantindo contratos e excelência operacional.",
-    groups: [
-      {
-        label: "Metodologia",
-        items: [
-          "Diagnóstico de lacunas (gap analysis) do ciclo vigente",
-          "Implementação dos requisitos de segurança, manutenção e operação",
-          "Auditorias de preparação simuladas com o rigor da Petrobras",
-          "Gestão de não conformidades e melhoria da nota ADT",
-          "Treinamento de equipes nos padrões de excelência operacional",
+          "Caso sua organização ainda não possua a identificação formal de aspectos ambientais e perigos de SSO, a Synergy EB Consultoria disponibilizará uma lista de verificação detalhada para auxiliar no enquadramento das suas atividades, garantindo que nenhum ponto crítico seja negligenciado.",
         ],
       },
     ],
   },
+];
+
+const clientPlaceholders = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const testimonials = [
   {
-    key: "esg",
-    tag: "ESG",
-    name: "Estratégia e Governança ESG",
-    lead:
-      "Uma jornada de sustentabilidade que vai além do compliance, gerando valor financeiro e reputacional a partir dos critérios Ambiental, Social e de Governança.",
-    groups: [
-      {
-        label: "Nossa atuação",
-        items: [
-          "Gestão ambiental, eficiência energética e economia circular",
-          "diversidade e inclusão, direitos humanos e responsabilidade social",
-          "Código de ética, compliance e gestão de riscos corporativos",
-          "Relatórios de sustentabilidade (GRI e SASB)",
-          "Rating ESG e obtenção de selos de sustentabilidade",
-        ],
-      },
-    ],
+    name: "Depoimento reservado",
+    role: "Cargo — Empresa reservada",
+    quote:
+      "Espaço reservado para o depoimento de um cliente sobre a parceria com a Synergy EB Consultoria.",
+    since: "Parceiro reservado",
+  },
+  {
+    name: "Depoimento reservado",
+    role: "Cargo — Empresa reservada",
+    quote:
+      "Espaço reservado para o depoimento de outro cliente sobre os resultados obtidos com o sistema.",
+    since: "Parceiro reservado",
+  },
+  {
+    name: "Depoimento reservado",
+    role: "Cargo — Empresa reservada",
+    quote:
+      "Espaço reservado para um depoimento sobre o suporte técnico e a atualização mensal da legislação.",
+    since: "Parceiro reservado",
   },
 ];
 
 const benefits = [
   {
-    title: "Conformidade legal",
+    title: "Identificação precisa",
     description:
-      "Requisitos, prazos, licenças e condicionantes monitorados de forma centralizada e acionável.",
+      "Requisitos legais do escopo, aspectos ambientais e perigos de SSO identificados com precisão.",
     scene: "legal",
   },
   {
-    title: "Evidências organizadas",
+    title: "Controle dinâmico",
     description:
-      "Documentos, laudos, programas e comprovações prontos para consulta, auditorias e certificações.",
-    scene: "evidence",
-  },
-  {
-    title: "Visão executiva",
-    description:
-      "Indicadores claros e leitura executiva para priorizar riscos e sustentar decisões com segurança.",
+      "Revogações e alterações acompanhadas continuamente, base sempre alinhada à legislação vigente.",
     scene: "dashboard",
   },
   {
-    title: "Prevenção de perdas",
+    title: "Legislação na íntegra",
     description:
-      "Antecipe passivos com alertas de vencimentos, atualizações legais e atividades críticas.",
+      "Acesso à íntegra das leis aplicáveis, direto no sistema, para consulta e referência.",
+    scene: "evidence",
+  },
+  {
+    title: "Atualização mensal",
+    description:
+      "Novas legislações inseridas todo mês pela equipe técnica você nunca perde uma mudança.",
     scene: "alerts",
   },
 ];
 
 const areaIconPaths: Record<string, string[]> = {
+  facilidade: ["M13 2L4 14h6l-1 8 9-12h-6l1-8z"],
+  funcionalidades: ["M12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z", "M19.4 13a7.6 7.6 0 000-2l1.8-1.4-1.8-3.1-2.1.9a7.6 7.6 0 00-1.7-1l-.3-2.3H9.7l-.3 2.3a7.6 7.6 0 00-1.7 1l-2.1-.9L3.8 9.6 5.6 11a7.6 7.6 0 000 2l-1.8 1.4 1.8 3.1 2.1-.9c.5.4 1.1.7 1.7 1l.3 2.3h4.6l.3-2.3c.6-.3 1.2-.6 1.7-1l2.1.9 1.8-3.1L19.4 13z"],
+  avaliacao: ["M8 3h6l4 4v14H6V3h2z", "M14 3v4h4", "M9 12.5l1.8 1.8L15 10.5"],
   sso: ["M12 3l7 3v5c0 4.2-2.9 7.7-7 8.9C7.9 18.7 5 15.2 5 11V6l7-3z", "M9 11.5l2 2 4-4.5"],
   ambiente: ["M20 4C10 5 5 10 5 18c0 0 6-1 9-4s6-9 6-10z", "M6 18C9 13 13 10 18 8"],
   qualidade: ["M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.9 7.2 18l.9-5.4L4.2 8.7l5.4-.8L12 3z"],
   peotram: ["M4 15l1.6-6.2a2 2 0 011.9-1.5h9a2 2 0 011.9 1.5L20 15", "M3 15h18l-1.4 3.3a2 2 0 01-1.8 1.2H6.2a2 2 0 01-1.8-1.2L3 15z", "M12 4v3"],
   esg: ["M12 3a9 9 0 100 18 9 9 0 000-18z", "M3.5 9h17M3.5 15h17", "M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"],
+  seguranca: ["M4 15v-1a8 8 0 0116 0v1", "M3 15h18v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z", "M12 6v3"],
 };
 
 const groupIconPaths: Record<string, string[]> = {
@@ -267,6 +205,10 @@ const groupIconPaths: Record<string, string[]> = {
   Auditorias: ["M8 3h6l4 4v14H6V3h2z", "M14 3v4h4", "M9 12.5l1.8 1.8L15 10.5"],
   Metodologia: ["M6 4v10", "M6 20a3 3 0 100-6 3 3 0 000 6z", "M18 10a3 3 0 100-6 3 3 0 000 6z", "M18 10v2a4 4 0 01-4 4H9"],
   "Nossa atuação": ["M12 3a9 9 0 100 18 9 9 0 000-18z", "M14.5 9.5l-1.2 3.8-3.8 1.2 1.2-3.8 3.8-1.2z"],
+  Destaques: ["M12 2l2.6 6.4L21 9l-5 4.6L17.4 21 12 17.4 6.6 21 8 13.6 3 9l6.4-0.6L12 2z"],
+  Recursos: ["M4 6h16", "M4 12h16", "M4 18h10"],
+  "Como avaliar": ["M9 12.5l1.8 1.8L15 10.5", "M12 3a9 9 0 100 18 9 9 0 000-18z"],
+  "Nota importante": ["M12 3l9 4.5v9L12 21l-9-4.5v-9L12 3z", "M12 8v5", "M12 16.2v.1"],
 };
 
 function renderIcon(paths: string[] | undefined) {
@@ -276,6 +218,18 @@ function renderIcon(paths: string[] | undefined) {
       {paths.map((d, i) => (
         <path d={d} key={i} />
       ))}
+    </svg>
+  );
+}
+
+const LOGO_PATH =
+  "M 359.50 323.24 C353.06,325.09 348.80,325.28 305.97,325.67 C280.37,325.91 259.11,325.78 258.72,325.38 C258.32,324.99 258.00,319.79 258.00,313.83 L 258.00 303.00 L 303.29 303.00 C340.43,303.00 349.62,302.73 354.37,301.49 C390.81,292.00 404.22,249.33 378.78,223.80 C372.67,217.67 364.89,213.19 355.73,210.52 C351.16,209.20 346.45,208.94 331.28,209.19 C313.48,209.48 312.21,209.64 306.95,212.10 C299.68,215.51 295.02,219.72 291.66,225.88 C289.43,229.97 288.75,232.96 287.95,242.13 C286.05,263.69 281.95,274.91 272.38,284.70 C266.48,290.72 260.42,294.43 250.02,298.35 C244.78,300.33 242.23,300.45 199.39,300.77 L 154.29 301.11 L 151.21 298.52 C147.06,295.03 145.48,290.11 147.01,285.46 C149.34,278.41 148.36,278.56 197.45,277.98 L 241.50 277.46 L 247.03 274.88 C253.75,271.75 260.30,264.65 262.43,258.17 C263.28,255.60 264.45,247.95 265.04,241.16 C266.61,222.82 271.38,211.32 281.36,201.75 C291.38,192.14 303.83,188.02 322.96,187.97 C346.89,187.91 356.99,185.20 365.33,176.62 C371.32,170.46 373.34,165.87 373.81,157.40 C374.16,151.17 373.85,149.58 371.39,144.54 C368.44,138.53 363.08,133.16 356.78,129.91 C347.40,125.07 346.51,125.03 249.75,125.01 L 159.00 125.00 L 159.00 102.00 L 248.89 102.00 C325.68,102.00 340.00,102.23 347.14,103.54 C373.28,108.38 390.44,122.81 395.49,144.22 C399.66,161.92 394.61,180.46 382.48,191.93 C379.40,194.84 377.02,197.33 377.19,197.46 C377.36,197.59 380.42,199.21 384.00,201.06 C396.66,207.61 406.82,220.40 412.15,236.50 C415.16,245.58 415.36,264.12 412.55,273.50 C406.87,292.50 394.96,307.04 377.50,316.30 C371.34,319.56 368.43,320.68 359.50,323.24 ZM 270.18 203.39 L 268.00 206.28 L 231.25 206.39 C182.39,206.54 163.80,205.92 161.58,204.07 C157.18,200.41 155.89,194.04 158.52,188.97 C159.01,188.01 159.37,187.21 159.90,186.53 C162.69,182.97 170.07,183.00 225.84,183.22 C227.87,183.23 229.97,183.23 232.14,183.24 L 298.35 183.50 L 289.86 187.71 C281.73,191.74 274.87,197.20 270.18,203.39 Z";
+
+function LogoMark() {
+  // Monograma EB oficial da Synergy EB Consultoria.
+  return (
+    <svg className="logo-mark" viewBox="128 90 300 250" role="img" aria-label="Synergy EB Consultoria">
+      <path d={LOGO_PATH} fill="currentColor" />
     </svg>
   );
 }
@@ -298,23 +252,23 @@ const styles = `
   :root {
     color-scheme: light;
     --bg: #ffffff;
-    --bg-warm: #faf6f2;
-    --bg-tint: #fbf2f2;
+    --bg-warm: #f4f7fb;
+    --bg-tint: #eef3f9;
     --panel: #ffffff;
-    --panel-warm: #fdfaf7;
-    --ink: #2b1a1e;
-    --text: #3f2e31;
-    --muted: #7a6a66;
-    --wine: #a12f47;
-    --wine-strong: #7f2135;
-    --wine-soft: #f7e8ea;
+    --panel-warm: #f8fafd;
+    --ink: #142338;
+    --text: #33404f;
+    --muted: #64748b;
+    --wine: #1e3a63;
+    --wine-strong: #13294a;
+    --wine-soft: #e7eef7;
     --gold: #c2963a;
     --gold-soft: #f4e8cd;
-    --line: rgba(127, 33, 53, 0.14);
-    --line-strong: rgba(127, 33, 53, 0.3);
-    --line-soft: rgba(43, 26, 30, 0.08);
-    --shadow-sm: 0 10px 26px rgba(72, 24, 34, 0.06);
-    --shadow: 0 26px 60px rgba(72, 24, 34, 0.1);
+    --line: rgba(30, 58, 99, 0.14);
+    --line-strong: rgba(30, 58, 99, 0.3);
+    --line-soft: rgba(20, 30, 45, 0.08);
+    --shadow-sm: 0 10px 26px rgba(20, 35, 60, 0.06);
+    --shadow: 0 26px 60px rgba(20, 35, 60, 0.1);
     --radius-xl: 32px;
     --radius-lg: 24px;
     --radius-md: 18px;
@@ -333,9 +287,9 @@ const styles = `
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background:
-      radial-gradient(circle at top left, rgba(161, 47, 71, 0.06), transparent 34%),
+      radial-gradient(circle at top left, rgba(31, 61, 115, 0.06), transparent 34%),
       radial-gradient(circle at top right, rgba(194, 150, 58, 0.07), transparent 36%),
-      linear-gradient(180deg, #ffffff 0%, #faf6f2 100%);
+      linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
     color: var(--text);
   }
 
@@ -383,7 +337,7 @@ const styles = `
     height: 8px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--gold), var(--wine));
-    box-shadow: 0 0 16px rgba(161, 47, 71, 0.35);
+    box-shadow: 0 0 16px rgba(31, 61, 115, 0.35);
   }
 
   .kicker {
@@ -434,7 +388,7 @@ const styles = `
     justify-content: space-between;
     background:
       radial-gradient(circle at 82% 12%, rgba(194, 150, 58, 0.08), transparent 30%),
-      radial-gradient(circle at 6% 90%, rgba(161, 47, 71, 0.06), transparent 32%);
+      radial-gradient(circle at 6% 90%, rgba(31, 61, 115, 0.06), transparent 32%);
   }
 
   .hero::before {
@@ -444,15 +398,15 @@ const styles = `
     background:
       repeating-linear-gradient(
         60deg,
-        rgba(127, 33, 53, 0.04) 0,
-        rgba(127, 33, 53, 0.04) 1px,
+        rgba(30, 58, 99, 0.04) 0,
+        rgba(30, 58, 99, 0.04) 1px,
         transparent 1px,
         transparent 128px
       ),
       repeating-linear-gradient(
         -60deg,
-        rgba(127, 33, 53, 0.04) 0,
-        rgba(127, 33, 53, 0.04) 1px,
+        rgba(30, 58, 99, 0.04) 0,
+        rgba(30, 58, 99, 0.04) 1px,
         transparent 1px,
         transparent 128px
       );
@@ -460,12 +414,28 @@ const styles = `
     pointer-events: none;
   }
 
+  .nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: rgba(6, 16, 32, 0.62);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
   .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    padding: 8px 0 16px;
+    gap: 20px;
+    padding: 6px 0;
+  }
+
+  .hero {
+    padding-top: 64px;
   }
 
   .brand {
@@ -477,16 +447,102 @@ const styles = `
     color: var(--ink);
   }
 
+  .brand-logo-wrap {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 34px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .brand-logo {
+    position: absolute;
+    left: -39px;
+    top: -120px;
+    width: 274px;
+    height: 274px;
+    max-width: none;
+  }
+
+  @media (max-width: 560px) {
+    .brand-logo-wrap {
+      width: 166px;
+      height: 28px;
+    }
+
+    .brand-logo {
+      left: -32px;
+      top: -99px;
+      width: 226px;
+      height: 226px;
+    }
+  }
+
+  .brand-word {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    line-height: 1;
+  }
+
+  .brand-word strong {
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .brand-word small {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: #fff;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
   .brand-mark {
-    width: 46px;
-    height: 46px;
-    border-radius: 16px;
+    width: 40px;
+    height: 40px;
     display: grid;
     place-items: center;
-    overflow: hidden;
-    background: linear-gradient(145deg, var(--gold-soft), var(--wine-soft));
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
   }
 
   .brand-mark img,
@@ -497,12 +553,26 @@ const styles = `
     object-fit: cover;
   }
 
+  .brand-mark {
+    color: #fff;
+  }
+
+  .hero-sidebar-badge {
+    color: var(--wine);
+  }
+
+  .logo-mark {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .nav-links a:hover {
@@ -512,7 +582,7 @@ const styles = `
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
   }
 
   .nav-actions {
@@ -551,7 +621,7 @@ const styles = `
   .nav-button-primary {
     color: #fff;
     background: linear-gradient(135deg, var(--wine), var(--wine-strong));
-    box-shadow: 0 14px 30px rgba(127, 33, 53, 0.24);
+    box-shadow: 0 14px 30px rgba(30, 58, 99, 0.24);
   }
 
   .hero-grid {
@@ -613,7 +683,7 @@ const styles = `
   .button-primary {
     background: linear-gradient(135deg, var(--wine), var(--wine-strong));
     color: #fff;
-    box-shadow: 0 18px 40px rgba(127, 33, 53, 0.26);
+    box-shadow: 0 18px 40px rgba(30, 58, 99, 0.26);
   }
 
   .button-secondary {
@@ -632,6 +702,45 @@ const styles = `
     font-size: 0.95rem;
   }
 
+  .hero-pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .hero-pillar {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .hero-pillar svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .hero-pillar-quality svg {
+    color: #6fa3e0;
+  }
+
+  .hero-pillar-environment svg {
+    color: #5fc76a;
+  }
+
+  .hero-pillar-safety svg {
+    color: #3ecfd9;
+  }
+
   .hero-art {
     position: relative;
     min-height: clamp(340px, 48vh, 470px);
@@ -639,6 +748,10 @@ const styles = `
     place-items: center;
     padding: 8px 8px 0;
     overflow: hidden;
+  }
+
+  .hero-art-photo::before {
+    content: none;
   }
 
   .hero-art::before {
@@ -651,6 +764,36 @@ const styles = `
       radial-gradient(circle at top right, rgba(194, 150, 58, 0.1), transparent 32%),
       linear-gradient(180deg, #ffffff, #faf1ee);
     box-shadow: var(--shadow);
+  }
+
+  .hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 1402 / 1122;
+  }
+
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(18%) brightness(0.9) contrast(1.1) saturate(0.9);
+    -webkit-mask-image: radial-gradient(ellipse 46% 48% at 50% 42%, #000 12%, transparent 100%);
+    mask-image: radial-gradient(ellipse 46% 48% at 50% 42%, #000 12%, transparent 100%);
+  }
+
+  .hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+      radial-gradient(circle at 24% 16%, rgba(194, 150, 58, 0.28), transparent 55%),
+      radial-gradient(circle at 82% 84%, rgba(255, 255, 255, 0.08), transparent 50%);
   }
 
   .hero-monitor {
@@ -694,7 +837,7 @@ const styles = `
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: rgba(161, 47, 71, 0.35);
+    background: rgba(31, 61, 115, 0.35);
   }
 
   .hero-screen {
@@ -727,7 +870,7 @@ const styles = `
     height: 10px;
     margin-bottom: 10px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.1);
+    background: rgba(30, 58, 99, 0.1);
   }
 
   .hero-sidebar-item:nth-child(3) { width: 82%; }
@@ -771,8 +914,8 @@ const styles = `
     border-radius: 12px;
     border: 1px solid var(--line-soft);
     background:
-      linear-gradient(90deg, rgba(127, 33, 53, 0.06) 0, rgba(127, 33, 53, 0.06) 1px, transparent 1px, transparent 56px),
-      linear-gradient(180deg, rgba(127, 33, 53, 0.06) 0, rgba(127, 33, 53, 0.06) 1px, transparent 1px, transparent 56px);
+      linear-gradient(90deg, rgba(30, 58, 99, 0.06) 0, rgba(30, 58, 99, 0.06) 1px, transparent 1px, transparent 56px),
+      linear-gradient(180deg, rgba(30, 58, 99, 0.06) 0, rgba(30, 58, 99, 0.06) 1px, transparent 1px, transparent 56px);
     background-size: 44px 44px;
   }
 
@@ -822,7 +965,7 @@ const styles = `
     display: block;
     height: 8px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.12);
+    background: rgba(30, 58, 99, 0.12);
   }
 
   .hero-system-lines span:nth-child(2) { width: 84%; }
@@ -1092,9 +1235,8 @@ const styles = `
   .method-classic-tab-copy small {
     margin-top: 3px;
     color: var(--muted);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.76rem;
+    letter-spacing: 0.01em;
   }
 
   .method-classic-stage {
@@ -1211,7 +1353,7 @@ const styles = `
     display: block;
     height: 6px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.16);
+    background: rgba(30, 58, 99, 0.16);
   }
 
   .method-classic-lines span:nth-child(2) { width: 82%; }
@@ -1220,7 +1362,7 @@ const styles = `
   .method-classic-card {
     border-radius: 18px;
     background: linear-gradient(180deg, #ffffff, #f6ece8);
-    box-shadow: 0 14px 28px rgba(72, 24, 34, 0.12);
+    box-shadow: 0 14px 28px rgba(20, 35, 60, 0.12);
     border: 1px solid var(--line-soft);
   }
 
@@ -1240,7 +1382,7 @@ const styles = `
     right: -10px;
     bottom: -12px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(161, 47, 71, 0.18), transparent 68%);
+    background: radial-gradient(circle, rgba(31, 61, 115, 0.18), transparent 68%);
     filter: blur(8px);
   }
 
@@ -1268,7 +1410,7 @@ const styles = `
     width: 34px;
     height: 6px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.14);
+    background: rgba(30, 58, 99, 0.14);
     transition: width 0.24s ease, background 0.24s ease;
   }
 
@@ -1281,7 +1423,7 @@ const styles = `
   .services-section {
     background: var(--bg);
     color: var(--ink);
-    padding: 62px 0;
+    padding: 48px 0;
   }
 
   .services-header {
@@ -1347,7 +1489,7 @@ const styles = `
   .services-tab-active {
     background: linear-gradient(135deg, var(--wine), var(--wine-strong));
     border-color: transparent;
-    box-shadow: 0 16px 34px rgba(127, 33, 53, 0.24);
+    box-shadow: 0 16px 34px rgba(30, 58, 99, 0.24);
   }
 
   .services-tab-ico {
@@ -1405,13 +1547,13 @@ const styles = `
 
   .services-panel {
     position: relative;
-    border-radius: 24px;
+    border-radius: 34px 34px 34px 10px;
     border: 1px solid var(--line);
     background:
       radial-gradient(circle at 100% 0, rgba(194, 150, 58, 0.08), transparent 24%),
       var(--panel);
     box-shadow: var(--shadow);
-    padding: clamp(20px, 2.4vw, 30px);
+    padding: clamp(18px, 2.2vw, 26px);
     overflow: hidden;
   }
 
@@ -1422,7 +1564,7 @@ const styles = `
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(161, 47, 71, 0.1), transparent 68%);
+    background: radial-gradient(circle, rgba(31, 61, 115, 0.1), transparent 68%);
     pointer-events: none;
   }
 
@@ -1435,20 +1577,20 @@ const styles = `
   }
 
   .services-panel-ico {
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
     flex-shrink: 0;
-    border-radius: 16px;
+    border-radius: 14px;
     display: grid;
     place-items: center;
     color: #fff;
     background: linear-gradient(140deg, var(--wine), var(--wine-strong));
-    box-shadow: 0 14px 28px rgba(127, 33, 53, 0.22);
+    box-shadow: 0 14px 28px rgba(30, 58, 99, 0.22);
   }
 
   .services-panel-ico svg {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
   }
 
   .services-panel-headcopy {
@@ -1475,10 +1617,10 @@ const styles = `
 
   .services-panel-lead {
     position: relative;
-    margin-top: 12px;
+    margin-top: 10px;
     color: var(--muted);
     font-size: 0.9rem;
-    line-height: 1.55;
+    line-height: 1.5;
     max-width: 66ch;
   }
 
@@ -1487,13 +1629,13 @@ const styles = `
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 16px;
     align-items: start;
   }
 
   .services-group {
     border: 1px solid var(--line);
-    border-radius: 16px;
+    border-radius: 20px 20px 20px 6px;
     background: linear-gradient(180deg, #ffffff, var(--bg-warm));
     padding: 14px 15px 15px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -1595,21 +1737,23 @@ const styles = `
   .method-break-fullbleed {
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    padding: clamp(40px, 5vw, 64px) 0;
+    background:
+      radial-gradient(circle at 18% 50%, rgba(194, 150, 58, 0.14), transparent 26%),
+      linear-gradient(135deg, #0b1c38 0%, #163a68 55%, #0a1830 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
   .method-break-banner {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
-    gap: clamp(24px, 4vw, 48px);
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.7fr);
+    gap: clamp(24px, 4vw, 56px);
     align-items: center;
-    min-height: min(56vh, 460px);
-    padding: clamp(28px, 3.4vw, 44px) clamp(28px, 4.8vw, 56px);
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 18% 50%, rgba(194, 150, 58, 0.14), transparent 26%),
-      linear-gradient(135deg, #3f0d1a 0%, #641827 55%, #380b16 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    justify-content: center;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
   }
 
   .method-break-banner::before {
@@ -1754,7 +1898,7 @@ const styles = `
     border: 1px solid rgba(255, 255, 255, 0.24);
     background: rgba(255, 255, 255, 0.14);
     color: #fff;
-    box-shadow: 0 16px 36px rgba(50, 12, 22, 0.28);
+    box-shadow: 0 16px 36px rgba(9, 24, 48, 0.28);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
@@ -1792,7 +1936,7 @@ const styles = `
     box-shadow: 0 20px 34px rgba(0, 0, 0, 0.2);
   }
 
-  .method-break-badge::before { content: "ADT"; }
+  .method-break-badge::before { content: "ISO"; }
 
   /* ===== Orbit method ===== */
   .method-showcase {
@@ -1804,7 +1948,7 @@ const styles = `
     border: 1px solid var(--line);
     background:
       radial-gradient(circle at 20% 50%, rgba(194, 150, 58, 0.1), transparent 22%),
-      radial-gradient(circle at 74% 18%, rgba(161, 47, 71, 0.08), transparent 26%),
+      radial-gradient(circle at 74% 18%, rgba(31, 61, 115, 0.08), transparent 26%),
       var(--panel);
     box-shadow: var(--shadow);
     overflow: hidden;
@@ -1873,7 +2017,7 @@ const styles = `
     width: 8px;
     height: 8px;
     background: var(--wine);
-    box-shadow: 0 0 16px rgba(161, 47, 71, 0.6);
+    box-shadow: 0 0 16px rgba(31, 61, 115, 0.6);
   }
 
   .method-showcase-photo {
@@ -1983,8 +2127,8 @@ const styles = `
     background: linear-gradient(180deg, var(--wine), var(--wine-strong));
     color: #fff;
     box-shadow:
-      0 0 0 8px rgba(161, 47, 71, 0.12),
-      0 14px 28px rgba(127, 33, 53, 0.24);
+      0 0 0 8px rgba(31, 61, 115, 0.12),
+      0 14px 28px rgba(30, 58, 99, 0.24);
   }
 
   .method-showcase-tab-dot span {
@@ -2081,7 +2225,7 @@ const styles = `
     display: grid;
     place-items: center;
     background: linear-gradient(180deg, var(--wine), var(--wine-strong));
-    box-shadow: 0 14px 26px rgba(127, 33, 53, 0.22);
+    box-shadow: 0 14px 26px rgba(30, 58, 99, 0.22);
   }
 
   .method-showcase-icon span {
@@ -2169,7 +2313,7 @@ const styles = `
     width: 26px;
     height: 6px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.14);
+    background: rgba(30, 58, 99, 0.14);
     transition: width 0.24s ease, background 0.24s ease;
   }
 
@@ -2218,7 +2362,7 @@ const styles = `
   .showcase-stage {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
+    gap: 24px;
     align-items: stretch;
   }
 
@@ -2335,12 +2479,12 @@ const styles = `
     right: 16%;
     height: 6px;
     border-radius: 999px;
-    background: rgba(127, 33, 53, 0.18);
+    background: rgba(30, 58, 99, 0.18);
   }
 
   .benefit-scene-card::before {
     top: 20%;
-    box-shadow: 0 16px 0 rgba(127, 33, 53, 0.12), 0 32px 0 rgba(127, 33, 53, 0.12);
+    box-shadow: 0 16px 0 rgba(30, 58, 99, 0.12), 0 32px 0 rgba(30, 58, 99, 0.12);
   }
 
   .benefit-scene-card::after { top: 70%; right: 34%; }
@@ -2385,8 +2529,8 @@ const styles = `
   .benefit-scene-dashboard .benefit-scene-card-a::before,
   .benefit-scene-dashboard .benefit-scene-card-a::after {
     left: 12%; right: 46%;
-    background: rgba(161, 47, 71, 0.4);
-    box-shadow: 0 18px 0 rgba(194, 150, 58, 0.4), 54px 0 0 rgba(161, 47, 71, 0.24);
+    background: rgba(31, 61, 115, 0.4);
+    box-shadow: 0 18px 0 rgba(194, 150, 58, 0.4), 54px 0 0 rgba(31, 61, 115, 0.24);
   }
   .benefit-scene-dashboard .benefit-scene-card-b { display: none; }
   .benefit-scene-dashboard .benefit-scene-card-c {
@@ -2415,6 +2559,272 @@ const styles = `
   .benefit-scene-alerts .benefit-scene-chip-a { width: 14px; height: 14px; right: 16%; top: 22%; background: #ffe6a8; }
   .benefit-scene-alerts .benefit-scene-chip-b { width: 90px; left: 24%; bottom: 22%; }
 
+  /* ===== Clients ===== */
+  .clients-section {
+    background: linear-gradient(160deg, #0b1a33 0%, #12294d 100%);
+    color: #fff;
+    padding: 74px 0;
+  }
+
+  .clients-header-v2 {
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .clients-header-v2 .kicker {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .clients-title-v2 {
+    color: #fff;
+  }
+
+  .clients-header-v2 .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+  }
+
+  .clients-header-v2 .kicker::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--gold);
+  }
+
+  .clients-title-v2 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    max-width: 20ch;
+  }
+
+  .clients-title-v2 strong {
+    color: var(--gold);
+  }
+
+  .clients-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .testimonial-card {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.85fr) minmax(0, 1.15fr);
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+
+  .testimonial-photo {
+    position: relative;
+    min-height: 260px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 85% 0, rgba(194, 150, 58, 0.22), transparent 40%),
+      linear-gradient(160deg, var(--wine) 0%, var(--wine-strong) 100%);
+  }
+
+  .testimonial-photo-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .testimonial-photo-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 255, 255, 0.4);
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .testimonial-photo-avatar svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .testimonial-photo-caption {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .testimonial-photo-badge {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .testimonial-photo-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .testimonial-copy {
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-size: 0.92rem;
+  }
+
+  .testimonial-name {
+    font-size: 1.08rem;
+    color: var(--ink);
+  }
+
+  .testimonial-role {
+    font-size: 0.76rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+  }
+
+  .testimonial-quote {
+    margin-top: 6px;
+    padding-left: 16px;
+    border-left: 3px solid var(--gold);
+    color: var(--text);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .testimonial-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--line);
+  }
+
+  .testimonial-brand {
+    font-size: 0.76rem;
+    color: var(--muted);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .testimonial-nav {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .testimonial-nav button {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--wine);
+    font-size: 1.1rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .testimonial-nav button:hover {
+    background: var(--wine-soft);
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+  }
+
+  .clients-logos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .clients-logos-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .clients-logos-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    height: 300px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+  }
+
+  .clients-logos-col {
+    overflow: hidden;
+  }
+
+  .clients-logos-track-v {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    animation: clients-logos-move-v 14s linear infinite;
+  }
+
+  .client-logo-tile {
+    flex: 0 0 64px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @keyframes clients-logos-move-v {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+
   /* ===== Pillars / sectors ===== */
   .sectors-section {
     padding: 78px 0;
@@ -2425,15 +2835,15 @@ const styles = `
     display: grid;
     grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
     gap: 28px;
-    align-items: start;
+    align-items: stretch;
   }
 
   .sectors-header {
     order: 2;
     max-width: 100%;
     margin-bottom: 0;
-    position: sticky;
-    top: 18px;
+    display: flex;
+    flex-direction: column;
   }
 
   .sectors-header .kicker { color: var(--wine); }
@@ -2452,9 +2862,10 @@ const styles = `
 
   .sectors-media {
     position: relative;
-    margin-top: 24px;
-    max-width: 420px;
-    aspect-ratio: 3 / 2;
+    margin-top: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
     border-radius: 22px;
     overflow: hidden;
     border: 1px solid var(--line);
@@ -2504,7 +2915,7 @@ const styles = `
     place-items: center;
     color: #fff;
     background: linear-gradient(140deg, var(--wine), var(--wine-strong));
-    box-shadow: 0 12px 24px rgba(127, 33, 53, 0.2);
+    box-shadow: 0 12px 24px rgba(30, 58, 99, 0.2);
   }
 
   .sectors-media-icons span svg {
@@ -2561,7 +2972,7 @@ const styles = `
     font-weight: 800;
     font-size: 0.92rem;
     background: linear-gradient(135deg, var(--wine), var(--wine-strong));
-    box-shadow: 0 10px 22px rgba(127, 33, 53, 0.22);
+    box-shadow: 0 10px 22px rgba(30, 58, 99, 0.22);
   }
 
   .sector-title {
@@ -2621,9 +3032,9 @@ const styles = `
   }
 
   .contact-section .contact-card {
-    background: linear-gradient(160deg, #641827 0%, #3f0d1a 100%);
+    background: linear-gradient(160deg, #163a68 0%, #0b1c38 100%);
     border-color: transparent;
-    box-shadow: 0 24px 50px rgba(63, 13, 26, 0.28);
+    box-shadow: 0 24px 50px rgba(11, 28, 56, 0.28);
     color: #fff;
   }
 
@@ -2714,7 +3125,7 @@ const styles = `
   input:focus,
   textarea:focus {
     border-color: var(--wine);
-    box-shadow: 0 0 0 4px rgba(161, 47, 71, 0.12);
+    box-shadow: 0 0 0 4px rgba(31, 61, 115, 0.12);
   }
 
   textarea {
@@ -2844,22 +3255,61 @@ const styles = `
     .hero {
       min-height: auto;
       padding: 14px 0 18px;
+      padding-top: 64px;
     }
 
-    .nav {
-      flex-direction: column;
-      align-items: flex-start;
+    .clients-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .testimonial-card {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .testimonial-photo {
+      min-height: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+    .nav-toggle {
+      display: flex;
     }
 
     .nav-right {
-      width: 100%;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 16px 22px;
+      background: rgba(6, 16, 32, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-right-open {
+      display: flex;
+    }
+
+    .nav-links {
       flex-direction: column;
       align-items: flex-start;
       gap: 14px;
     }
 
-    .nav-links {
-      flex-wrap: wrap;
+    .nav-actions {
+      width: 100%;
+    }
+
+    .nav-actions .nav-button {
+      width: 100%;
     }
 
     .hero-grid,
@@ -2924,9 +3374,12 @@ const styles = `
       justify-content: flex-start;
     }
 
+    .method-break-fullbleed {
+      padding: 28px 0;
+    }
+
     .method-break-banner {
-      min-height: 0;
-      padding: 28px 22px;
+      padding: 0 22px;
     }
 
     .method-break-copy .title-lg,
@@ -3043,17 +3496,59 @@ const styles = `
       display: none;
     }
 
+    .method-showcase {
+      padding: 16px;
+    }
+
     .method-showcase-orbit {
-      min-height: 360px;
+      min-height: 0;
+      height: 260px;
+    }
+
+    .method-showcase-orbit::before {
+      width: 240px;
+    }
+
+    .method-showcase-orbit::after {
+      width: 180px;
+    }
+
+    .method-showcase-ring-a {
+      width: 260px;
+    }
+
+    .method-showcase-ring-b {
+      width: 140px;
+    }
+
+    .method-showcase-spark {
+      width: 6px;
+      height: 6px;
     }
 
     .method-showcase-photo {
-      width: min(100%, 190px);
+      width: 110px;
+      padding: 6px;
     }
 
     .method-showcase-tab-dot {
-      width: 44px;
-      height: 44px;
+      width: 34px;
+      height: 34px;
+    }
+
+    .method-showcase-tab-dot span {
+      width: 12px;
+      height: 12px;
+    }
+
+    .method-showcase-photo-placeholder {
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      border-width: 1.5px;
+    }
+
+    .method-showcase-photo-placeholder span {
+      max-width: 8ch;
     }
 
     .button {
@@ -3069,9 +3564,9 @@ const styles = `
   /* ===== Hero em vinho (tema escuro somente no topo) ===== */
   .hero {
     background:
-      radial-gradient(circle at top left, rgba(166, 42, 74, 0.28), transparent 32%),
-      radial-gradient(circle at top right, rgba(137, 22, 44, 0.3), transparent 34%),
-      linear-gradient(180deg, #2a0a14 0%, #4a0f20 44%, #1a0710 100%);
+      radial-gradient(circle at top left, rgba(31, 61, 115, 0.28), transparent 32%),
+      radial-gradient(circle at top right, rgba(20, 45, 90, 0.3), transparent 34%),
+      linear-gradient(180deg, #0b1a33 0%, #12294d 44%, #081426 100%);
     color: #f7eee6;
   }
 
@@ -3082,33 +3577,30 @@ const styles = `
     opacity: 0.5;
   }
 
-  .hero .brand {
-    color: #f7eee6;
+  .nav-fixed .brand {
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   }
 
-  .hero .brand-mark {
-    background: linear-gradient(145deg, rgba(213, 161, 79, 0.3), rgba(123, 26, 43, 0.16));
-    border-color: rgba(214, 163, 87, 0.24);
+  .nav-fixed .nav-links {
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   }
 
-  .hero .nav-links {
-    color: #d8beb1;
-  }
-
-  .hero .nav-links a:hover {
+  .nav-fixed .nav-links a:hover {
     color: #fff;
   }
 
-  .hero .nav-button-secondary {
-    color: #f7eee6;
-    border-color: rgba(214, 163, 87, 0.3);
-    background: rgba(255, 255, 255, 0.06);
+  .nav-fixed .nav-button-secondary {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(6, 16, 32, 0.4);
   }
 
-  .hero .nav-button-primary,
+  .nav-fixed .nav-button-primary,
   .hero .button-primary {
     background: linear-gradient(135deg, #f0cf93, #d5a14f);
-    color: #2a0d10;
+    color: #0a1a2e;
     box-shadow: 0 14px 32px rgba(182, 122, 47, 0.24);
   }
 
@@ -3138,16 +3630,16 @@ const styles = `
     border-color: rgba(214, 163, 87, 0.14);
     background:
       radial-gradient(circle at top right, rgba(213, 161, 79, 0.1), transparent 32%),
-      linear-gradient(180deg, rgba(88, 18, 33, 0.5), rgba(40, 9, 18, 0.46));
+      linear-gradient(180deg, rgba(14, 34, 66, 0.5), rgba(9, 22, 44, 0.46));
   }
 
   .hero-monitor-frame {
-    background: linear-gradient(180deg, #2c1118 0%, #13060a 100%);
+    background: linear-gradient(180deg, #0d2244 0%, #081426 100%);
     border-color: rgba(214, 163, 87, 0.18);
   }
 
   .hero-monitor-bezel {
-    background: #17060c;
+    background: #0a1a30;
     border-color: rgba(214, 163, 87, 0.1);
   }
 
@@ -3161,7 +3653,7 @@ const styles = `
   }
 
   .hero-screen {
-    background: linear-gradient(180deg, #24070f 0%, #18050b 100%);
+    background: linear-gradient(180deg, #0c1f3c 0%, #0a1730 100%);
   }
 
   .hero-sidebar {
@@ -3171,7 +3663,7 @@ const styles = `
 
   .hero-sidebar-badge {
     color: #f0cf93;
-    background: linear-gradient(135deg, rgba(213, 161, 79, 0.18), rgba(106, 18, 36, 0.14));
+    background: linear-gradient(135deg, rgba(213, 161, 79, 0.18), rgba(18, 40, 80, 0.14));
     border-color: rgba(214, 163, 87, 0.16);
   }
 
@@ -3187,7 +3679,7 @@ const styles = `
     border-color: rgba(214, 163, 87, 0.24);
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 52%),
-      linear-gradient(180deg, rgba(84, 21, 34, 0.68), rgba(37, 10, 17, 0.9));
+      linear-gradient(180deg, rgba(16, 38, 72, 0.68), rgba(9, 22, 44, 0.9));
   }
 
   .hero-system-preview::before {
@@ -3216,15 +3708,15 @@ const styles = `
 
   .hero-monitor-stand,
   .hero-monitor-stand::before {
-    background: linear-gradient(180deg, rgba(73, 28, 36, 0.94), rgba(20, 7, 11, 0.98));
+    background: linear-gradient(180deg, rgba(20, 44, 84, 0.94), rgba(8, 20, 40, 0.98));
   }
 
   .hero-monitor-base {
-    background: linear-gradient(180deg, rgba(73, 28, 36, 0.84), rgba(12, 4, 7, 0.96));
+    background: linear-gradient(180deg, rgba(20, 44, 84, 0.84), rgba(8, 18, 36, 0.96));
   }
 
   .ticker {
-    background: rgba(20, 7, 11, 0.5);
+    background: rgba(8, 20, 40, 0.5);
     border-top-color: rgba(214, 163, 87, 0.18);
     border-bottom-color: rgba(214, 163, 87, 0.18);
   }
@@ -3241,135 +3733,173 @@ const styles = `
 export default function Inicial() {
   const [activeStep, setActiveStep] = useState(0);
   const [activeArea, setActiveArea] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
   const currentArea = serviceAreas[activeArea];
+  const currentTestimonial = testimonials[activeTestimonial];
   const orbitPositions = ["top", "left", "right", "bottom"];
+
+  const showPrevTestimonial = () =>
+    setActiveTestimonial((index) => (index - 1 + testimonials.length) % testimonials.length);
+  const showNextTestimonial = () =>
+    setActiveTestimonial((index) => (index + 1) % testimonials.length);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((step) => (step + 1) % steps.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <main className="landing-shell">
       <style>{styles}</style>
 
+      <nav className="nav-fixed" aria-label="Principal">
+        <div className="container nav">
+          <a className="brand" href="#inicio" onClick={() => setMenuOpen(false)}>
+            <span className="brand-logo-wrap">
+              <img className="brand-logo" alt="Synergy EB Consultoria" src={brandLogoSrc} />
+            </span>
+          </a>
+
+          <button
+            className="nav-toggle"
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            type="button"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <div className={`nav-right ${menuOpen ? "nav-right-open" : ""}`}>
+            <div className="nav-links">
+              <a href="#servicos" onClick={() => setMenuOpen(false)}>O sistema</a>
+              <a href="#metodo" onClick={() => setMenuOpen(false)}>Como funciona</a>
+              <a href="#peotram" onClick={() => setMenuOpen(false)}>Vantagens</a>
+              <a href="#atuacao" onClick={() => setMenuOpen(false)}>Diferenciais</a>
+              <a href="#clientes" onClick={() => setMenuOpen(false)}>Clientes</a>
+            </div>
+
+            <div className="nav-actions">
+              <a className="nav-button nav-button-primary" href="#contato" onClick={() => setMenuOpen(false)}>
+                Fale conosco
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <section className="hero">
         <div className="container">
-          <nav className="nav" aria-label="Principal">
-            <a className="brand" href="#inicio">
-              <span className="brand-mark">
-                <img alt="Logo Ascensional" src={companyLogoSrc} />
-              </span>
-              <span>Ascensional Consultoria</span>
-            </a>
-
-            <div className="nav-right">
-              <div className="nav-links">
-                <a href="#servicos">Serviços</a>
-                <a href="#metodo">Método</a>
-                <a href="#peotram">PEOTRAM</a>
-                <a href="#atuacao">Atuação</a>
-                <a href="#contato">Contato</a>
-              </div>
-
-              <div className="nav-actions">
-                <a className="nav-button nav-button-secondary" href="#servicos">
-                  Serviços
-                </a>
-                <a className="nav-button nav-button-primary" href="#contato">
-                  Solicitar proposta
-                </a>
-              </div>
-            </div>
-          </nav>
-
           <div className="hero-grid" id="inicio">
             <div className="hero-copy">
-              <p className="kicker">QHSE • PEOTRAM • Estratégia ESG</p>
+              <p className="kicker">   </p>
               <h1 className="title-xl">
-                Excelência em <strong>QHSE, PEOTRAM e governança ESG</strong>.
+                Garanta a <strong>Conformidade Legal</strong> e otimize sua gestão.
               </h1>
               <p className="lead">
-                Consultoria especializada em Qualidade, Meio Ambiente, Saúde e Segurança
-                Ocupacional e Governança. Transformamos exigências regulatórias em performance,
-                conformidade e reputação com experiência em setores de alta exigência como Óleo e Gás.
+              A Synergy EB Consultoria oferece uma solução intuitiva para simplificar a gestão de requisitos legais de Qualidade, Meio Ambiente, Saúde e Segurança Ocupacional, auxiliando empresas a manterem conformidade. 
               </p>
 
               <div className="cta-row">
                 <a className="button button-primary" href="#contato">
-                  Solicitar proposta
+                  Fale conosco
                 </a>
                 <a className="button button-secondary" href="#servicos">
-                  Ver serviços
+                  Conhecer o sistema
                 </a>
               </div>
 
               <p className="hero-note">
-                Preparação completa para o ciclo vigente do PEOTRAM (Petrobras).
+                Conformidade com as normas ISO 9001, ISO 14001 e ISO 45001.
               </p>
+
+              <div className="hero-pillars" aria-hidden="true">
+                <span className="hero-pillar hero-pillar-quality">
+                  {renderIcon(areaIconPaths.sso)}
+                  <small>Qualidade</small>
+                </span>
+                <span className="hero-pillar hero-pillar-environment">
+                  {renderIcon(areaIconPaths.ambiente)}
+                  <small>Meio Ambiente</small>
+                </span>
+                <span className="hero-pillar hero-pillar-safety">
+                  {renderIcon(areaIconPaths.seguranca)}
+                  <small>Saúde e Segurança</small>
+                </span>
+              </div>
             </div>
 
-            <aside className="hero-art" aria-label="Mockup da tela do sistema">
-              <div className="hero-monitor">
-                <div className="hero-monitor-frame">
-                  <div className="hero-monitor-bezel">
-                    <div className="hero-monitor-topbar">
-                      <div className="hero-monitor-dots">
-                        <span />
-                        <span />
-                        <span />
+            <aside
+              className={`hero-art ${heroScreenImageSrc ? "hero-art-photo" : ""}`}
+              aria-label="Equipe Synergy EB Consultoria"
+            >
+              {heroScreenImageSrc ? (
+                <div className="hero-photo">
+                  <img alt="Equipe Synergy EB Consultoria analisando o sistema" src={heroScreenImageSrc} />
+                </div>
+              ) : (
+                <div className="hero-monitor">
+                  <div className="hero-monitor-frame">
+                    <div className="hero-monitor-bezel">
+                      <div className="hero-monitor-topbar">
+                        <div className="hero-monitor-dots">
+                          <span />
+                          <span />
+                          <span />
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="hero-screen">
-                      <aside className="hero-sidebar">
-                        <div className="hero-sidebar-badge">
-                          <img alt="Logo Ascensional" src={companyLogoSrc} />
-                        </div>
-                        <div className="hero-sidebar-item" />
-                        <div className="hero-sidebar-item" />
-                        <div className="hero-sidebar-item" />
-                        <div className="hero-sidebar-item" />
-                      </aside>
+                      <div className="hero-screen">
+                        <aside className="hero-sidebar">
+                          <div className="hero-sidebar-badge">
+                            <LogoMark />
+                          </div>
+                          <div className="hero-sidebar-item" />
+                          <div className="hero-sidebar-item" />
+                          <div className="hero-sidebar-item" />
+                          <div className="hero-sidebar-item" />
+                        </aside>
 
-                      <div className="hero-screen-main">
-                        <div className="hero-system-bar">
-                          <strong className="hero-system-title">Painel de Conformidade QHSE</strong>
-                        </div>
-
-                        <div className="hero-system-preview">
-                          {heroScreenImageSrc ? (
-                            <img
-                              alt="Preview do sistema Ascensional"
-                              className="hero-system-image"
-                              src={heroScreenImageSrc}
-                            />
-                          ) : null}
-                        </div>
-
-                        <div className="hero-system-panels">
-                          <div className="hero-system-card">
-                            <strong>Indicadores</strong>
-                            <span>
-                              Espaço para inserir a imagem do painel com gráficos, status de auditorias
-                              e acompanhamento de condicionantes.
-                            </span>
+                        <div className="hero-screen-main">
+                          <div className="hero-system-bar">
+                            <strong className="hero-system-title">Sistema de Requisitos Legais</strong>
                           </div>
 
-                          <div className="hero-system-card">
-                            <strong>Programas</strong>
-                            <div className="hero-system-lines">
-                              <span />
-                              <span />
-                              <span />
+                          <div className="hero-system-preview" />
+
+                          <div className="hero-system-panels">
+                            <div className="hero-system-card">
+                              <strong>Evidências</strong>
+                              <span>
+                                Espaço para a imagem do sistema com o registro de evidências e o status de conformidade.
+                              </span>
+                            </div>
+
+                            <div className="hero-system-card">
+                              <strong>Requisitos</strong>
+                              <div className="hero-system-lines">
+                                <span />
+                                <span />
+                                <span />
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="hero-monitor-stand" />
-                <div className="hero-monitor-base" />
-              </div>
+                  <div className="hero-monitor-stand" />
+                  <div className="hero-monitor-base" />
+                </div>
+              )}
             </aside>
           </div>
         </div>
@@ -3378,12 +3908,10 @@ export default function Inicial() {
       <section className="services-section" id="servicos">
         <div className="container">
           <header className="services-header">
-            <p className="kicker">Portfólio de serviços</p>
-            <h2 className="title-lg">Soluções completas em QHSE, PEOTRAM e ESG.</h2>
+            <p className="kicker">O sistema Synergy EB</p>
+            <h2 className="title-lg">Sua conformidade, nossa prioridade.</h2>
             <p className="lead">
-              Metodologias e abordagens que garantem excelência em Qualidade, Meio Ambiente, Saúde e
-              Segurança Ocupacional e Governança. Selecione uma área para ver treinamentos, serviços e
-              auditorias.
+              Um sistema desenvolvido para as necessidades da sua organização. Selecione uma área para conhecer os recursos, as funcionalidades e o suporte da Synergy EB Consultoria.
             </p>
           </header>
 
@@ -3444,11 +3972,10 @@ export default function Inicial() {
           <div className="method-transition" aria-hidden="true" />
 
           <div className="method-classic-intro">
-            <p className="kicker">Como trabalhamos</p>
-            <h2 className="title-lg">Um método claro, do diagnóstico à melhoria contínua.</h2>
+            <p className="kicker">Como funciona</p>
+            <h2 className="title-lg">Do requisito à evidência, de ponta a ponta.</h2>
             <p className="lead">
-              Estruturamos cada projeto em etapas objetivas para atender às exigências regulatórias e
-              impulsionar a performance da sua operação.
+              Da identificação dos requisitos ao lançamento de evidências e à avaliação o processo completo, sem retrabalho.
             </p>
           </div>
 
@@ -3488,7 +4015,7 @@ export default function Inicial() {
 
               <div className="method-classic-visual" aria-hidden="true">
                 <div className="method-classic-screen">
-                  <span className="method-classic-screen-badge">Metodo Ascensional</span>
+                  <span className="method-classic-screen-badge">Metodo Synergy EB</span>
                   <strong>{currentStep.title}</strong>
                   <div className="method-classic-lines">
                     <span />
@@ -3520,25 +4047,22 @@ export default function Inicial() {
         <div className="method-break-fullbleed">
           <div className="method-break-banner">
             <div className="method-break-copy">
-              <p className="kicker">Consultoria PEOTRAM • Petrobras</p>
-              <h2 className="title-lg">Preparação para atender e superar o PEOTRAM.</h2>
+              <p className="kicker">Vantagem competitiva</p>
+              <h2 className="title-lg">Transforme a gestão de requisitos legais em vantagem competitiva.</h2>
               <p className="lead">
-                O PEOTRAM avalia embarcações e operações offshore em segurança, eficiência e
-                responsabilidade ambiental. Preparamos sua empresa para manter contratos e elevar a
-                nota ADT com gap analysis, implementação e auditorias de preparação.
+                Com o sistema da Synergy EB Consultoria, a conformidade legal deixa de ser um fardo e se torna um diferencial estratégico. Reduza riscos, otimize processos e foque no crescimento do seu negócio, sabendo que sua gestão de QMS-SSO está em mãos seguras e eficientes.
               </p>
 
               <p className="method-break-quote">
-                “O PEOTRAM não olha apenas papéis. Ele avalia se existe coerência entre o que a empresa
-                define como padrão e o que realmente acontece na operação.”
+                “Entre em contato conosco hoje mesmo e descubra como podemos simplificar sua jornada rumo à excelência em conformidade!”
               </p>
 
               <div className="method-break-actions">
                 <a className="method-break-button method-break-button-primary" href="#contato">
-                  Preparar minha operação
+                  Entre em contato
                 </a>
                 <a className="method-break-button method-break-button-secondary" href="#servicos">
-                  Ver metodologia
+                  Ver funcionalidades
                 </a>
               </div>
             </div>
@@ -3547,12 +4071,12 @@ export default function Inicial() {
               <div className="method-break-figure">
                 <span className="method-break-shield" />
                 <div className="method-break-card method-break-card-a">
-                  <strong>Diagnóstico</strong>
-                  <span>Gap analysis frente ao ciclo vigente do programa.</span>
+                  <strong>Atualização mensal</strong>
+                  <span>Novas legislações inseridas todo mês pela equipe técnica.</span>
                 </div>
                 <div className="method-break-card method-break-card-b">
-                  <strong>Auditoria</strong>
-                  <span>Simulados com o rigor e a metodologia da Petrobras.</span>
+                  <strong>Suporte técnico</strong>
+                  <span>Avaliação pela sua equipe ou pela equipe técnica da Synergy EB.</span>
                 </div>
                 <span className="method-break-badge" />
               </div>
@@ -3566,11 +4090,10 @@ export default function Inicial() {
           <div className="method-transition" aria-hidden="true" />
 
           <div className="method-header">
-            <p className="kicker">Método Ascensional</p>
-            <h2 className="title-lg">Cada etapa conectada a um resultado de conformidade.</h2>
+            <p className="kicker">Método Synergy EB</p>
+            <h2 className="title-lg">Cada etapa conectada à sua conformidade legal.</h2>
             <p className="lead">
-              Explore visualmente as fases da nossa atuação do levantamento legal à sustentação de
-              auditorias e certificações.
+              Explore visualmente as etapas do sistema da identificação dos requisitos ao acompanhamento das evidências.
             </p>
           </div>
 
@@ -3615,7 +4138,7 @@ export default function Inicial() {
 
                 <div className="method-showcase-panel">
                   <div className="method-showcase-panel-header">
-                    <span className="method-showcase-kicker">Metodo Ascensional</span>
+                    <span className="method-showcase-kicker">Metodo Synergy EB</span>
                     <div className="method-showcase-heading">
                       <div className="method-showcase-icon" aria-hidden="true">
                         <span />
@@ -3657,11 +4180,10 @@ export default function Inicial() {
         <div className="container">
           <div className="benefits-top">
             <header className="section-header benefits-header">
-              <p className="kicker">Por que a Ascensional</p>
-              <h2 className="title-lg">Conhecimento técnico com visão estratégica de negócio.</h2>
+              <p className="kicker">Por que o sistema Synergy EB</p>
+              <h2 className="title-lg">Funcionalidades essenciais para uma gestão completa.</h2>
               <p className="lead">
-                Combinamos domínio das normas nacionais e internacionais com uma abordagem executiva
-                para que sua empresa não apenas atenda aos requisitos, mas se destaque em QHSE, ESG e PEOTRAM.
+                Recursos pensados para que sua organização esteja sempre à frente em conformidade com menos burocracia e mais controle.
               </p>
             </header>
 
@@ -3690,16 +4212,15 @@ export default function Inicial() {
         <div className="container">
           <div className="sectors-layout">
             <header className="section-header sectors-header">
-              <p className="kicker">Áreas de atuação</p>
-              <h2 className="title-lg">Cobertura completa dos pilares QHSE e ESG.</h2>
+              <p className="kicker">Diferenciais</p>
+              <h2 className="title-lg">Tudo para simplificar sua gestão de QMS-SSO.</h2>
               <p className="lead">
-                Atuamos nos principais eixos regulatórios e de gestão, adaptando o escopo à realidade,
-                ao porte e ao segmento de cada empresa.
+                Do lançamento de evidências à atualização mensal da legislação tudo em um sistema intuitivo e fácil de usar.
               </p>
 
               <div className="sectors-media">
                 {sectorsImageSrc ? (
-                  <img alt="Atuação da Ascensional Consultoria" src={sectorsImageSrc} />
+                  <img alt="Atuação da Synergy EB Consultoria" src={sectorsImageSrc} />
                 ) : (
                   <div className="sectors-media-ph" aria-hidden="true">
                     <div className="sectors-media-icons">
@@ -3729,19 +4250,91 @@ export default function Inicial() {
         </div>
       </section>
 
+      <section className="section clients-section" id="clientes">
+        <div className="container">
+          <header className="clients-header-v2">
+            <p className="kicker">Qualidade &amp; confiança</p>
+            <h2 className="title-lg clients-title-v2">
+              Nossos parceiros e <strong>clientes estratégicos</strong>
+            </h2>
+          </header>
+
+          <div className="clients-layout">
+            <article className="testimonial-card">
+              <div className="testimonial-photo" aria-hidden="true">
+                <div className="testimonial-photo-placeholder">
+                  <span className="testimonial-photo-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="8" r="3.6" />
+                      <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
+                    </svg>
+                  </span>
+                  <span className="testimonial-photo-caption">Foto do cliente</span>
+                </div>
+                <span className="testimonial-photo-badge">{currentTestimonial.since}</span>
+              </div>
+              <div className="testimonial-copy">
+                <div className="testimonial-stars" aria-hidden="true">★★★★★</div>
+                <strong className="testimonial-name">{currentTestimonial.name}</strong>
+                <span className="testimonial-role">{currentTestimonial.role}</span>
+                <p className="testimonial-quote">“{currentTestimonial.quote}”</p>
+                <div className="testimonial-footer">
+                  <span className="testimonial-brand">Depoimento reservado</span>
+                  <div className="testimonial-nav">
+                    <button
+                      aria-label="Depoimento anterior"
+                      onClick={showPrevTestimonial}
+                      type="button"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      aria-label="Próximo depoimento"
+                      onClick={showNextTestimonial}
+                      type="button"
+                    >
+                      ›
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <div className="clients-logos">
+              <p className="clients-logos-kicker">Empresas atendidas</p>
+              <div className="clients-logos-columns" aria-hidden="true">
+                {[clientPlaceholders.slice(0, 4), clientPlaceholders.slice(4, 8)].map((column, colIndex) => (
+                  <div className="clients-logos-col" key={colIndex}>
+                    <div
+                      className="clients-logos-track-v"
+                      style={{ animationDelay: `${colIndex * -8}s` }}
+                    >
+                      {[...column, ...column].map((item, index) => (
+                        <div className="client-logo-tile" key={`${item}-${index}`}>
+                          <span>Logo</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section contact-section" id="contato">
         <div className="container">
           <header className="section-header contact-header">
-            <p className="kicker">Fale com a Ascensional</p>
-            <h2 className="title-lg">Transforme desafios de gestão em diferenciais competitivos.</h2>
+            <p className="kicker">Fale com a Synergy EB Consultoria</p>
+            <h2 className="title-lg">Entre em contato e simplifique sua conformidade.</h2>
           </header>
 
           <div className="contact-grid">
             <article className="contact-card">
-              <span className="badge">Ascensional Consultoria</span>
+              <span className="badge">Synergy EB Consultoria</span>
               <p className="lead">
-                Excelência em QHSE, PEOTRAM e estratégia ESG com visão técnica e estratégica.
-                Entre em contato e solicite uma proposta personalizada.
+                Gestão de requisitos legais de QMS-SSO com um sistema intuitivo e suporte especializado. Entre em contato e descubra como simplificar sua conformidade.
               </p>
 
               <div className="contact-list">
@@ -3751,7 +4344,7 @@ export default function Inicial() {
                 </div>
                 <div className="contact-item">
                   <span>E-mail</span>
-                  <strong>contato@ascensional.com.br</strong>
+                  <strong>contato@ebconsultoria.com.br</strong>
                 </div>
               </div>
             </article>
@@ -3789,7 +4382,7 @@ export default function Inicial() {
               </div>
 
               <div className="form-actions">
-                <a className="button button-primary" href="mailto:contato@ascensional.com.br">
+                <a className="button button-primary" href="mailto:contato@ebconsultoria.com.br">
                   Enviar por e-mail
                 </a>
                 <a className="button button-secondary" href="https://wa.me/5511999999999">
@@ -3804,8 +4397,8 @@ export default function Inicial() {
       <footer className="footer">
         <div className="container">
           <div className="footer-row">
-            <span>Ascensional Consultoria</span>
-            <span>Excelência em QHSE, PEOTRAM e estratégia ESG.</span>
+            <span>Synergy EB Consultoria</span>
+            <span>Sistema de gestão de requisitos legais QMS-SSO.</span>
           </div>
         </div>
       </footer>
