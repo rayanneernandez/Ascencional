@@ -624,11 +624,11 @@ const styles = `
 
   .hero {
     position: relative;
-    min-height: 100svh;
-    padding: 16px 0;
+    min-height: 0;
+    padding: 32px 0 96px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     background:
       radial-gradient(circle at 82% 12%, rgba(194, 150, 58, 0.08), transparent 30%),
       radial-gradient(circle at 6% 90%, rgba(31, 61, 115, 0.06), transparent 32%);
@@ -890,7 +890,15 @@ const styles = `
   }
 
   .hero-copy {
-    padding: 6px 0 0;
+    padding: 10px 0 0;
+  }
+
+  .hero-copy .title-xl {
+    margin-top: 4px;
+  }
+
+  .hero-copy .lead {
+    margin-top: 22px;
   }
 
   .hero-copy strong {
@@ -904,7 +912,7 @@ const styles = `
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
-    margin-top: 22px;
+    margin-top: 30px;
   }
 
   .button {
@@ -940,7 +948,7 @@ const styles = `
   }
 
   .hero-note {
-    margin-top: 18px;
+    margin-top: 24px;
     color: var(--muted);
     font-size: 0.95rem;
   }
@@ -949,7 +957,7 @@ const styles = `
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 16px;
+    margin-top: 22px;
   }
 
   .hero-pillar {
@@ -2237,7 +2245,16 @@ const styles = `
     box-shadow: 0 0 18px rgba(194, 150, 58, 0.7);
   }
 
-  .method-showcase-spark-a { top: 22%; right: 18%; }
+  @keyframes method-spark-float {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.75; }
+    50% { transform: translate(10px, -10px) scale(1.25); opacity: 1; }
+  }
+
+  .method-showcase-spark-a {
+    top: 22%;
+    right: 18%;
+    animation: method-spark-float 4.5s ease-in-out infinite;
+  }
   .method-showcase-spark-b {
     left: 16%;
     bottom: 18%;
@@ -2245,6 +2262,7 @@ const styles = `
     height: 8px;
     background: var(--wine);
     box-shadow: 0 0 16px rgba(31, 61, 115, 0.6);
+    animation: method-spark-float 5.5s ease-in-out infinite 0.8s;
   }
 
   .method-showcase-photo {
@@ -2574,16 +2592,16 @@ const styles = `
   }
 
   .benefits-header .title-lg {
-    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
-    line-height: 1.06;
-    max-width: 20ch;
+    font-size: clamp(1.5rem, 2.1vw, 1.9rem);
+    line-height: 1.18;
+    max-width: 32ch;
     color: var(--ink);
     text-wrap: balance;
   }
 
   .benefits-header .lead {
     color: var(--muted);
-    max-width: 46ch;
+    max-width: 50ch;
   }
 
   .showcase-stage {
@@ -2802,10 +2820,12 @@ const styles = `
   .history-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
     background:
       radial-gradient(circle at 82% 14%, rgba(194, 150, 58, 0.16), transparent 32%),
       linear-gradient(150deg, var(--wine-soft), #ffffff);
@@ -2817,7 +2837,8 @@ const styles = `
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 28px;
+    object-position: center;
+    padding: 16px;
     box-sizing: border-box;
   }
 
@@ -3012,7 +3033,18 @@ const styles = `
   }
 
   .policy-header {
-    max-width: 760px;
+    max-width: 900px;
+  }
+
+  .policy-header .title-lg {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.12;
+    max-width: 32ch;
+    text-wrap: balance;
+  }
+
+  .policy-header .lead {
+    max-width: 68ch;
   }
 
   .policy-grid {
@@ -3064,6 +3096,18 @@ const styles = `
     padding: 74px 0;
   }
 
+  .clients-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.6fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .clients-left {
+    display: flex;
+    flex-direction: column;
+  }
+
   .clients-header-v2 {
     max-width: 640px;
     margin-bottom: 32px;
@@ -3100,13 +3144,6 @@ const styles = `
 
   .clients-title-v2 strong {
     color: var(--gold);
-  }
-
-  .clients-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
-    gap: 28px;
-    align-items: start;
   }
 
   .testimonial-card {
@@ -3284,8 +3321,8 @@ const styles = `
   .clients-logos-columns {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    height: 300px;
+    gap: 10px;
+    height: 420px;
     overflow: hidden;
     -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
     mask-image: linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
@@ -3298,18 +3335,18 @@ const styles = `
   .clients-logos-track-v {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
     animation: clients-logos-move-v 14s linear infinite;
   }
 
   .client-logo-tile {
-    flex: 0 0 64px;
+    flex: 0 0 48px;
     width: 100%;
-    padding: 10px 16px;
+    padding: 8px 12px;
     display: grid;
     place-items: center;
-    border-radius: 16px;
+    border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.16);
     background: #fff;
   }
@@ -3319,6 +3356,14 @@ const styles = `
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+  }
+
+  .client-logo-tile:hover img {
+    filter: grayscale(0);
+    opacity: 1;
   }
 
   @keyframes clients-logos-move-v {
@@ -3336,7 +3381,7 @@ const styles = `
     display: grid;
     grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
     gap: 28px;
-    align-items: stretch;
+    align-items: start;
   }
 
   .sectors-header {
@@ -3350,21 +3395,22 @@ const styles = `
   .sectors-header .kicker { color: var(--wine); }
 
   .sectors-header .title-lg {
-    max-width: 18ch;
-    font-size: clamp(2rem, 3.4vw, 2.9rem);
-    line-height: 1.04;
+    max-width: 26ch;
+    font-size: clamp(1.8rem, 2.7vw, 2.5rem);
+    line-height: 1.12;
     text-wrap: balance;
   }
 
   .sectors-header .lead {
-    max-width: 36ch;
+    max-width: 42ch;
     color: var(--muted);
   }
 
   .sectors-media {
     position: relative;
-    margin-top: auto;
-    width: 100%;
+    margin-top: 32px;
+    width: 76%;
+    align-self: flex-start;
     aspect-ratio: 4 / 3;
     flex-shrink: 0;
     border-radius: 22px;
@@ -3760,8 +3806,8 @@ const styles = `
     }
 
     .history-media {
-      aspect-ratio: 16 / 10;
-      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      max-width: 340px;
       margin: 0 auto;
     }
 
@@ -3784,8 +3830,12 @@ const styles = `
       padding-top: 64px;
     }
 
-    .clients-layout {
+    .clients-shell {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .clients-logos-columns {
+      height: 260px;
     }
 
     .testimonial-card {
@@ -3859,10 +3909,6 @@ const styles = `
     .hero-art {
       min-height: 0;
       padding: 0;
-    }
-
-    .hero-copy .kicker {
-      font-size: 0.72rem;
     }
 
     .hero-copy .title-xl {
@@ -4446,7 +4492,6 @@ export default function Inicial() {
         <div className="container">
           <div className="hero-grid" id="inicio">
             <div className="hero-copy">
-              <p className="kicker">QHSE • PEOTRAM • Estratégia ESG</p>
               <h1 className="title-xl">
                 Excelência em <strong>QHSE, PEOTRAM e governança ESG</strong>.
               </h1>
@@ -5011,53 +5056,55 @@ export default function Inicial() {
 
       <section className="section clients-section" id="clientes">
         <div className="container">
-          <header className="clients-header-v2">
-            <p className="kicker">Qualidade &amp; confiança</p>
-            <h2 className="title-lg clients-title-v2">
-              Nossos parceiros e <strong>clientes estratégicos</strong>
-            </h2>
-          </header>
+          <div className="clients-shell">
+            <div className="clients-left">
+              <header className="clients-header-v2">
+                <p className="kicker">Qualidade &amp; confiança</p>
+                <h2 className="title-lg clients-title-v2">
+                  Nossos parceiros e <strong>clientes estratégicos</strong>
+                </h2>
+              </header>
 
-          <div className="clients-layout">
-            <article className="testimonial-card">
-              <div className="testimonial-photo" aria-hidden="true">
-                <div className="testimonial-photo-placeholder">
-                  <span className="testimonial-photo-avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="8" r="3.6" />
-                      <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
-                    </svg>
-                  </span>
-                  <span className="testimonial-photo-caption">Foto do cliente</span>
+              <article className="testimonial-card">
+                <div className="testimonial-photo" aria-hidden="true">
+                  <div className="testimonial-photo-placeholder">
+                    <span className="testimonial-photo-avatar">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="8" r="3.6" />
+                        <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
+                      </svg>
+                    </span>
+                    <span className="testimonial-photo-caption">Foto do cliente</span>
+                  </div>
+                  <span className="testimonial-photo-badge">{currentTestimonial.since}</span>
                 </div>
-                <span className="testimonial-photo-badge">{currentTestimonial.since}</span>
-              </div>
-              <div className="testimonial-copy">
-                <div className="testimonial-stars" aria-hidden="true">★★★★★</div>
-                <strong className="testimonial-name">{currentTestimonial.name}</strong>
-                <span className="testimonial-role">{currentTestimonial.role}</span>
-                <p className="testimonial-quote">“{currentTestimonial.quote}”</p>
-                <div className="testimonial-footer">
-                  <span className="testimonial-brand">Depoimento reservado</span>
-                  <div className="testimonial-nav">
-                    <button
-                      aria-label="Depoimento anterior"
-                      onClick={showPrevTestimonial}
-                      type="button"
-                    >
-                      ‹
-                    </button>
-                    <button
-                      aria-label="Próximo depoimento"
-                      onClick={showNextTestimonial}
-                      type="button"
-                    >
-                      ›
-                    </button>
+                <div className="testimonial-copy">
+                  <div className="testimonial-stars" aria-hidden="true">★★★★★</div>
+                  <strong className="testimonial-name">{currentTestimonial.name}</strong>
+                  <span className="testimonial-role">{currentTestimonial.role}</span>
+                  <p className="testimonial-quote">“{currentTestimonial.quote}”</p>
+                  <div className="testimonial-footer">
+                    <span className="testimonial-brand">Depoimento reservado</span>
+                    <div className="testimonial-nav">
+                      <button
+                        aria-label="Depoimento anterior"
+                        onClick={showPrevTestimonial}
+                        type="button"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        aria-label="Próximo depoimento"
+                        onClick={showNextTestimonial}
+                        type="button"
+                      >
+                        ›
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
 
             <div className="clients-logos">
               <p className="clients-logos-kicker">Empresas atendidas</p>
