@@ -5,155 +5,249 @@ const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.
 // Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
 // Para trocar por outra foto, substitua o arquivo ./assets/atuacao.jpg.
 const sectorsImageSrc = new URL("./assets/atuacao.jpg", import.meta.url).href;
+// Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
+// e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
+const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
+const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
 
 const steps = [
   {
     number: "01",
-    shortLabel: "Identificacao",
-    orbitLabel: "Identificação",
-    title: "Identificação dos requisitos",
+    shortLabel: "Diagnostico",
+    orbitLabel: "Diagnóstico",
+    title: "Diagnóstico e gap analysis",
     description:
-      "Identificamos os requisitos legais do escopo do seu negócio, além dos aspectos ambientais e perigos de SSO relevantes.",
+      "Avaliamos processos, documentação e requisitos legais aplicáveis ao seu segmento para revelar lacunas e prioridades com precisão.",
   },
   {
     number: "02",
-    shortLabel: "Controle",
-    orbitLabel: "Controle",
-    title: "Controle dinâmico",
+    shortLabel: "Implementacao",
+    orbitLabel: "Implementação",
+    title: "Implementação dos requisitos",
     description:
-      "Acompanhe revogações e alterações da legislação, mantendo sua base de dados sempre alinhada às normas vigentes.",
+      "Estruturamos programas, laudos, procedimentos e sistemas de gestão (ISO 9001, 14001 e 45001) alinhados à operação real da empresa.",
   },
   {
     number: "03",
-    shortLabel: "Evidencias",
-    orbitLabel: "Evidências",
-    title: "Lançamento de evidências",
+    shortLabel: "Auditoria",
+    orbitLabel: "Auditoria",
+    title: "Auditoria e monitoramento",
     description:
-      "Registre as evidências de conformidade de forma ágil, com interface intuitiva, sem múltiplas telas ou etapas complexas.",
+      "Conduzimos auditorias internas, de conformidade legal e simulados PEOTRAM, acompanhando condicionantes e evidências continuamente.",
   },
   {
     number: "04",
-    shortLabel: "Avaliacao",
-    orbitLabel: "Avaliação",
-    title: "Avaliação e relatórios",
+    shortLabel: "Melhoria",
+    orbitLabel: "Resultados",
+    title: "Melhoria contínua e resultados",
     description:
-      "Avalie o atendimento aos requisitos pela sua equipe ou pela equipe técnica da Synergy EB e acompanhe os resultados.",
+      "Tratamos não conformidades pela causa-raiz e entregamos relatórios executivos que sustentam decisões, certificações e a nota ADT.",
   },
 ];
 
 const stepHighlights = [
-  ["Requisitos do escopo", "Aspectos e perigos de SSO", "Enquadramento claro"],
-  ["Revogações e alterações", "Legislação na íntegra", "Base sempre atualizada"],
-  ["Registro ágil", "Interface intuitiva", "Sem retrabalho"],
-  ["Equipe do cliente ou EB", "Atualização mensal", "Visão de conformidade"],
+  ["Levantamento legal", "Gap analysis PEOTRAM", "Prioridades definidas"],
+  ["Programas e laudos", "Sistemas de gestão ISO", "Procedimentos aplicados"],
+  ["Auditorias internas", "Simulados PEOTRAM", "Condicionantes acompanhadas"],
+  ["Causa-raiz tratada", "Relatórios executivos", "Certificação sustentada"],
 ];
 
 const pillars = [
   {
-    title: "Lançamento simplificado",
-    description: "Registre evidências de conformidade de forma ágil, sem múltiplas telas ou etapas complexas.",
+    title: "Segurança e Saúde Ocupacional",
+    description: "NRs, ISO 45001, PGR, PCMSO, LTCAT, higiene ocupacional, AET e planos de emergência.",
   },
   {
-    title: "Condução intuitiva",
-    description: "O sistema guia o usuário pelo processo fácil de usar mesmo sem experiência prévia.",
+    title: "Meio Ambiente e Sustentabilidade",
+    description: "ISO 14001, licenciamento, condicionantes, resíduos, PRAD e produtos perigosos.",
   },
   {
-    title: "Identificação precisa",
-    description: "Requisitos legais do escopo do negócio, aspectos ambientais e perigos de SSO relevantes.",
+    title: "Qualidade e Excelência",
+    description: "ISO 9001, mapeamento e redesenho de processos, planejamento estratégico e KPIs.",
   },
   {
-    title: "Controle dinâmico",
-    description: "Acompanhamento contínuo de revogações e alterações da legislação vigente.",
+    title: "Consultoria PEOTRAM",
+    description: "Gap analysis, implementação, auditorias de preparação e gestão da nota ADT (Petrobras).",
   },
   {
-    title: "Legislação na íntegra",
-    description: "Acesso à íntegra das legislações aplicáveis, direto no sistema, para consulta e referência.",
+    title: "Estratégia e Governança ESG",
+    description: "Estratégia ESG, relatórios GRI/SASB, rating, compliance e gestão de riscos corporativos.",
   },
   {
-    title: "Atualização mensal",
-    description: "A equipe técnica insere novas legislações todo mês; você nunca perde uma mudança importante.",
+    title: "Requisitos Legais e Outros",
+    description: "Levantamento, avaliação e atualização contínua de requisitos legais e qualificação de fornecedores.",
   },
 ];
 
 const serviceAreas = [
   {
-    key: "facilidade",
-    tag: "Fácil de usar",
-    name: "Sua conformidade, nossa prioridade: um sistema desenvolvido para você",
+    key: "sso",
+    tag: "SSO",
+    name: "Segurança e Saúde Ocupacional",
     lead:
-      "Nosso sistema de gerenciamento de requisitos legais foi cuidadosamente desenvolvido para atender às necessidades específicas da sua organização, proporcionando uma ferramenta robusta e, acima de tudo, fácil de usar. Entendemos que o tempo é um recurso valioso, e por isso, eliminamos a burocracia e o retrabalho:",
+      "Proteção da vida e da saúde dos trabalhadores com uma abordagem proativa, focada em prevenção e conformidade com as normas nacionais e internacionais.",
     groups: [
       {
-        label: "Destaques",
+        label: "Treinamentos",
         items: [
-          "Lançamento simplificado de evidências: diga adeus às múltiplas telas e etapas complexas. Com uma interface intuitiva e direta, você registra as evidências de conformidade de forma ágil, focando no que realmente importa.",
-          "Condução intuitiva: o sistema guia você através do processo, tornando a gestão de requisitos legais uma tarefa descomplicada e eficiente, mesmo para usuários sem experiência prévia.",
+          "Normas Regulamentadoras (NRs) do Trabalho",
+          "Interpretação, implementação e auditoria interna ISO 45001:2018",
+          "Gerenciamento de perigos e riscos (APR, HAZOP)",
+          "Análise de Riscos e Permissão de Trabalho (PT)",
+          "Higiene ocupacional",
+          "Abandono e situações de emergência",
+        ],
+      },
+      {
+        label: "Serviços",
+        items: [
+          "Implantação e manutenção do SGSSO ISO 45001:2018",
+          "Plano de gestão das NRs e adequação ao eSocial",
+          "Laudos técnicos (LTCAT, NR-20, NR-12, entre outros)",
+          "Programas de SST (PGR, PCMSO, PCMAT, PPR, PCA, PPEOB, PPP)",
+          "Higiene ocupacional — avaliação quantitativa de riscos",
+          "Análise Ergonômica do Trabalho (AET)",
+          "Estudos de risco (HAZOP, APP, APR, FMEA)",
+          "Licença AVCB junto ao Corpo de Bombeiros",
+          "Plano de Emergência e Auxílio Mútuo (PAM) com simulados",
+          "Gerenciamento de requisitos legais e FISPQ",
+        ],
+      },
+      {
+        label: "Auditorias",
+        items: [
+          "Auditoria interna do SGSSO ISO 45001:2018",
+          "Auditoria de conformidade legal (requisitos legais e outros)",
+          "Auditoria de qualificação de provedores externos",
         ],
       },
     ],
   },
   {
-    key: "funcionalidades",
-    tag: "Funcionalidades",
-    name: "Funcionalidades essenciais para uma gestão completa",
+    key: "ambiente",
+    tag: "Meio Ambiente",
+    name: "Meio Ambiente e Sustentabilidade",
     lead:
-      "O sistema da Synergy EB Consultoria oferece um conjunto abrangente de funcionalidades para garantir que sua organização esteja sempre à frente em termos de conformidade:",
+      "Gestão responsável dos recursos naturais, minimização de impactos e promoção da sustentabilidade, garantindo conformidade legal e reputação corporativa.",
     groups: [
       {
-        label: "Recursos",
+        label: "Treinamentos",
         items: [
-          "Identificação precisa: realizamos a identificação dos requisitos legais associados ao escopo de negócio da sua organização, bem como dos aspectos ambientais e perigos de Saúde e Segurança Ocupacional (SSO) relevantes.",
-          "Controle dinâmico: mantenha-se atualizado com o controle contínuo das revogações e alterações dos requisitos legais, garantindo que sua base de dados esteja sempre alinhada com a legislação vigente.",
-          "Legislação na íntegra: tenha acesso facilitado à íntegra das legislações aplicáveis, diretamente no sistema, para consulta e referência sempre que necessário.",
-          "Atualização mensal garantida: nossa equipe técnica realiza atualizações mensais dos requisitos legais, inserindo novas legislações aplicáveis e garantindo que você nunca perca uma mudança importante.",
+          "Interpretação, implementação e auditoria ISO 14001:2015 e versão 2026",
+          "Gerenciamento de aspectos e impactos ambientais",
+        ],
+      },
+      {
+        label: "Serviços",
+        items: [
+          "Implantação e manutenção do SGA ISO 14001:2015 e versão 2026",
+          "Estudos de risco (AIA, avaliação preliminar e detalhada)",
+          "Monitoramento de condicionantes ambientais",
+          "Laudo de ruído externo NBR 10.151 e CONAMA 01/86",
+          "Programas de educação e responsabilidade socioambiental",
+          "Gerenciamento de resíduos sólidos (PGRS)",
+          "Plano de Recuperação de Áreas Degradadas (PRAD)",
+          "SIPROQUIM e ficha de emergência",
+          "Conformidade no transporte rodoviário de produtos perigosos",
+          "Gerenciamento de requisitos legais e qualificação de fornecedores",
+        ],
+      },
+      {
+        label: "Auditorias",
+        items: [
+          "Auditoria ambiental DZ 056 R.3 e SMAC 550/2014",
+          "Auditoria interna do SGA ISO 14001:2015",
+          "Auditoria de qualificação de provedores externos",
         ],
       },
     ],
   },
   {
-    key: "avaliacao",
-    tag: "Avaliação",
-    name: "Avaliação e suporte personalizado",
+    key: "qualidade",
+    tag: "Qualidade",
+    name: "Qualidade e Excelência Operacional",
     lead:
-      "A avaliação do atendimento aos requisitos legais pode ser realizada de duas formas, adaptando-se à sua preferência e capacidade interna:",
+      "Otimização de processos, satisfação do cliente e busca pela excelência operacional como diferencial competitivo que impulsiona o crescimento do negócio.",
     groups: [
       {
-        label: "Como avaliar",
+        label: "Treinamentos",
         items: [
-          "Equipe do cliente: sua própria equipe pode conduzir as avaliações, utilizando a ferramenta para registrar e monitorar a conformidade.",
-          "Equipe técnica da Synergy EB Consultoria: conte com a expertise dos nossos especialistas para realizar as avaliações, garantindo um olhar técnico e aprofundado sobre sua conformidade.",
+          "Interpretação, implementação e auditoria ISO 9001:2015 e versão 2026",
+          "Análise e tratamento de não conformidades (5 Porquês, Ishikawa, 8D)",
         ],
       },
       {
-        label: "Nota importante",
+        label: "Serviços",
         items: [
-          "Caso sua organização ainda não possua a identificação formal de aspectos ambientais e perigos de SSO, a Synergy EB Consultoria disponibilizará uma lista de verificação detalhada para auxiliar no enquadramento das suas atividades, garantindo que nenhum ponto crítico seja negligenciado.",
+          "Implantação e manutenção do SGQ ISO 9001:2015 e versão 2026",
+          "Mapeamento, redesenho e gestão por processos",
+          "Planejamento estratégico e indicadores (KPIs)",
+        ],
+      },
+      {
+        label: "Auditorias",
+        items: ["Auditoria interna do SGQ ISO 9001:2015 e versão 2026"],
+      },
+    ],
+  },
+  {
+    key: "peotram",
+    tag: "PEOTRAM",
+    name: "Consultoria Especializada PEOTRAM",
+    lead:
+      "Programa de Excelência Operacional para Transporte Aéreo e Marítimo da Petrobras. Preparamos sua empresa para atender e superar as exigências, garantindo contratos e excelência operacional.",
+    groups: [
+      {
+        label: "Metodologia",
+        items: [
+          "Diagnóstico de lacunas (gap analysis) do ciclo vigente",
+          "Implementação dos requisitos de segurança, manutenção e operação",
+          "Auditorias de preparação simuladas com o rigor da Petrobras",
+          "Gestão de não conformidades e melhoria da nota ADT",
+          "Treinamento de equipes nos padrões de excelência operacional",
+        ],
+      },
+    ],
+  },
+  {
+    key: "esg",
+    tag: "ESG",
+    name: "Estratégia e Governança ESG",
+    lead:
+      "Uma jornada de sustentabilidade que vai além do compliance, gerando valor financeiro e reputacional a partir dos critérios Ambiental, Social e de Governança.",
+    groups: [
+      {
+        label: "Nossa atuação",
+        items: [
+          "E gestão ambiental, eficiência energética e economia circular",
+          "S diversidade e inclusão, direitos humanos e responsabilidade social",
+          "G código de ética, compliance e gestão de riscos corporativos",
+          "Relatórios de sustentabilidade (GRI e SASB)",
+          "Rating ESG e obtenção de selos de sustentabilidade",
         ],
       },
     ],
   },
 ];
 
-const clientPlaceholders = [1, 2, 3, 4, 5, 6, 7, 8];
-
 const testimonials = [
   {
     name: "Depoimento reservado",
-    role: "Cargo — Empresa reservada",
+    role: "Cargo: Empresa reservada",
     quote:
       "Espaço reservado para o depoimento de um cliente sobre a parceria com a Synergy EB Consultoria.",
     since: "Parceiro reservado",
   },
   {
     name: "Depoimento reservado",
-    role: "Cargo — Empresa reservada",
+    role: "Cargo: Empresa reservada",
     quote:
       "Espaço reservado para o depoimento de outro cliente sobre os resultados obtidos com o sistema.",
     since: "Parceiro reservado",
   },
   {
     name: "Depoimento reservado",
-    role: "Cargo — Empresa reservada",
+    role: "Cargo: Empresa reservada",
     quote:
       "Espaço reservado para um depoimento sobre o suporte técnico e a atualização mensal da legislação.",
     since: "Parceiro reservado",
@@ -162,30 +256,179 @@ const testimonials = [
 
 const benefits = [
   {
-    title: "Identificação precisa",
+    title: "Conformidade legal",
     description:
-      "Requisitos legais do escopo, aspectos ambientais e perigos de SSO identificados com precisão.",
+      "Requisitos, prazos, licenças e condicionantes monitorados de forma centralizada e acionável.",
     scene: "legal",
   },
   {
-    title: "Controle dinâmico",
+    title: "Evidências organizadas",
     description:
-      "Revogações e alterações acompanhadas continuamente, base sempre alinhada à legislação vigente.",
-    scene: "dashboard",
-  },
-  {
-    title: "Legislação na íntegra",
-    description:
-      "Acesso à íntegra das leis aplicáveis, direto no sistema, para consulta e referência.",
+      "Documentos, laudos, programas e comprovações prontos para consulta, auditorias e certificações.",
     scene: "evidence",
   },
   {
-    title: "Atualização mensal",
+    title: "Visão executiva",
     description:
-      "Novas legislações inseridas todo mês pela equipe técnica você nunca perde uma mudança.",
+      "Indicadores claros e leitura executiva para priorizar riscos e sustentar decisões com segurança.",
+    scene: "dashboard",
+  },
+  {
+    title: "Prevenção de perdas",
+    description:
+      "Antecipe passivos com alertas de vencimentos, atualizações legais e atividades críticas.",
     scene: "alerts",
   },
 ];
+
+const historyParagraphs = [
+  "Com uma trajetória consolidada de 10 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.",
+  "A sede no Rio de Janeiro posicionou a empresa estrategicamente para atender grandes players do mercado, oferecendo consultoria especializada em sistemas de gestão como a ISO 45001 (Saúde e Segurança), ISO 14001 (Meio Ambiente) e ISO 9001 (Qualidade). A evolução dos serviços acompanhou as tendências do mercado e as novas exigências regulatórias, culminando na criação de serviços especializados como o PEOTRAM e a Estratégia de Governança ESG.",
+  "Consolidou-se como uma parceira estratégica para organizações que buscam transformar desafios de gestão em diferenciais competitivos oferecendo não apenas o atendimento às exigências regulatórias, mas também o impulsionamento da performance e da sustentabilidade dos negócios de seus clientes.",
+];
+
+const historyStats = [
+  { value: "10 anos", label: "de experiência no mercado" },
+  { value: "2016", label: "fundada no Rio de Janeiro" },
+  { value: "QHSE + ESG", label: "portfólio integrado e completo" },
+];
+
+const teamIntro =
+  "Nossos profissionais dominam a aplicação das Normas Regulamentadoras (NRs) e possuem profundo conhecimento em sistemas de gestão internacionais, como as normas ISO 9001, ISO 14001 e ISO 45001. Essa expertise e sinergia multidisciplinar nos capacita a atuar de forma integrada nas áreas de Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Nossa equipe possui, ainda, experiência direta em setores de alta exigência, como o de Óleo e Gás, garantindo a preparação adequada de nossos clientes para programas rigorosos, como o PEOTRAM da Petrobras.";
+
+const teamMembers = [
+  {
+    name: "Everaldo Colaço Neto",
+    role: "Engenheiro de Produção e de Segurança do Trabalho",
+    bio: "Aproximadamente 18 anos de experiência atuando em projetos para empresas de renomados segmentos, na gestão direta de projetos complexos, integrando visão estratégica de negócios e conhecimento técnico.",
+    photo: "",
+  },
+  {
+    name: "Bruno Nóbrega",
+    role: "Mestre em Engenharia e Tecnologia Ambiental",
+    bio: "Engenheiro Sanitarista e Ambiental, Técnico em Segurança do Trabalho, com aproximadamente 18 anos de experiência atuando em projetos para empresas de renomados segmentos, na gestão direta de projetos complexos, integrando visão estratégica de negócios e conhecimento técnico.",
+    photo: brunoNobregaPhotoSrc,
+  },
+];
+
+const missionVisionValues = {
+  mission:
+    "Oferecer soluções técnicas e estratégicas de excelência em Qualidade, Segurança do Trabalho, Saúde Ocupacional e Meio Ambiente, capacitando nossos clientes a superar os desafios regulatórios e operacionais, impulsionar a performance, garantir a conformidade legal e promover o crescimento sustentável de suas organizações.",
+  vision:
+    "Ser reconhecida como uma parceira inovadora e estratégica, com credibilidade e confiança na prestação de serviços de consultoria de QHSE e Governança ESG — referência absoluta na preparação de empresas para programas de excelência operacional e na construção de marcas ambientalmente responsáveis e socialmente justas.",
+  values: [
+    {
+      title: "Excelência Técnica",
+      description: "Conhecimento aprofundado em conformidade legal e regulatória aliado a uma visão estratégica de negócios.",
+    },
+    {
+      title: "Prevenção e Segurança",
+      description: "A proteção da vida e da integridade física dos trabalhadores em primeiro lugar, com abordagem proativa.",
+    },
+    {
+      title: "Compromisso com o Meio Ambiente",
+      description: "Gestão responsável dos recursos naturais, reduzindo a pegada ambiental das empresas.",
+    },
+    {
+      title: "Integridade e Transparência",
+      description: "Ética, prestação de contas e cumprimento rigoroso dos requisitos legais e contratuais.",
+    },
+    {
+      title: "Melhoria Contínua",
+      description: "Inovação e otimização constante de processos, com metodologias avançadas de gestão.",
+    },
+    {
+      title: "Valor Compartilhado",
+      description: "O sucesso dos clientes é o nosso sucesso — valor financeiro, reputacional e social para todos.",
+    },
+  ],
+};
+
+const identitySteps = [
+  {
+    number: "missao",
+    shortLabel: "Missao",
+    orbitLabel: "Missão",
+    title: "Nossa missão",
+    description: missionVisionValues.mission,
+  },
+  {
+    number: "visao",
+    shortLabel: "Visao",
+    orbitLabel: "Visão",
+    title: "Nossa visão",
+    description: missionVisionValues.vision,
+  },
+  {
+    number: "valores",
+    shortLabel: "Valores",
+    orbitLabel: "Valores",
+    title: "Nossos valores",
+    description: "Os princípios que guiam nossa atuação há uma década.",
+  },
+];
+
+const identityHighlights = [
+  ["QHSE", "Conformidade legal", "Crescimento sustentável"],
+  ["Referência nacional", "Inovação estratégica", "Marcas responsáveis"],
+  missionVisionValues.values.map((value) => value.title),
+];
+
+const qsmsPolicyIntro =
+  "Ciente de sua responsabilidade na prevenção de acidentes, doenças ocupacionais, impactos ambientais e na garantia da qualidade de seus serviços, a Synergy EB Consultoria compromete-se a cumprir integralmente os requisitos legais, regulamentares e contratuais aplicáveis à sua operação e aos clientes atendidos.";
+
+const qsmsPolicyPoints = [
+  {
+    title: "Gestão Integrada e Proativa",
+    description: "Sistemas integrados de gestão em Qualidade (ISO 9001), Meio Ambiente (ISO 14001) e Segurança e Saúde Ocupacional (ISO 45001), com a prevenção de riscos como ponto de partida.",
+  },
+  {
+    title: "Conformidade Legal e Normativa",
+    description: "Atendimento rigoroso e atualização contínua da conformidade legal exigida pelos mais diversos mercados.",
+  },
+  {
+    title: "Capacitação e Cultura de Segurança",
+    description: "Capacitação técnica contínua de colaboradores e clientes, promovendo uma cultura de segurança, saúde e sustentabilidade.",
+  },
+  {
+    title: "Gestão de Riscos e Aspectos Ambientais",
+    description: "Metodologias avançadas de estudo de riscos e avaliação de aspectos ambientais, com identificação, controle e mitigação eficaz de perigos.",
+  },
+  {
+    title: "Gestão de Emergências",
+    description: "Planos de emergência e auxílio mútuo desenvolvidos, revisados e testados, preparando as equipes para respostas rápidas e eficazes.",
+  },
+  {
+    title: "Desenvolvimento Sustentável e ESG",
+    description: "Integração das dimensões Ambiental, Social e de Governança, incentivando economia circular e eficiência energética.",
+  },
+  {
+    title: "Melhoria Contínua",
+    description: "Avaliação periódica do desempenho dos sistemas de gestão, com metas claras para otimização de processos.",
+  },
+];
+
+const clientLogos = [
+  { name: "Petrolane", src: "petrolane.png" },
+  { name: "Bioinfinito", src: "bioinfinito.png" },
+  { name: "bioMérieux", src: "biomerieux.png" },
+  { name: "Benthic", src: "benthic.png" },
+  { name: "Biosensi", src: "biosensi.jpg" },
+  { name: "Multiterminais", src: "multiterminais.png" },
+  { name: "BR Soluções", src: "br-solucoes.png" },
+  { name: "Cisa Trading", src: "cisa-trading.png" },
+  { name: "Copemec", src: "copemec.jpg" },
+  { name: "Imel", src: "imel.png" },
+  { name: "Funguap", src: "funguap.jpeg" },
+  { name: "Lubrizol", src: "lubrizol.jpeg" },
+  { name: "Transportes Manchur", src: "transportes-manchur.png" },
+  { name: "McDermott", src: "mcdermott.png" },
+  { name: "Mitang", src: "mitang.jpeg" },
+  { name: "Bunker One", src: "bunker-one.png" },
+  { name: "Viasat", src: "viasat.png" },
+  { name: "Sea Services", src: "sea-services.jpeg" },
+  { name: "T&D Sustentável", src: "td-sustentavel.jpeg" },
+].map((logo) => ({ ...logo, src: `/clients/${logo.src}` }));
 
 const areaIconPaths: Record<string, string[]> = {
   facilidade: ["M13 2L4 14h6l-1 8 9-12h-6l1-8z"],
@@ -750,8 +993,9 @@ const styles = `
     overflow: hidden;
   }
 
-  .hero-art-photo::before {
+  .hero-art.hero-art-photo::before {
     content: none;
+    display: none;
   }
 
   .hero-art::before {
@@ -771,29 +1015,12 @@ const styles = `
     z-index: 1;
     width: 100%;
     max-width: 560px;
-    aspect-ratio: 1402 / 1122;
   }
 
   .hero-photo img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(18%) brightness(0.9) contrast(1.1) saturate(0.9);
-    -webkit-mask-image: radial-gradient(ellipse 46% 48% at 50% 42%, #000 12%, transparent 100%);
-    mask-image: radial-gradient(ellipse 46% 48% at 50% 42%, #000 12%, transparent 100%);
-  }
-
-  .hero-photo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background:
-      radial-gradient(circle at 24% 16%, rgba(194, 150, 58, 0.28), transparent 55%),
-      radial-gradient(circle at 82% 84%, rgba(255, 255, 255, 0.08), transparent 50%);
+    height: auto;
   }
 
   .hero-monitor {
@@ -2559,6 +2786,277 @@ const styles = `
   .benefit-scene-alerts .benefit-scene-chip-a { width: 14px; height: 14px; right: 16%; top: 22%; background: #ffe6a8; }
   .benefit-scene-alerts .benefit-scene-chip-b { width: 90px; left: 24%; bottom: 22%; }
 
+  /* ===== History ===== */
+  .history-section {
+    background: var(--bg);
+    padding: 78px 0;
+  }
+
+  .history-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    gap: 36px;
+    align-items: start;
+  }
+
+  .history-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 82% 14%, rgba(194, 150, 58, 0.16), transparent 32%),
+      linear-gradient(150deg, var(--wine-soft), #ffffff);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .history-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 28px;
+    box-sizing: border-box;
+  }
+
+  .history-media-ph {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    justify-items: center;
+    gap: 12px;
+    padding: 24px;
+    text-align: center;
+    color: var(--wine-strong);
+  }
+
+  .history-media-ph::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 16px;
+    border: 1.5px dashed var(--line-strong);
+    pointer-events: none;
+  }
+
+  .history-media-ph svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .history-media-ph strong {
+    font-size: 0.94rem;
+  }
+
+  .history-media-ph small {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    max-width: 26ch;
+  }
+
+  .history-copy {
+    display: grid;
+    gap: 16px;
+  }
+
+  .history-copy .lead {
+    max-width: none;
+    margin-top: 0;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  .history-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .history-stat {
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-warm);
+  }
+
+  .history-stat strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--wine);
+    letter-spacing: -0.02em;
+  }
+
+  .history-stat span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+
+  /* ===== Team ===== */
+  .team-section {
+    background: var(--bg-warm);
+    padding: 78px 0;
+  }
+
+  .team-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.3fr);
+    gap: 36px;
+    align-items: start;
+  }
+
+  .team-header {
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .team-photo {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .team-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .team-photo-placeholder {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(150deg, var(--wine-soft), #ffffff);
+    color: var(--wine);
+  }
+
+  .team-photo-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 14px;
+    border: 1.5px dashed var(--line-strong);
+    pointer-events: none;
+  }
+
+  .team-photo-placeholder svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .team-photo-placeholder small {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--wine-strong);
+  }
+
+  .team-copy {
+    padding: 16px 18px 20px;
+  }
+
+  .team-copy h3 {
+    font-size: 0.98rem;
+    color: var(--ink);
+    line-height: 1.22;
+  }
+
+  .team-role {
+    display: block;
+    margin-top: 4px;
+    color: var(--wine);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .team-copy p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* ===== QSMS Policy ===== */
+  .policy-section {
+    background: var(--bg);
+    padding: 78px 0;
+  }
+
+  .policy-header {
+    max-width: 760px;
+  }
+
+  .policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .policy-card {
+    position: relative;
+    padding: 22px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .policy-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--wine-soft);
+    color: var(--wine);
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .policy-card h3 {
+    font-size: 0.98rem;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+
+  .policy-card p {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
   /* ===== Clients ===== */
   .clients-section {
     background: linear-gradient(160deg, #0b1a33 0%, #12294d 100%);
@@ -2808,16 +3306,19 @@ const styles = `
   .client-logo-tile {
     flex: 0 0 64px;
     width: 100%;
+    padding: 10px 16px;
     display: grid;
     place-items: center;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    background: #fff;
+  }
+
+  .client-logo-tile img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   @keyframes clients-logos-move-v {
@@ -3168,20 +3669,21 @@ const styles = `
     }
 
     .services-shell {
-      grid-template-columns: 1fr;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 14px;
     }
 
     .services-tabs {
-      position: static;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .method-classic-showcase {
       grid-template-columns: 1fr;
     }
 
+    .method-classic-showcase {
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 16px;
+    }
+
     .method-classic-nav {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
     }
 
     .method-classic-stage {
@@ -3252,6 +3754,30 @@ const styles = `
       padding: 72px 0;
     }
 
+    .history-layout {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .history-media {
+      aspect-ratio: 16 / 10;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .history-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .team-layout {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .mvv-grid {
+      grid-template-columns: 1fr;
+    }
+
     .hero {
       min-height: auto;
       padding: 14px 0 18px;
@@ -3312,25 +3838,75 @@ const styles = `
       width: 100%;
     }
 
-    .hero-grid,
     .sector-list,
     .contact-grid,
     .form-grid {
       grid-template-columns: 1fr;
     }
 
-    .hero-art,
     .contact-card,
     .contact-form {
       padding: 24px;
     }
 
     .hero-grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(96px, 1fr);
+      gap: 12px;
+      align-items: start;
       padding-top: 0;
     }
 
     .hero-art {
-      min-height: 350px;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .hero-copy .kicker {
+      font-size: 0.72rem;
+    }
+
+    .hero-copy .title-xl {
+      font-size: clamp(1.3rem, 6vw, 1.7rem);
+      line-height: 1.12;
+      max-width: none;
+    }
+
+    .hero-copy .lead {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .hero-note {
+      font-size: 0.74rem;
+      margin-top: 12px;
+    }
+
+    .cta-row {
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .cta-row .button {
+      min-height: 38px;
+      padding: 0 14px;
+      font-size: 0.82rem;
+    }
+
+    .hero-pillars {
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .hero-pillar {
+      padding: 5px 9px;
+      font-size: 0.66rem;
+      gap: 5px;
+    }
+
+    .hero-pillar svg {
+      width: 12px;
+      height: 12px;
     }
 
     .services-section {
@@ -3346,11 +3922,36 @@ const styles = `
     }
 
     .method-classic-showcase {
-      padding: 22px;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px;
     }
 
     .method-classic-nav {
       grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .method-classic-tab {
+      grid-template-columns: 30px 1fr;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .method-classic-tab-num {
+      width: 30px;
+      height: 30px;
+      font-size: 0.74rem;
+      border-radius: 9px;
+    }
+
+    .method-classic-tab-copy strong {
+      font-size: 0.74rem;
+      line-height: 1.15;
+    }
+
+    .method-classic-tab-copy small {
+      font-size: 0.62rem;
     }
 
     .method-classic-stage {
@@ -3427,6 +4028,10 @@ const styles = `
       padding: 56px 0;
     }
 
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+
     .nav {
       gap: 16px;
     }
@@ -3460,8 +4065,39 @@ const styles = `
       grid-template-columns: 1fr;
     }
 
+    .services-shell {
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 10px;
+    }
+
     .services-tabs {
       grid-template-columns: 1fr;
+    }
+
+    .services-tab {
+      grid-template-columns: 30px 1fr;
+      gap: 8px;
+      padding: 8px 8px;
+    }
+
+    .services-tab-ico {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+    }
+
+    .services-tab-ico svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .services-tab-chip {
+      font-size: 0.52rem;
+    }
+
+    .services-tab strong {
+      font-size: 0.72rem;
+      line-height: 1.15;
     }
 
     .services-groups {
@@ -3735,11 +4371,15 @@ export default function Inicial() {
   const [activeArea, setActiveArea] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [activeIdentity, setActiveIdentity] = useState(0);
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
   const currentArea = serviceAreas[activeArea];
   const currentTestimonial = testimonials[activeTestimonial];
+  const currentIdentityStep = identitySteps[activeIdentity];
+  const currentIdentityHighlights = identityHighlights[activeIdentity];
   const orbitPositions = ["top", "left", "right", "bottom"];
+  const identityPositions = ["top", "left", "right"];
 
   const showPrevTestimonial = () =>
     setActiveTestimonial((index) => (index - 1 + testimonials.length) % testimonials.length);
@@ -3750,6 +4390,13 @@ export default function Inicial() {
     const timer = setInterval(() => {
       setActiveStep((step) => (step + 1) % steps.length);
     }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIdentity((step) => (step + 1) % identitySteps.length);
+    }, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -3799,12 +4446,15 @@ export default function Inicial() {
         <div className="container">
           <div className="hero-grid" id="inicio">
             <div className="hero-copy">
-              <p className="kicker">   </p>
+              <p className="kicker">QHSE • PEOTRAM • Estratégia ESG</p>
               <h1 className="title-xl">
-                Garanta a <strong>Conformidade Legal</strong> e otimize sua gestão.
+                Excelência em <strong>QHSE, PEOTRAM e governança ESG</strong>.
               </h1>
               <p className="lead">
-              A Synergy EB Consultoria oferece uma solução intuitiva para simplificar a gestão de requisitos legais de Qualidade, Meio Ambiente, Saúde e Segurança Ocupacional, auxiliando empresas a manterem conformidade. 
+                Em um cenário regulatório cada vez mais complexo, a Synergy EB Consultoria oferece uma
+                solução completa para simplificar a gestão de requisitos legais de Qualidade, Meio
+                Ambiente, Saúde e Segurança Ocupacional (QHSE) incluindo a preparação para o PEOTRAM
+                da Petrobras e a Estratégia de Governança ESG.
               </p>
 
               <div className="cta-row">
@@ -3812,7 +4462,7 @@ export default function Inicial() {
                   Fale conosco
                 </a>
                 <a className="button button-secondary" href="#servicos">
-                  Conhecer o sistema
+                  Conhecer os serviços
                 </a>
               </div>
 
@@ -3905,13 +4555,97 @@ export default function Inicial() {
         </div>
       </section>
 
+      <section className="section history-section" id="historia">
+        <div className="container">
+          <header className="section-header history-header">
+            <p className="kicker">Nossa história</p>
+            <h2 className="title-lg">Uma década de excelência em QHSE.</h2>
+          </header>
+
+          <div className="history-layout">
+            <div className="history-media">
+              {historyImageSrc ? (
+                <img alt="Equipe Synergy EB Consultoria" src={historyImageSrc} />
+              ) : (
+                <div className="history-media-ph" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 21h18" />
+                    <path d="M5 21V7l7-4 7 4v14" />
+                    <path d="M9 21v-6h6v6" />
+                    <path d="M9 10h.01M12 10h.01M15 10h.01" />
+                  </svg>
+                  <strong>Imagem reservada</strong>
+                  <small>Adicione aqui uma foto da equipe ou do escritório.</small>
+                </div>
+              )}
+            </div>
+
+            <div className="history-copy">
+              {historyParagraphs.map((paragraph, index) => (
+                <p className="lead" key={index}>
+                  {paragraph}
+                </p>
+              ))}
+
+              <div className="history-stats">
+                {historyStats.map((stat) => (
+                  <div className="history-stat" key={stat.label}>
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section team-section" id="equipe">
+        <div className="container">
+          <div className="team-layout">
+            <header className="section-header team-header">
+              <p className="kicker">Corpo técnico</p>
+              <h2 className="title-lg">Profissionais que sustentam nossa excelência técnica.</h2>
+              <p className="lead">{teamIntro}</p>
+            </header>
+
+            <div className="team-grid">
+              {teamMembers.map((member) => (
+                <article className="team-card" key={member.name}>
+                  {member.photo ? (
+                    <div className="team-photo">
+                      <img alt={member.name} src={member.photo} />
+                    </div>
+                  ) : (
+                    <div className="team-photo-placeholder" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="8" r="3.6" />
+                        <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
+                      </svg>
+                      <small>Foto reservada</small>
+                    </div>
+                  )}
+                  <div className="team-copy">
+                    <h3>{member.name}</h3>
+                    <span className="team-role">{member.role}</span>
+                    <p>{member.bio}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="services-section" id="servicos">
         <div className="container">
           <header className="services-header">
-            <p className="kicker">O sistema Synergy EB</p>
-            <h2 className="title-lg">Sua conformidade, nossa prioridade.</h2>
+            <p className="kicker">Portfólio de serviços</p>
+            <h2 className="title-lg">Soluções completas em QHSE, PEOTRAM e ESG.</h2>
             <p className="lead">
-              Um sistema desenvolvido para as necessidades da sua organização. Selecione uma área para conhecer os recursos, as funcionalidades e o suporte da Synergy EB Consultoria.
+              Metodologias e abordagens que garantem excelência em Qualidade, Meio Ambiente, Saúde e
+              Segurança Ocupacional e Governança. Selecione uma área para conhecer treinamentos,
+              serviços e auditorias.
             </p>
           </header>
 
@@ -3972,10 +4706,11 @@ export default function Inicial() {
           <div className="method-transition" aria-hidden="true" />
 
           <div className="method-classic-intro">
-            <p className="kicker">Como funciona</p>
-            <h2 className="title-lg">Do requisito à evidência, de ponta a ponta.</h2>
+            <p className="kicker">Como trabalhamos</p>
+            <h2 className="title-lg">Um método claro, do diagnóstico à melhoria contínua.</h2>
             <p className="lead">
-              Da identificação dos requisitos ao lançamento de evidências e à avaliação o processo completo, sem retrabalho.
+              Estruturamos cada projeto em etapas objetivas para atender às exigências regulatórias
+              e impulsionar a performance da sua operação.
             </p>
           </div>
 
@@ -4047,14 +4782,14 @@ export default function Inicial() {
         <div className="method-break-fullbleed">
           <div className="method-break-banner">
             <div className="method-break-copy">
-              <p className="kicker">Vantagem competitiva</p>
-              <h2 className="title-lg">Transforme a gestão de requisitos legais em vantagem competitiva.</h2>
+              <p className="kicker">PEOTRAM • Petrobras</p>
+              <h2 className="title-lg">Consultoria especializada em PEOTRAM.</h2>
               <p className="lead">
-                Com o sistema da Synergy EB Consultoria, a conformidade legal deixa de ser um fardo e se torna um diferencial estratégico. Reduza riscos, otimize processos e foque no crescimento do seu negócio, sabendo que sua gestão de QMS-SSO está em mãos seguras e eficientes.
+                O Programa de Excelência Operacional para Transporte Aéreo e Marítimo (PEOTRAM) é um sistema de auditoria e avaliação da Petrobras para seus fornecedores de embarcações offshore, focado em segurança, eficiência e responsabilidade ambiental. Preparamos sua empresa para atender e superar as exigências deste programa, garantindo a manutenção de contratos e a excelência operacional.
               </p>
 
               <p className="method-break-quote">
-                “Entre em contato conosco hoje mesmo e descubra como podemos simplificar sua jornada rumo à excelência em conformidade!”
+                “O PEOTRAM não olha apenas papéis. Ele avalia se existe coerência entre o que a empresa define como padrão e o que realmente acontece na operação.”
               </p>
 
               <div className="method-break-actions">
@@ -4090,32 +4825,33 @@ export default function Inicial() {
           <div className="method-transition" aria-hidden="true" />
 
           <div className="method-header">
-            <p className="kicker">Método Synergy EB</p>
-            <h2 className="title-lg">Cada etapa conectada à sua conformidade legal.</h2>
+            <p className="kicker">Quem somos</p>
+            <h2 className="title-lg">Missão, visão e valores que guiam cada projeto.</h2>
             <p className="lead">
-              Explore visualmente as etapas do sistema da identificação dos requisitos ao acompanhamento das evidências.
+              Os princípios que sustentam nossa atuação há uma década, do planejamento estratégico à
+              entrega de cada consultoria.
             </p>
           </div>
 
           <div className="method-layout">
             <div className="method-showcase">
               <div className="method-showcase-shell">
-                <div className="method-showcase-orbit" aria-label="Etapas do metodo">
+                <div className="method-showcase-orbit" aria-label="Missão, visão e valores">
                   <span className="method-showcase-ring method-showcase-ring-a" aria-hidden="true" />
                   <span className="method-showcase-ring method-showcase-ring-b" aria-hidden="true" />
                   <span className="method-showcase-spark method-showcase-spark-a" aria-hidden="true" />
                   <span className="method-showcase-spark method-showcase-spark-b" aria-hidden="true" />
 
-                  {steps.map((step, index) => {
-                    const position = orbitPositions[index] ?? "top";
+                  {identitySteps.map((step, index) => {
+                    const position = identityPositions[index] ?? "top";
                     const reverse = position === "left";
 
                     return (
                       <button
-                        aria-pressed={index === activeStep}
-                        className={`method-showcase-tab method-showcase-tab-${position} ${reverse ? "method-showcase-tab-reverse" : ""} ${index === activeStep ? "method-showcase-tab-active" : ""}`}
+                        aria-pressed={index === activeIdentity}
+                        className={`method-showcase-tab method-showcase-tab-${position} ${reverse ? "method-showcase-tab-reverse" : ""} ${index === activeIdentity ? "method-showcase-tab-active" : ""}`}
                         key={step.number}
-                        onClick={() => setActiveStep(index)}
+                        onClick={() => setActiveIdentity(index)}
                         type="button"
                       >
                         <span className="method-showcase-tab-copy">
@@ -4129,7 +4865,7 @@ export default function Inicial() {
                     );
                   })}
 
-                  <div className="method-showcase-photo" aria-label="Espaco reservado para foto">
+                  <div className="method-showcase-photo" aria-label="Espaco reservado para foto da equipe">
                     <div className="method-showcase-photo-placeholder">
                       <span>Foto reservada</span>
                     </div>
@@ -4138,20 +4874,20 @@ export default function Inicial() {
 
                 <div className="method-showcase-panel">
                   <div className="method-showcase-panel-header">
-                    <span className="method-showcase-kicker">Metodo Synergy EB</span>
+                    <span className="method-showcase-kicker">Cultura Synergy EB</span>
                     <div className="method-showcase-heading">
                       <div className="method-showcase-icon" aria-hidden="true">
                         <span />
                       </div>
                       <div className="method-showcase-step">
-                        <strong>{currentStep.title}</strong>
-                        <p className="method-showcase-description">{currentStep.description}</p>
+                        <strong>{currentIdentityStep.title}</strong>
+                        <p className="method-showcase-description">{currentIdentityStep.description}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="method-showcase-points">
-                    {currentHighlights.map((item) => (
+                    {currentIdentityHighlights.map((item) => (
                       <span className="method-showcase-point" key={item}>
                         {item}
                       </span>
@@ -4161,9 +4897,9 @@ export default function Inicial() {
                   <div className="method-showcase-footer">
                     <p>Clique nos pontos ao redor da foto para trocar o conteudo do painel.</p>
                     <div className="method-showcase-progress" aria-hidden="true">
-                      {steps.map((step, index) => (
+                      {identitySteps.map((step, index) => (
                         <span
-                          className={index === activeStep ? "method-showcase-progress-active" : ""}
+                          className={index === activeIdentity ? "method-showcase-progress-active" : ""}
                           key={step.number}
                         />
                       ))}
@@ -4180,10 +4916,12 @@ export default function Inicial() {
         <div className="container">
           <div className="benefits-top">
             <header className="section-header benefits-header">
-              <p className="kicker">Por que o sistema Synergy EB</p>
-              <h2 className="title-lg">Funcionalidades essenciais para uma gestão completa.</h2>
+              <p className="kicker">Por que nos escolher</p>
+              <h2 className="title-lg">Conhecimento técnico com visão estratégica de negócio.</h2>
               <p className="lead">
-                Recursos pensados para que sua organização esteja sempre à frente em conformidade com menos burocracia e mais controle.
+                Combinamos domínio das normas nacionais e internacionais com uma abordagem executiva
+                para que sua empresa não apenas atenda aos requisitos, mas se destaque em QHSE, ESG e
+                PEOTRAM.
               </p>
             </header>
 
@@ -4213,9 +4951,10 @@ export default function Inicial() {
           <div className="sectors-layout">
             <header className="section-header sectors-header">
               <p className="kicker">Diferenciais</p>
-              <h2 className="title-lg">Tudo para simplificar sua gestão de QMS-SSO.</h2>
+              <h2 className="title-lg">Cobertura completa dos pilares QHSE e ESG.</h2>
               <p className="lead">
-                Do lançamento de evidências à atualização mensal da legislação tudo em um sistema intuitivo e fácil de usar.
+                Atuamos nos principais eixos regulatórios e de gestão, adaptando o escopo à
+                realidade, ao porte e ao segmento de cada empresa.
               </p>
 
               <div className="sectors-media">
@@ -4246,6 +4985,26 @@ export default function Inicial() {
                 </article>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section policy-section" id="politica">
+        <div className="container">
+          <header className="section-header policy-header">
+            <p className="kicker">Política de QSMS</p>
+            <h2 className="title-lg">Compromisso com qualidade, meio ambiente, saúde e segurança.</h2>
+            <p className="lead">{qsmsPolicyIntro}</p>
+          </header>
+
+          <div className="policy-grid">
+            {qsmsPolicyPoints.map((point, index) => (
+              <div className="policy-card" key={point.title}>
+                <span className="policy-number">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{point.title}</h3>
+                <p>{point.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -4303,15 +5062,18 @@ export default function Inicial() {
             <div className="clients-logos">
               <p className="clients-logos-kicker">Empresas atendidas</p>
               <div className="clients-logos-columns" aria-hidden="true">
-                {[clientPlaceholders.slice(0, 4), clientPlaceholders.slice(4, 8)].map((column, colIndex) => (
+                {[
+                  clientLogos.slice(0, Math.ceil(clientLogos.length / 2)),
+                  clientLogos.slice(Math.ceil(clientLogos.length / 2)),
+                ].map((column, colIndex) => (
                   <div className="clients-logos-col" key={colIndex}>
                     <div
                       className="clients-logos-track-v"
                       style={{ animationDelay: `${colIndex * -8}s` }}
                     >
-                      {[...column, ...column].map((item, index) => (
-                        <div className="client-logo-tile" key={`${item}-${index}`}>
-                          <span>Logo</span>
+                      {[...column, ...column].map((logo, index) => (
+                        <div className="client-logo-tile" key={`${logo.name}-${index}`}>
+                          <img alt={logo.name} src={logo.src} loading="lazy" />
                         </div>
                       ))}
                     </div>
@@ -4334,13 +5096,14 @@ export default function Inicial() {
             <article className="contact-card">
               <span className="badge">Synergy EB Consultoria</span>
               <p className="lead">
-                Gestão de requisitos legais de QMS-SSO com um sistema intuitivo e suporte especializado. Entre em contato e descubra como simplificar sua conformidade.
+                Excelência em QHSE, PEOTRAM e estratégia ESG com visão técnica e estratégica. Entre em
+                contato e solicite uma proposta personalizada.
               </p>
 
               <div className="contact-list">
                 <div className="contact-item">
                   <span>Telefone</span>
-                  <strong>(21) 99999-9999</strong>
+                  <strong>(21) 99267-5107</strong>
                 </div>
                 <div className="contact-item">
                   <span>E-mail</span>
