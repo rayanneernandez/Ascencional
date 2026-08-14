@@ -3,12 +3,30 @@ import { useEffect, useState } from "react";
 const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
 const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.url).href;
 // Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
-// Para trocar por outra foto, substitua o arquivo ./assets/atuacao.jpg.
-const sectorsImageSrc = new URL("./assets/atuacao.jpg", import.meta.url).href;
+// Para trocar/adicionar mais fotos ao carrossel de "Diferenciais", inclua o arquivo em
+// ./assets e adicione um novo item ao array abaixo com o mesmo formato.
+const sectorsImages = [
+  {
+    src: new URL("./assets/atuacao.jpg", import.meta.url).href,
+    alt: "Atuação da Synergy EB Consultoria em operações offshore",
+  },
+  { src: "", alt: "Imagem reservada" },
+  { src: "", alt: "Imagem reservada" },
+];
 // Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
 // e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
 const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
 const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
+
+const missionVisionPhotoSrc = new URL("./assets/nossa missão.png", import.meta.url).href;
+
+// Ilustrações de cada etapa do método (seção "Como trabalhamos"), uma por número de etapa.
+const stepImages = [
+  new URL("./assets/card1.png", import.meta.url).href,
+  new URL("./assets/card2.png", import.meta.url).href,
+  new URL("./assets/card3.png", import.meta.url).href,
+  new URL("./assets/card4.png", import.meta.url).href,
+];
 
 const steps = [
   {
@@ -195,7 +213,7 @@ const serviceAreas = [
     tag: "PEOTRAM",
     name: "Consultoria Especializada PEOTRAM",
     lead:
-      "Programa de Excelência Operacional para Transporte Aéreo e Marítimo da Petrobras. Preparamos sua empresa para atender e superar as exigências, garantindo contratos e excelência operacional.",
+      "Programa de Excelência Operacional para Transporte Aéreo e Marítimo da Petrobras.",
     groups: [
       {
         label: "Metodologia",
@@ -260,24 +278,28 @@ const benefits = [
     description:
       "Requisitos, prazos, licenças e condicionantes monitorados de forma centralizada e acionável.",
     scene: "legal",
+    image: new URL("./assets/card1.png", import.meta.url).href,
   },
   {
     title: "Evidências organizadas",
     description:
       "Documentos, laudos, programas e comprovações prontos para consulta, auditorias e certificações.",
     scene: "evidence",
+    image: new URL("./assets/card2.png", import.meta.url).href,
   },
   {
     title: "Visão executiva",
     description:
       "Indicadores claros e leitura executiva para priorizar riscos e sustentar decisões com segurança.",
     scene: "dashboard",
+    image: new URL("./assets/card3.png", import.meta.url).href,
   },
   {
     title: "Prevenção de perdas",
     description:
       "Antecipe passivos com alertas de vencimentos, atualizações legais e atividades críticas.",
     scene: "alerts",
+    image: new URL("./assets/card4.png", import.meta.url).href,
   },
 ];
 
@@ -315,7 +337,7 @@ const missionVisionValues = {
   mission:
     "Oferecer soluções técnicas e estratégicas de excelência em Qualidade, Segurança do Trabalho, Saúde Ocupacional e Meio Ambiente, capacitando nossos clientes a superar os desafios regulatórios e operacionais, impulsionar a performance, garantir a conformidade legal e promover o crescimento sustentável de suas organizações.",
   vision:
-    "Ser reconhecida como uma parceira inovadora e estratégica, com credibilidade e confiança na prestação de serviços de consultoria de QHSE e Governança ESG — referência absoluta na preparação de empresas para programas de excelência operacional e na construção de marcas ambientalmente responsáveis e socialmente justas.",
+    "Ser reconhecida como uma parceira inovadora e estratégica, com credibilidade e confiança na prestação de serviços de consultoria de QHSE e Governança ESG referência absoluta na preparação de empresas para programas de excelência operacional e na construção de marcas ambientalmente responsáveis e socialmente justas.",
   values: [
     {
       title: "Excelência Técnica",
@@ -474,20 +496,6 @@ function LogoMark() {
     <svg className="logo-mark" viewBox="128 90 300 250" role="img" aria-label="Synergy EB Consultoria">
       <path d={LOGO_PATH} fill="currentColor" />
     </svg>
-  );
-}
-
-function renderBenefitVisual(scene: string) {
-  return (
-    <div className={`benefit-scene benefit-scene-${scene}`} aria-hidden="true">
-      <span className="benefit-scene-glow" />
-      <span className="benefit-scene-card benefit-scene-card-a" />
-      <span className="benefit-scene-card benefit-scene-card-b" />
-      <span className="benefit-scene-card benefit-scene-card-c" />
-      <span className="benefit-scene-chip benefit-scene-chip-a" />
-      <span className="benefit-scene-chip benefit-scene-chip-b" />
-      <span className="benefit-scene-chip benefit-scene-chip-c" />
-    </div>
   );
 }
 
@@ -1533,92 +1541,16 @@ const styles = `
     grid-area: visual;
     position: relative;
     min-height: 300px;
-    border-radius: 26px;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at top right, rgba(194, 150, 58, 0.14), transparent 26%),
-      linear-gradient(160deg, var(--wine-soft), #fff);
-    border: 1px solid var(--line);
-  }
-
-  .method-classic-screen,
-  .method-classic-card,
-  .method-classic-orb {
-    position: absolute;
-  }
-
-  .method-classic-screen {
-    inset: 22px;
-    padding: 22px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid var(--line);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .method-classic-screen-badge {
-    display: inline-flex;
-    padding: 7px 10px;
-    border-radius: 999px;
-    background: var(--gold-soft);
-    color: var(--wine-strong);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .method-classic-screen strong {
-    display: block;
-    margin-top: 14px;
-    font-size: 1.14rem;
-    line-height: 1.12;
-    color: var(--ink);
-    max-width: 14ch;
-  }
-
-  .method-classic-lines {
     display: grid;
-    gap: 8px;
-    margin-top: 14px;
+    place-items: center;
   }
 
-  .method-classic-lines span {
+  .method-classic-visual img {
     display: block;
-    height: 6px;
-    border-radius: 999px;
-    background: rgba(30, 58, 99, 0.16);
-  }
-
-  .method-classic-lines span:nth-child(2) { width: 82%; }
-  .method-classic-lines span:nth-child(3) { width: 68%; }
-
-  .method-classic-card {
-    border-radius: 18px;
-    background: linear-gradient(180deg, #ffffff, #f6ece8);
-    box-shadow: 0 14px 28px rgba(20, 35, 60, 0.12);
-    border: 1px solid var(--line-soft);
-  }
-
-  .method-classic-card-c {
-    width: 54px;
-    height: 54px;
-    right: 16px;
-    top: 16px;
-    border-radius: 50%;
-    background: linear-gradient(180deg, var(--gold), var(--wine));
-    border: none;
-  }
-
-  .method-classic-orb {
-    width: 90px;
-    height: 90px;
-    right: -10px;
-    bottom: -12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(31, 61, 115, 0.18), transparent 68%);
-    filter: blur(8px);
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    object-fit: contain;
   }
 
   .method-classic-footer {
@@ -2176,7 +2108,7 @@ const styles = `
   /* ===== Orbit method ===== */
   .method-showcase {
     position: relative;
-    padding: clamp(24px, 4vw, 36px);
+    padding: clamp(20px, 3vw, 28px);
     max-width: 1120px;
     margin: 0 auto;
     border-radius: 40px;
@@ -2198,13 +2130,13 @@ const styles = `
 
   .method-showcase-shell {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+    grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1.18fr);
     gap: clamp(24px, 4vw, 40px);
     align-items: center;
   }
 
   .method-showcase-orbit {
-    min-height: 420px;
+    min-height: 340px;
     display: grid;
     place-items: center;
   }
@@ -2218,12 +2150,12 @@ const styles = `
   }
 
   .method-showcase-orbit::before {
-    width: min(100%, 420px);
+    width: min(100%, 340px);
     aspect-ratio: 1;
   }
 
   .method-showcase-orbit::after {
-    width: min(100%, 320px);
+    width: min(100%, 260px);
     aspect-ratio: 1;
   }
 
@@ -2233,8 +2165,8 @@ const styles = `
     border: 1px solid var(--line-soft);
   }
 
-  .method-showcase-ring-a { width: min(100%, 500px); aspect-ratio: 1; }
-  .method-showcase-ring-b { width: min(100%, 246px); aspect-ratio: 1; }
+  .method-showcase-ring-a { width: min(100%, 400px); aspect-ratio: 1; }
+  .method-showcase-ring-b { width: min(100%, 200px); aspect-ratio: 1; }
 
   .method-showcase-spark {
     position: absolute;
@@ -2269,20 +2201,30 @@ const styles = `
     position: relative;
     z-index: 1;
     pointer-events: none;
-    width: min(100%, 236px);
+    width: min(100%, 190px);
     aspect-ratio: 1;
     border-radius: 50%;
     padding: 10px;
+    overflow: hidden;
     background: linear-gradient(180deg, #ffffff, #f6ece8);
     box-shadow: var(--shadow);
+  }
+
+  .method-showcase-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .method-showcase-photo::before {
     content: "";
     position: absolute;
+    z-index: 2;
     inset: 12px;
     border-radius: 50%;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     pointer-events: none;
   }
 
@@ -2425,7 +2367,7 @@ const styles = `
   }
 
   .method-showcase-panel {
-    padding: clamp(24px, 3vw, 34px);
+    padding: clamp(20px, 2.4vw, 28px);
     border-radius: 34px;
     background: var(--bg-warm);
     border: 1px solid var(--line);
@@ -2463,10 +2405,10 @@ const styles = `
   }
 
   .method-showcase-icon {
-    width: 54px;
-    height: 54px;
+    width: 46px;
+    height: 46px;
     flex-shrink: 0;
-    border-radius: 18px;
+    border-radius: 16px;
     display: grid;
     place-items: center;
     background: linear-gradient(180deg, var(--wine), var(--wine-strong));
@@ -2496,8 +2438,8 @@ const styles = `
   }
 
   .method-showcase-step strong {
-    font-size: clamp(1.7rem, 2.6vw, 2.6rem);
-    line-height: 1.06;
+    font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+    line-height: 1.08;
     letter-spacing: -0.03em;
     max-width: 16ch;
     color: var(--ink);
@@ -2506,9 +2448,9 @@ const styles = `
   .method-showcase-description {
     margin-top: 0;
     color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.72;
-    max-width: 44ch;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    max-width: none;
   }
 
   .method-showcase-points {
@@ -2535,8 +2477,8 @@ const styles = `
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-top: 28px;
-    padding-top: 22px;
+    margin-top: 18px;
+    padding-top: 16px;
     border-top: 1px solid var(--line);
   }
 
@@ -2579,21 +2521,20 @@ const styles = `
   }
 
   .benefits-top {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: 28px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
   }
 
   .benefits-header {
-    max-width: 100%;
+    max-width: 780px;
     margin-bottom: 0;
     padding-top: 14px;
   }
 
   .benefits-header .title-lg {
-    font-size: clamp(1.5rem, 2.1vw, 1.9rem);
-    line-height: 1.18;
+    font-size: clamp(1.9rem, 2.9vw, 2.5rem);
+    line-height: 1.12;
     max-width: 32ch;
     color: var(--ink);
     text-wrap: balance;
@@ -2601,7 +2542,7 @@ const styles = `
 
   .benefits-header .lead {
     color: var(--muted);
-    max-width: 50ch;
+    max-width: 62ch;
   }
 
   .showcase-stage {
@@ -2682,17 +2623,24 @@ const styles = `
     height: 190px;
     flex-shrink: 0;
     overflow: hidden;
-    background:
-      radial-gradient(circle at top right, rgba(194, 150, 58, 0.24), transparent 34%),
-      linear-gradient(145deg, var(--wine), var(--wine-strong));
+    background: linear-gradient(145deg, var(--wine), var(--wine-strong));
     transition: transform 0.26s ease;
+  }
+
+  .benefit-scene img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .benefit-scene::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.14));
+    pointer-events: none;
   }
 
   .benefit-scene-glow {
@@ -2951,6 +2899,13 @@ const styles = `
     border: 1px solid var(--line);
     background: var(--panel);
     box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow);
   }
 
   .team-photo {
@@ -2963,6 +2918,11 @@ const styles = `
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .team-card:hover .team-photo img {
+    transform: scale(1.05);
   }
 
   .team-photo-placeholder {
@@ -3033,7 +2993,7 @@ const styles = `
   }
 
   .policy-header {
-    max-width: 900px;
+    max-width: 100%;
   }
 
   .policy-header .title-lg {
@@ -3044,7 +3004,7 @@ const styles = `
   }
 
   .policy-header .lead {
-    max-width: 68ch;
+    max-width: none;
   }
 
   .policy-grid {
@@ -3402,7 +3362,7 @@ const styles = `
   }
 
   .sectors-header .lead {
-    max-width: 42ch;
+    max-width: none;
     color: var(--muted);
   }
 
@@ -3427,6 +3387,46 @@ const styles = `
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .sectors-media-slide {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .sectors-media-slide-active {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .sectors-media-dots {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+  }
+
+  .sectors-media-dots button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: background 0.2s ease, width 0.2s ease;
+  }
+
+  .sectors-media-dots .sectors-media-dot-active {
+    width: 20px;
+    background: var(--gold);
+    border-color: var(--gold);
   }
 
   .sectors-media-ph {
@@ -3767,7 +3767,6 @@ const styles = `
     }
 
     .benefits-top {
-      grid-template-columns: 1fr;
       gap: 22px;
     }
 
@@ -4418,6 +4417,7 @@ export default function Inicial() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeIdentity, setActiveIdentity] = useState(0);
+  const [activeSectorImage, setActiveSectorImage] = useState(0);
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
   const currentArea = serviceAreas[activeArea];
@@ -4435,7 +4435,7 @@ export default function Inicial() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveStep((step) => (step + 1) % steps.length);
-    }, 5000);
+    }, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -4443,6 +4443,13 @@ export default function Inicial() {
     const timer = setInterval(() => {
       setActiveIdentity((step) => (step + 1) % identitySteps.length);
     }, 15000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSectorImage((index) => (index + 1) % sectorsImages.length);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -4496,8 +4503,7 @@ export default function Inicial() {
                 Excelência em <strong>QHSE, PEOTRAM e governança ESG</strong>.
               </h1>
               <p className="lead">
-                Em um cenário regulatório cada vez mais complexo, a Synergy EB Consultoria oferece uma
-                solução completa para simplificar a gestão de requisitos legais de Qualidade, Meio
+                Oferecemos uma solução completa para simplificar a gestão de requisitos legais de Qualidade, Meio
                 Ambiente, Saúde e Segurança Ocupacional (QHSE) incluindo a preparação para o PEOTRAM
                 da Petrobras e a Estratégia de Governança ESG.
               </p>
@@ -4511,9 +4517,6 @@ export default function Inicial() {
                 </a>
               </div>
 
-              <p className="hero-note">
-                Conformidade com as normas ISO 9001, ISO 14001 e ISO 45001.
-              </p>
 
               <div className="hero-pillars" aria-hidden="true">
                 <span className="hero-pillar hero-pillar-quality">
@@ -4793,18 +4796,8 @@ export default function Inicial() {
                 </div>
               </div>
 
-              <div className="method-classic-visual" aria-hidden="true">
-                <div className="method-classic-screen">
-                  <span className="method-classic-screen-badge">Metodo Synergy EB</span>
-                  <strong>{currentStep.title}</strong>
-                  <div className="method-classic-lines">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-                <span className="method-classic-card method-classic-card-c" />
-                <span className="method-classic-orb" />
+              <div className="method-classic-visual">
+                <img alt={currentStep.title} src={stepImages[activeStep]} />
               </div>
 
               <div className="method-classic-footer">
@@ -4830,7 +4823,7 @@ export default function Inicial() {
               <p className="kicker">PEOTRAM • Petrobras</p>
               <h2 className="title-lg">Consultoria especializada em PEOTRAM.</h2>
               <p className="lead">
-                O Programa de Excelência Operacional para Transporte Aéreo e Marítimo (PEOTRAM) é um sistema de auditoria e avaliação da Petrobras para seus fornecedores de embarcações offshore, focado em segurança, eficiência e responsabilidade ambiental. Preparamos sua empresa para atender e superar as exigências deste programa, garantindo a manutenção de contratos e a excelência operacional.
+                O Programa de Excelência Operacional para Transporte Aéreo e Marítimo (PEOTRAM) é um sistema de auditoria e avaliação da Petrobras para seus fornecedores de embarcações offshore, focado em segurança, eficiência e responsabilidade ambiental.
               </p>
 
               <p className="method-break-quote">
@@ -4910,10 +4903,8 @@ export default function Inicial() {
                     );
                   })}
 
-                  <div className="method-showcase-photo" aria-label="Espaco reservado para foto da equipe">
-                    <div className="method-showcase-photo-placeholder">
-                      <span>Foto reservada</span>
-                    </div>
+                  <div className="method-showcase-photo" aria-label="Missão, visão e valores Synergy EB">
+                    <img alt="Missão, visão e valores da Synergy EB Consultoria" src={missionVisionPhotoSrc} />
                   </div>
                 </div>
 
@@ -4926,9 +4917,9 @@ export default function Inicial() {
                       </div>
                       <div className="method-showcase-step">
                         <strong>{currentIdentityStep.title}</strong>
-                        <p className="method-showcase-description">{currentIdentityStep.description}</p>
                       </div>
                     </div>
+                    <p className="method-showcase-description">{currentIdentityStep.description}</p>
                   </div>
 
                   <div className="method-showcase-points">
@@ -4971,14 +4962,15 @@ export default function Inicial() {
             </header>
 
             <div className="showcase-stage">
-              {benefits.slice(0, 4).map((benefit, index) => {
+              {benefits.slice(0, 4).map((benefit) => {
                 return (
                   <article
                     className={`showcase-panel showcase-panel-${benefit.scene}`}
                     key={benefit.title}
                   >
-                    <span className="showcase-index">{String(index + 1).padStart(2, "0")}</span>
-                    {renderBenefitVisual(benefit.scene)}
+                    <div className="benefit-scene">
+                      <img alt={benefit.title} src={benefit.image} />
+                    </div>
                     <div className="showcase-copy">
                       <h3 className="showcase-title">{benefit.title}</h3>
                       <p className="showcase-description">{benefit.description}</p>
@@ -5003,19 +4995,38 @@ export default function Inicial() {
               </p>
 
               <div className="sectors-media">
-                {sectorsImageSrc ? (
-                  <img alt="Atuação da Synergy EB Consultoria" src={sectorsImageSrc} />
-                ) : (
-                  <div className="sectors-media-ph" aria-hidden="true">
-                    <div className="sectors-media-icons">
-                      <span>{renderIcon(areaIconPaths.sso)}</span>
-                      <span>{renderIcon(areaIconPaths.ambiente)}</span>
-                      <span>{renderIcon(areaIconPaths.esg)}</span>
-                    </div>
-                    <strong>Imagem reservada</strong>
-                    <small>Adicione aqui uma foto da equipe, da operação ou de campo.</small>
+                {sectorsImages.map((image, index) => (
+                  <div
+                    className={`sectors-media-slide ${index === activeSectorImage ? "sectors-media-slide-active" : ""}`}
+                    key={image.alt + index}
+                  >
+                    {image.src ? (
+                      <img alt={image.alt} src={image.src} />
+                    ) : (
+                      <div className="sectors-media-ph" aria-hidden="true">
+                        <div className="sectors-media-icons">
+                          <span>{renderIcon(areaIconPaths.sso)}</span>
+                          <span>{renderIcon(areaIconPaths.ambiente)}</span>
+                          <span>{renderIcon(areaIconPaths.esg)}</span>
+                        </div>
+                        <strong>Imagem reservada</strong>
+                        <small>Adicione aqui uma foto da equipe, da operação ou de campo.</small>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
+
+                <div className="sectors-media-dots">
+                  {sectorsImages.map((image, index) => (
+                    <button
+                      aria-label={`Ver imagem ${index + 1}`}
+                      className={index === activeSectorImage ? "sectors-media-dot-active" : ""}
+                      key={image.alt + index}
+                      onClick={() => setActiveSectorImage(index)}
+                      type="button"
+                    />
+                  ))}
+                </div>
               </div>
             </header>
 
