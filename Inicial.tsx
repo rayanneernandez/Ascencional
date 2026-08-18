@@ -10,14 +10,21 @@ const sectorsImages = [
     src: new URL("./assets/atuacao.jpg", import.meta.url).href,
     alt: "Atuação da Synergy EB Consultoria em operações offshore",
   },
-  { src: "", alt: "Imagem reservada" },
-  { src: "", alt: "Imagem reservada" },
+  {    
+    src: new URL("./assets/auditoria.png", import.meta.url).href,
+    alt: "Auditoria",
+  },
+
+  {    
+    src: new URL("./assets/ESG.png", import.meta.url).href,
+    alt: "ESG",
+  },
 ];
 // Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
 // e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
 const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
 const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
-
+const everaldoPhotoSrc = new URL("./assets/Everaldo.png", import.meta.url).href;
 const missionVisionPhotoSrc = new URL("./assets/nossa missão.png", import.meta.url).href;
 
 // Ilustrações de cada etapa do método (seção "Como trabalhamos"), uma por número de etapa.
@@ -109,11 +116,11 @@ const serviceAreas = [
         label: "Treinamentos",
         items: [
           "Normas Regulamentadoras (NRs) do Trabalho",
-          "Interpretação, implementação e auditoria interna ISO 45001:2018",
           "Gerenciamento de perigos e riscos (APR, HAZOP)",
           "Análise de Riscos e Permissão de Trabalho (PT)",
           "Higiene ocupacional",
           "Abandono e situações de emergência",
+          
         ],
       },
       {
@@ -122,21 +129,22 @@ const serviceAreas = [
           "Implantação e manutenção do SGSSO ISO 45001:2018",
           "Plano de gestão das NRs e adequação ao eSocial",
           "Laudos técnicos (LTCAT, NR-20, NR-12, entre outros)",
-          "Programas de SST (PGR, PCMSO, PCMAT, PPR, PCA, PPEOB, PPP)",
-          "Higiene ocupacional — avaliação quantitativa de riscos",
+          "Higiene ocupacional, avaliação quantitativa de riscos",
           "Análise Ergonômica do Trabalho (AET)",
           "Estudos de risco (HAZOP, APP, APR, FMEA)",
           "Licença AVCB junto ao Corpo de Bombeiros",
-          "Plano de Emergência e Auxílio Mútuo (PAM) com simulados",
           "Gerenciamento de requisitos legais e FISPQ",
+          "Plano de Emergência e Auxílio Mútuo (PAM) com simulados",
+          "Programas de SST (PGR, PCMSO, PCMAT, PPR, PCA, PPEOB, PPP)",
         ],
       },
       {
         label: "Auditorias",
         items: [
           "Auditoria interna do SGSSO ISO 45001:2018",
-          "Auditoria de conformidade legal (requisitos legais e outros)",
           "Auditoria de qualificação de provedores externos",
+          "Auditoria de conformidade legal (requisitos legais e outros)",
+          
         ],
       },
     ],
@@ -158,15 +166,15 @@ const serviceAreas = [
       {
         label: "Serviços",
         items: [
-          "Implantação e manutenção do SGA ISO 14001:2015 e versão 2026",
           "Estudos de risco (AIA, avaliação preliminar e detalhada)",
           "Monitoramento de condicionantes ambientais",
           "Laudo de ruído externo NBR 10.151 e CONAMA 01/86",
-          "Programas de educação e responsabilidade socioambiental",
           "Gerenciamento de resíduos sólidos (PGRS)",
           "Plano de Recuperação de Áreas Degradadas (PRAD)",
           "SIPROQUIM e ficha de emergência",
+          "Programas de educação e responsabilidade socioambiental",
           "Conformidade no transporte rodoviário de produtos perigosos",
+          "Implantação e manutenção do SGA ISO 14001:2015 e versão 2026",
           "Gerenciamento de requisitos legais e qualificação de fornecedores",
         ],
       },
@@ -197,9 +205,9 @@ const serviceAreas = [
       {
         label: "Serviços",
         items: [
-          "Implantação e manutenção do SGQ ISO 9001:2015 e versão 2026",
           "Mapeamento, redesenho e gestão por processos",
           "Planejamento estratégico e indicadores (KPIs)",
+          "Implantação e manutenção do SGQ ISO 9001:2015 e versão 2026",
         ],
       },
       {
@@ -219,10 +227,11 @@ const serviceAreas = [
         label: "Metodologia",
         items: [
           "Diagnóstico de lacunas (gap analysis) do ciclo vigente",
-          "Implementação dos requisitos de segurança, manutenção e operação",
-          "Auditorias de preparação simuladas com o rigor da Petrobras",
           "Gestão de não conformidades e melhoria da nota ADT",
+          "Auditorias de preparação simuladas com o rigor da Petrobras",
+          "Implementação dos requisitos de segurança, manutenção e operação",
           "Treinamento de equipes nos padrões de excelência operacional",
+
         ],
       },
     ],
@@ -323,7 +332,7 @@ const teamMembers = [
     name: "Everaldo Colaço Neto",
     role: "Engenheiro de Produção e de Segurança do Trabalho",
     bio: "Aproximadamente 18 anos de experiência atuando em projetos para empresas de renomados segmentos, na gestão direta de projetos complexos, integrando visão estratégica de negócios e conhecimento técnico.",
-    photo: "",
+    photo: everaldoPhotoSrc,
   },
   {
     name: "Bruno Nóbrega",
@@ -402,7 +411,7 @@ const qsmsPolicyIntro =
 const qsmsPolicyPoints = [
   {
     title: "Gestão Integrada e Proativa",
-    description: "Sistemas integrados de gestão em Qualidade (ISO 9001), Meio Ambiente (ISO 14001) e Segurança e Saúde Ocupacional (ISO 45001), com a prevenção de riscos como ponto de partida.",
+    description: "Sistemas integrados de gestão em Qualidade (ISO 9001), Meio Ambiente (ISO 14001) e Segurança e Saúde Ocupacional (ISO 45001).",
   },
   {
     title: "Conformidade Legal e Normativa",
@@ -4449,7 +4458,7 @@ export default function Inicial() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSectorImage((index) => (index + 1) % sectorsImages.length);
-    }, 6000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
