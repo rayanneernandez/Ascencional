@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
-const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.url).href;
+export const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.url).href;
 // Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
 // Para trocar/adicionar mais fotos ao carrossel de "Diferenciais", inclua o arquivo em
 // ./assets e adicione um novo item ao array abaixo com o mesmo formato.
@@ -22,7 +22,7 @@ const sectorsImages = [
 ];
 // Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
 // e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
-const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
+export const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
 const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
 const everaldoPhotoSrc = new URL("./assets/Everaldo.png", import.meta.url).href;
 const missionVisionPhotoSrc = new URL("./assets/nossa missão.png", import.meta.url).href;
@@ -312,13 +312,10 @@ const benefits = [
   },
 ];
 
-const historyParagraphs = [
-  "Com uma trajetória consolidada de 10 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.",
-  "A sede no Rio de Janeiro posicionou a empresa estrategicamente para atender grandes players do mercado, oferecendo consultoria especializada em sistemas de gestão como a ISO 45001 (Saúde e Segurança), ISO 14001 (Meio Ambiente) e ISO 9001 (Qualidade). A evolução dos serviços acompanhou as tendências do mercado e as novas exigências regulatórias, culminando na criação de serviços especializados como o PEOTRAM e a Estratégia de Governança ESG.",
-  "Consolidou-se como uma parceira estratégica para organizações que buscam transformar desafios de gestão em diferenciais competitivos oferecendo não apenas o atendimento às exigências regulatórias, mas também o impulsionamento da performance e da sustentabilidade dos negócios de seus clientes.",
-];
+const historyTeaser =
+  "Com uma trajetória consolidada de 10 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.";
 
-const historyStats = [
+export const historyStats = [
   { value: "10 anos", label: "de experiência no mercado" },
   { value: "2016", label: "fundada no Rio de Janeiro" },
   { value: "QHSE + ESG", label: "portfólio integrado e completo" },
@@ -508,7 +505,7 @@ function LogoMark() {
   );
 }
 
-const styles = `
+export const styles = `
   :root {
     color-scheme: light;
     --bg: #ffffff;
@@ -2844,6 +2841,8 @@ const styles = `
   .history-copy .lead {
     max-width: none;
     margin-top: 0;
+    font-size: 1.08rem;
+    line-height: 1.7;
     text-align: justify;
     text-justify: inter-word;
   }
@@ -3813,6 +3812,11 @@ const styles = `
       gap: 22px;
     }
 
+    .history-header .title-lg {
+      white-space: normal;
+      font-size: clamp(1.5rem, 6vw, 1.9rem);
+    }
+
     .history-media {
       aspect-ratio: 1 / 1;
       max-width: 340px;
@@ -4418,6 +4422,71 @@ const styles = `
   .ticker-item::after {
     color: #f0cf93;
   }
+
+  .history-header .title-lg {
+    font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .history-cta {
+    margin-top: 24px;
+    justify-self: start;
+    padding: 0 28px;
+    min-height: 52px;
+    font-size: 1rem;
+    box-shadow: 0 20px 42px rgba(30, 58, 99, 0.3);
+  }
+
+  /* ===== Pagina Quem somos ===== */
+  .page-hero {
+    padding: 150px 0 40px;
+    background: var(--bg-warm);
+  }
+
+  .page-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .page-back-link:hover {
+    color: var(--wine);
+  }
+
+  .page-hero .title-xl {
+    max-width: 26ch;
+  }
+
+  .page-hero .lead {
+    max-width: 62ch;
+  }
+
+  .page-cta-section {
+    padding: 56px 0 90px;
+    text-align: center;
+  }
+
+  .page-cta-section .title-lg {
+    max-width: 32ch;
+    margin: 0 auto;
+  }
+
+  .page-cta-section .lead {
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-cta-section .cta-row {
+    justify-content: center;
+  }
 `;
 
 export default function Inicial() {
@@ -4638,11 +4707,7 @@ export default function Inicial() {
             </div>
 
             <div className="history-copy">
-              {historyParagraphs.map((paragraph, index) => (
-                <p className="lead" key={index}>
-                  {paragraph}
-                </p>
-              ))}
+              <p className="lead">{historyTeaser}</p>
 
               <div className="history-stats">
                 {historyStats.map((stat) => (
@@ -4652,6 +4717,10 @@ export default function Inicial() {
                   </div>
                 ))}
               </div>
+
+              <a className="button button-primary history-cta" href="/quem-somos.html">
+                Ver nossa história completa
+              </a>
             </div>
           </div>
         </div>
