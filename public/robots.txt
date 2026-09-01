@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://synergyeb.com.br/sitemap.xml
+Sitemap: https://www.synergyeb.com.br/sitemap.xml
