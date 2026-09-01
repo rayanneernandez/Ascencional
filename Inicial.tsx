@@ -4966,6 +4966,25 @@ export default function Inicial() {
 
   useEffect(() => {
     const video = heroVideoRef.current;
+    if (!video) return;
+    // Alguns navegadores (Safari/iOS em especial) ignoram o autoplay se a
+    // propriedade "muted" não for reforçada via JS antes do play().
+    video.muted = true;
+    video.play().catch(() => {
+      // Se o navegador ainda assim bloquear, tenta de novo na primeira
+      // interação do usuário com a página.
+      const retryPlay = () => {
+        video.play().catch(() => {});
+        window.removeEventListener("touchstart", retryPlay);
+        window.removeEventListener("click", retryPlay);
+      };
+      window.addEventListener("touchstart", retryPlay, { once: true });
+      window.addEventListener("click", retryPlay, { once: true });
+    });
+  }, []);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
     const veil = heroLoopVeilRef.current;
     if (!video || !veil) return;
 
@@ -5033,6 +5052,8 @@ export default function Inicial() {
           loop
           muted
           playsInline
+          preload="auto"
+          webkit-playsinline="true"
           ref={heroVideoRef}
           src={heroBgVideoSrc}
         />
