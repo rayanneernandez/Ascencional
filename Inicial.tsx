@@ -11,6 +11,7 @@ const WEB3FORMS_ACCESS_KEY = "f398d681-89a5-45c8-bc64-35ff5d62f005";
 const WHATSAPP_NUMBER = "5521992675107";
 
 const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
+const heroBgVideoSrc = new URL("./assets/frame 1.mp4", import.meta.url).href;
 const transportesManchurLogoSrc = new URL("./assets/transportes-manchur.jpg", import.meta.url).href;
 const mitangLogoSrc = new URL("./assets/mitang.jpeg", import.meta.url).href;
 const sanearLogoSrc = new URL("./assets/senar.png", import.meta.url).href;
@@ -485,7 +486,17 @@ const areaIconPaths: Record<string, string[]> = {
   peotram: ["M4 15l1.6-6.2a2 2 0 011.9-1.5h9a2 2 0 011.9 1.5L20 15", "M3 15h18l-1.4 3.3a2 2 0 01-1.8 1.2H6.2a2 2 0 01-1.8-1.2L3 15z", "M12 4v3"],
   esg: ["M12 3a9 9 0 100 18 9 9 0 000-18z", "M3.5 9h17M3.5 15h17", "M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3z"],
   seguranca: ["M4 15v-1a8 8 0 0116 0v1", "M3 15h18v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z", "M12 6v3"],
+  performance: ["M4 17l5-5 4 4 7-9", "M15 6h6v6"],
 };
+
+const heroSpreadItems = [
+  { key: "ambiente", label: "Meio Ambiente", src: new URL("./assets/hero-icon-ambiente.png", import.meta.url).href },
+  { key: "sso", label: "Segurança do Trabalho", src: new URL("./assets/hero-icon-seguranca.png", import.meta.url).href },
+  { key: "qualidade", label: "Qualidade", src: new URL("./assets/hero-icon-qualidade.png", import.meta.url).href },
+  { key: "avaliacao", label: "Conformidade Legal", src: new URL("./assets/hero-icon-conformidade.png", import.meta.url).href },
+  { key: "esg", label: "Governança ESG", src: new URL("./assets/hero-icon-esg.png", import.meta.url).href },
+  { key: "performance", label: "Performance", src: new URL("./assets/hero-icon-performance.png", import.meta.url).href },
+];
 
 const groupIconPaths: Record<string, string[]> = {
   Treinamentos: ["M3 8.5L12 4l9 4.5-9 4.5-9-4.5z", "M7 10.8V15c0 1.4 2.2 2.6 5 2.6s5-1.2 5-2.6v-4.2", "M21 8.5V14"],
@@ -660,9 +671,44 @@ export const styles = `
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
     background:
       radial-gradient(circle at 82% 12%, rgba(194, 150, 58, 0.08), transparent 30%),
       radial-gradient(circle at 6% 90%, rgba(31, 61, 115, 0.06), transparent 32%);
+  }
+
+  .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(1.5px) saturate(1.05);
+    transform: scale(1.05);
+  }
+
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        160deg,
+        rgba(9, 22, 46, 0.86) 0%,
+        rgba(18, 41, 77, 0.72) 45%,
+        rgba(8, 18, 38, 0.88) 100%
+      );
+  }
+
+  .hero-bg-loop-veil {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #0b1a33;
+    opacity: 0;
+    transition: opacity 0.15s linear;
+    pointer-events: none;
   }
 
   .hero::before {
@@ -908,6 +954,38 @@ export const styles = `
     padding-top: 2px;
   }
 
+  .hero-grid.hero-grid-centered {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .hero-grid-centered .hero-copy {
+    max-width: 1080px;
+  }
+
+  .hero-grid-centered .title-xl {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-grid-centered .lead {
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-grid-centered .cta-row {
+    justify-content: center;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+  }
+
   .hero-copy,
   .hero-art,
   .ticker,
@@ -926,10 +1004,17 @@ export const styles = `
 
   .hero-copy .title-xl {
     margin-top: 4px;
+    font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+    line-height: 1.18;
+    max-width: 46ch;
   }
 
   .hero-copy .lead {
-    margin-top: 22px;
+    margin-top: 36px;
+  }
+
+  .hero-copy .cta-row {
+    margin-top: 44px;
   }
 
   .hero-copy strong {
@@ -4420,7 +4505,7 @@ export const styles = `
   }
 
   .hero .lead {
-    color: #e2c8bb;
+    color: #fff;
   }
 
   .hero .hero-note {
@@ -4721,6 +4806,8 @@ export default function Inicial() {
   const [activeIdentity, setActiveIdentity] = useState(0);
   const [activeSectorImage, setActiveSectorImage] = useState(0);
   const [activeLogo, setActiveLogo] = useState<{ name: string; src: string } | null>(null);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const heroLoopVeilRef = useRef<HTMLDivElement | null>(null);
   const logoTrackRefs = useRef<(HTMLDivElement | null)[]>([]);
   const logoOffsets = useRef<number[]>([0, 0]);
 
@@ -4877,6 +4964,26 @@ export default function Inicial() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeLogo]);
 
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    const veil = heroLoopVeilRef.current;
+    if (!video || !veil) return;
+
+    const fadeWindow = 0.6;
+
+    const handleTimeUpdate = () => {
+      const duration = video.duration;
+      if (!duration || Number.isNaN(duration)) return;
+      const t = video.currentTime;
+      const distance = Math.min(duration - t, t);
+      const proximity = Math.max(0, 1 - distance / fadeWindow);
+      veil.style.opacity = String(proximity);
+    };
+
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+  }, []);
+
   return (
     <main className="landing-shell">
       <style>{styles}</style>
@@ -4920,18 +5027,28 @@ export default function Inicial() {
       </nav>
 
       <section className="hero">
-        <div className="container">
-          <div className="hero-grid" id="inicio">
+        <video
+          autoPlay
+          className="hero-bg-video"
+          loop
+          muted
+          playsInline
+          ref={heroVideoRef}
+          src={heroBgVideoSrc}
+        />
+        <div className="hero-bg-overlay" aria-hidden="true" />
+        <div className="hero-bg-loop-veil" aria-hidden="true" ref={heroLoopVeilRef} />
+        <div className="container hero-container">
+          <div className="hero-grid hero-grid-centered" id="inicio">
             <div className="hero-copy">
               <h1 className="title-xl">
-                Consultoria especializada e <strong>soluções integradas em QSMS</strong>.
+                A Synergy EB tem como princípio oferecer uma consultoria ou assessoria
+                desburocratizada e soluções personalizadas em{" "}
+                <strong>Meio Ambiente, Saúde e Segurança, QSMS, consultorias e auditorias</strong>.
               </h1>
               <p className="lead">
-                Do diagnóstico à implantação, desenvolvemos soluções sob medida em Qualidade,
-                Segurança do Trabalho, Saúde Ocupacional e Meio Ambiente, com gestão de riscos,
-                auditorias, treinamentos e resposta a emergências. Uma abordagem técnica e
-                estratégica que fortalece a cultura organizacional, previne perdas e gera valor
-                sustentável.
+                Para isso, contamos com uma equipe com aproximadamente 18 anos de experiência no
+                mercado e reconhecidamente competente.
               </p>
 
               <div className="cta-row">
@@ -4942,89 +5059,7 @@ export default function Inicial() {
                   Conhecer os serviços
                 </a>
               </div>
-
-
-              <div className="hero-pillars" aria-hidden="true">
-                <span className="hero-pillar hero-pillar-quality">
-                  {renderIcon(areaIconPaths.sso)}
-                  <small>Qualidade</small>
-                </span>
-                <span className="hero-pillar hero-pillar-environment">
-                  {renderIcon(areaIconPaths.ambiente)}
-                  <small>Meio Ambiente</small>
-                </span>
-                <span className="hero-pillar hero-pillar-safety">
-                  {renderIcon(areaIconPaths.seguranca)}
-                  <small>Saúde e Segurança</small>
-                </span>
-              </div>
             </div>
-
-            <aside
-              className={`hero-art ${heroScreenImageSrc ? "hero-art-photo" : ""}`}
-              aria-label="Equipe Synergy EB Consultoria"
-            >
-              {heroScreenImageSrc ? (
-                <div className="hero-photo">
-                  <img alt="Equipe Synergy EB Consultoria analisando o sistema" src={heroScreenImageSrc} />
-                </div>
-              ) : (
-                <div className="hero-monitor">
-                  <div className="hero-monitor-frame">
-                    <div className="hero-monitor-bezel">
-                      <div className="hero-monitor-topbar">
-                        <div className="hero-monitor-dots">
-                          <span />
-                          <span />
-                          <span />
-                        </div>
-                      </div>
-
-                      <div className="hero-screen">
-                        <aside className="hero-sidebar">
-                          <div className="hero-sidebar-badge">
-                            <LogoMark />
-                          </div>
-                          <div className="hero-sidebar-item" />
-                          <div className="hero-sidebar-item" />
-                          <div className="hero-sidebar-item" />
-                          <div className="hero-sidebar-item" />
-                        </aside>
-
-                        <div className="hero-screen-main">
-                          <div className="hero-system-bar">
-                            <strong className="hero-system-title">Sistema de Requisitos Legais</strong>
-                          </div>
-
-                          <div className="hero-system-preview" />
-
-                          <div className="hero-system-panels">
-                            <div className="hero-system-card">
-                              <strong>Evidências</strong>
-                              <span>
-                                Espaço para a imagem do sistema com o registro de evidências e o status de conformidade.
-                              </span>
-                            </div>
-
-                            <div className="hero-system-card">
-                              <strong>Requisitos</strong>
-                              <div className="hero-system-lines">
-                                <span />
-                                <span />
-                                <span />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="hero-monitor-stand" />
-                  <div className="hero-monitor-base" />
-                </div>
-              )}
-            </aside>
           </div>
         </div>
       </section>
