@@ -5120,8 +5120,8 @@ export default function Inicial() {
               Consultoria QHSE completa: metodologias e abordagens de consultoria de qualidade,
               consultoria ambiental (incluindo licenciamento ambiental) e consultoria em segurança
               do trabalho, com consultoria ISO 9001, 14001 e 45001, consultoria PEOTRAM para a
-              Petrobras e consultoria ESG. Selecione uma área para conhecer treinamentos, serviços
-              e auditorias.
+              Petrobras e consultoria ESG. Selecione uma área para conhecer treinamentos,
+              programas de SSO, serviços, auditorias e conformidade legal.
             </p>
           </header>
 
