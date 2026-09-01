@@ -12,6 +12,7 @@ const WHATSAPP_NUMBER = "5521992675107";
 
 const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
 const heroBgVideoSrc = new URL("./assets/frame 1.mp4", import.meta.url).href;
+const heroBgVideoPosterSrc = new URL("./assets/hero-video-poster.jpg", import.meta.url).href;
 const transportesManchurLogoSrc = new URL("./assets/transportes-manchur.jpg", import.meta.url).href;
 const mitangLogoSrc = new URL("./assets/mitang.jpeg", import.meta.url).href;
 const sanearLogoSrc = new URL("./assets/senar.png", import.meta.url).href;
@@ -4362,6 +4363,10 @@ export const styles = `
       line-height: 1.15;
     }
 
+    .services-list {
+      grid-template-columns: 1fr;
+    }
+
     .services-groups {
       grid-template-columns: 1fr;
     }
@@ -5052,6 +5057,7 @@ export default function Inicial() {
           loop
           muted
           playsInline
+          poster={heroBgVideoPosterSrc}
           preload="auto"
           webkit-playsinline="true"
           ref={heroVideoRef}
