@@ -2874,6 +2874,12 @@ export const styles = `
     padding: 78px 0;
   }
 
+  .history-header .title-lg {
+    font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+    max-width: none;
+    white-space: nowrap;
+  }
+
   .history-layout {
     display: grid;
     grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
@@ -4621,12 +4627,6 @@ export const styles = `
     color: #f0cf93;
   }
 
-  .history-header .title-lg {
-    font-size: clamp(1.6rem, 2.6vw, 2.5rem);
-    max-width: none;
-    white-space: nowrap;
-  }
-
   .history-cta {
     margin-top: 24px;
     justify-self: start;
@@ -5042,8 +5042,8 @@ export default function Inicial() {
           <div className="hero-grid hero-grid-centered" id="inicio">
             <div className="hero-copy">
               <h1 className="title-xl">
-                A Synergy EB tem como princípio oferecer uma consultoria ou assessoria
-                desburocratizada e soluções personalizadas em{" "}
+                Oferecemos consultorias e assessorias desburocratizadas, com soluções
+                personalizadas em{" "}
                 <strong>Meio Ambiente, Saúde e Segurança, QSMS, consultorias e auditorias</strong>.
               </h1>
               <p className="lead">
