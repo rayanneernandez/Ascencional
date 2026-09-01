@@ -1805,14 +1805,22 @@ export const styles = `
     min-width: 0;
   }
 
+  .services-tab-text strong {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .services-tab-chip {
     justify-self: start;
+    max-width: 100%;
     font-size: 0.6rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--wine);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .services-tab-active .services-tab-chip {
@@ -4973,19 +4981,37 @@ export default function Inicial() {
     const video = heroVideoRef.current;
     if (!video) return;
     // Alguns navegadores (Safari/iOS em especial) ignoram o autoplay se a
-    // propriedade "muted" não for reforçada via JS antes do play().
+    // propriedade "muted" não for reforçada via JS antes do play(), e às
+    // vezes só aceitam tocar depois que o vídeo está de fato pronto — por
+    // isso tentamos em vários momentos do carregamento, não só uma vez.
     video.muted = true;
-    video.play().catch(() => {
-      // Se o navegador ainda assim bloquear, tenta de novo na primeira
-      // interação do usuário com a página.
-      const retryPlay = () => {
-        video.play().catch(() => {});
-        window.removeEventListener("touchstart", retryPlay);
-        window.removeEventListener("click", retryPlay);
-      };
-      window.addEventListener("touchstart", retryPlay, { once: true });
-      window.addEventListener("click", retryPlay, { once: true });
-    });
+    video.defaultMuted = true;
+
+    const attemptPlay = () => {
+      video.muted = true;
+      video.play().catch(() => {});
+    };
+
+    attemptPlay();
+    video.addEventListener("loadedmetadata", attemptPlay);
+    video.addEventListener("loadeddata", attemptPlay);
+    video.addEventListener("canplay", attemptPlay);
+    document.addEventListener("visibilitychange", attemptPlay);
+
+    // Se o navegador ainda assim bloquear, tenta de novo na primeira
+    // interação do usuário com a página.
+    const retryOnInteraction = () => attemptPlay();
+    window.addEventListener("touchstart", retryOnInteraction, { once: true });
+    window.addEventListener("click", retryOnInteraction, { once: true });
+
+    return () => {
+      video.removeEventListener("loadedmetadata", attemptPlay);
+      video.removeEventListener("loadeddata", attemptPlay);
+      video.removeEventListener("canplay", attemptPlay);
+      document.removeEventListener("visibilitychange", attemptPlay);
+      window.removeEventListener("touchstart", retryOnInteraction);
+      window.removeEventListener("click", retryOnInteraction);
+    };
   }, []);
 
   useEffect(() => {
