@@ -1,6 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+// Chave de acesso do Web3Forms (https://web3forms.com) — crie uma conta gratuita,
+// gere uma Access Key e cole aqui para o formulário passar a enviar e-mails de
+// verdade (direto para bruno.nobrega@synergyeb.com.br e everaldo@synergyeb.com.br).
+// Enquanto isso não for preenchido, o formulário mostra uma mensagem de erro ao enviar.
+const WEB3FORMS_ACCESS_KEY = "f398d681-89a5-45c8-bc64-35ff5d62f005";
+
+// Número de WhatsApp para onde a mensagem do formulário é encaminhada (formato
+// internacional, só números: 55 + DDD + número). Ajuste se o telefone mudar.
+const WHATSAPP_NUMBER = "5521992675107";
 
 const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
+const transportesManchurLogoSrc = new URL("./assets/transportes-manchur.jpg", import.meta.url).href;
+const mitangLogoSrc = new URL("./assets/mitang.jpeg", import.meta.url).href;
+const sanearLogoSrc = new URL("./assets/senar.png", import.meta.url).href;
 export const brandLogoSrc = new URL("./assets/letra branca sem fundo.png", import.meta.url).href;
 // Foto de plataforma offshore (Jeff Stapleton / Pexels, uso comercial livre).
 // Para trocar/adicionar mais fotos ao carrossel de "Diferenciais", inclua o arquivo em
@@ -23,6 +36,7 @@ const sectorsImages = [
 // Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
 // e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
 export const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
+const footerLogoSrc = new URL("./assets/logo-cor-sem-fundo.png", import.meta.url).href;
 const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
 const everaldoPhotoSrc = new URL("./assets/Everaldo.png", import.meta.url).href;
 const missionVisionPhotoSrc = new URL("./assets/nossa missão.png", import.meta.url).href;
@@ -259,25 +273,28 @@ const serviceAreas = [
 
 const testimonials = [
   {
-    name: "Depoimento reservado",
-    role: "Cargo: Empresa reservada",
+    name: "Érika de Barros",
+    role: "Transportes Manchur",
     quote:
-      "Espaço reservado para o depoimento de um cliente sobre a parceria com a Synergy EB Consultoria.",
-    since: "Parceiro reservado",
+      "A consultoria demonstrou profundo conhecimento técnico e grande capacidade de compreender as particularidades da nossa operação. O trabalho trouxe mais organização, segurança e confiança para a gestão de QSMS.",
+    since: "Transportes Manchur",
+    logo: transportesManchurLogoSrc,
   },
   {
-    name: "Depoimento reservado",
-    role: "Cargo: Empresa reservada",
+    name: "Raphaella Crescencio",
+    role: "Mitang",
     quote:
-      "Espaço reservado para o depoimento de outro cliente sobre os resultados obtidos com o sistema.",
-    since: "Parceiro reservado",
+      "Contamos com uma equipe preparada, comprometida e muito objetiva. O suporte na adequação dos processos e no atendimento aos requisitos legais foi essencial para elevar o padrão da nossa operação.",
+    since: "Mitang",
+    logo: mitangLogoSrc,
   },
   {
-    name: "Depoimento reservado",
-    role: "Cargo: Empresa reservada",
+    name: "Maicon Jardim",
+    role: "Sanear Engenharia",
     quote:
-      "Espaço reservado para um depoimento sobre o suporte técnico e a atualização mensal da legislação.",
-    since: "Parceiro reservado",
+      "O diferencial está na combinação entre conhecimento técnico, visão estratégica e atendimento personalizado. Encontramos uma parceira confiável para evoluir continuamente nossa gestão de QSMS.",
+    since: "Sanear Engenharia",
+    logo: sanearLogoSrc,
   },
 ];
 
@@ -937,12 +954,20 @@ export const styles = `
     padding: 0 22px;
     border-radius: 999px;
     border: 1px solid transparent;
+    font: inherit;
     font-weight: 600;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
   }
 
   .button:hover {
     transform: translateY(-1px);
+  }
+
+  .button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
   }
 
   .button-primary {
@@ -3127,10 +3152,10 @@ export const styles = `
   .testimonial-photo {
     position: relative;
     min-height: 260px;
-    padding: 24px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     color: #fff;
     background:
       radial-gradient(circle at 85% 0, rgba(194, 150, 58, 0.22), transparent 40%),
@@ -3145,6 +3170,25 @@ export const styles = `
     justify-content: center;
     gap: 10px;
     text-align: center;
+  }
+
+  .testimonial-photo-logo {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .testimonial-photo-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
   }
 
   .testimonial-photo-avatar {
@@ -3184,11 +3228,7 @@ export const styles = `
   }
 
   .testimonial-photo-badge::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--gold);
+    content: none;
   }
 
   .testimonial-copy {
@@ -3305,24 +3345,42 @@ export const styles = `
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    animation: clients-logos-move-v 14s linear infinite;
+    animation: clients-logos-move-v 34s linear infinite;
+  }
+
+  .clients-logos-col:hover .clients-logos-track-v {
+    animation-play-state: paused;
   }
 
   .client-logo-tile {
-    flex: 0 0 48px;
+    position: relative;
+    flex: 0 0 64px;
+    height: 64px;
+    min-height: 0;
     width: 100%;
-    padding: 8px 12px;
-    display: grid;
-    place-items: center;
+    padding: 0;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.16);
     background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+    font: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .client-logo-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
   }
 
   .client-logo-tile img {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: calc(100% - 20px);
     object-fit: contain;
     filter: grayscale(1);
     opacity: 0.7;
@@ -3634,7 +3692,12 @@ export const styles = `
   }
 
   .contact-item strong {
+    display: block;
     color: #fff;
+  }
+
+  .contact-item strong + strong {
+    margin-top: 4px;
   }
 
   .form-grid {
@@ -3695,6 +3758,26 @@ export const styles = `
     margin-top: 18px;
   }
 
+  .form-status {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .form-status-success {
+    color: #1e6b3d;
+    background: rgba(30, 107, 61, 0.12);
+    border: 1px solid rgba(30, 107, 61, 0.24);
+  }
+
+  .form-status-error {
+    color: #a13a2c;
+    background: rgba(161, 58, 44, 0.1);
+    border: 1px solid rgba(161, 58, 44, 0.22);
+  }
+
   .footer {
     padding: 30px 0 40px;
     color: var(--muted);
@@ -3704,15 +3787,18 @@ export const styles = `
 
   .footer-row {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 18px;
     padding-top: 18px;
     border-top: 1px solid var(--line);
   }
 
-  .footer-row span:first-child {
-    color: var(--ink);
-    font-weight: 600;
+  .footer-logo {
+    display: block;
+    height: 34px;
+    width: auto;
+    object-fit: contain;
   }
 
   @media (max-width: 1100px) {
@@ -3745,11 +3831,26 @@ export const styles = `
     }
 
     .method-break-banner {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 0.4fr);
+      gap: 20px;
     }
 
     .method-break-copy {
       max-width: 100%;
+    }
+
+    .method-break-visual {
+      position: relative;
+      min-height: 170px;
+      overflow: hidden;
+    }
+
+    .method-break-figure {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      transform: translate(-50%, -50%) scale(0.5);
     }
 
     .method-showcase,
@@ -4039,6 +4140,8 @@ export const styles = `
 
     .method-break-banner {
       padding: 0 22px;
+      grid-template-columns: minmax(0, 1fr) minmax(110px, 0.38fr);
+      gap: 14px;
     }
 
     .method-break-copy .title-lg,
@@ -4047,7 +4150,17 @@ export const styles = `
     }
 
     .method-break-visual {
-      min-height: 280px;
+      position: relative;
+      min-height: 130px;
+      overflow: hidden;
+    }
+
+    .method-break-figure {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      transform: translate(-50%, -50%) scale(0.36);
     }
 
     .method-showcase {
@@ -4438,6 +4551,117 @@ export const styles = `
     box-shadow: 0 20px 42px rgba(30, 58, 99, 0.3);
   }
 
+  /* ===== Botao voltar ao topo ===== */
+  .back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 150;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #f3e6c8, var(--gold));
+    color: #4a2411;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.34);
+  }
+
+  .back-to-top svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 560px) {
+    .back-to-top {
+      right: 16px;
+      bottom: 16px;
+      width: 42px;
+      height: 42px;
+    }
+
+    .back-to-top svg {
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  /* ===== Modal de logo do cliente ===== */
+  .logo-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(8, 16, 32, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .logo-modal {
+    position: relative;
+    width: min(100%, 420px);
+    padding: 40px;
+    border-radius: 26px;
+    background: #fff;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+  }
+
+  .logo-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--bg-warm);
+    color: var(--ink);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .logo-modal-close:hover {
+    background: var(--wine-soft);
+    border-color: var(--line-strong);
+  }
+
+  .logo-modal-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+  }
+
+  .logo-modal-image img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .logo-modal-name {
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-align: center;
+  }
+
   /* ===== Pagina Quem somos ===== */
   .page-hero {
     padding: 150px 0 40px;
@@ -4496,6 +4720,112 @@ export default function Inicial() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeIdentity, setActiveIdentity] = useState(0);
   const [activeSectorImage, setActiveSectorImage] = useState(0);
+  const [activeLogo, setActiveLogo] = useState<{ name: string; src: string } | null>(null);
+  const logoTrackRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const logoOffsets = useRef<number[]>([0, 0]);
+
+  const handleLogoWheel = (colIndex: number) => (event: React.WheelEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const track = logoTrackRefs.current[colIndex];
+    if (!track) return;
+    const loopHeight = track.scrollHeight / 2;
+    if (!loopHeight) return;
+    let next = logoOffsets.current[colIndex] + event.deltaY;
+    next = ((next % loopHeight) + loopHeight) % loopHeight;
+    logoOffsets.current[colIndex] = next;
+    track.style.animationPlayState = "paused";
+    track.style.transform = `translateY(-${next}px)`;
+  };
+
+  const handleLogoMouseLeave = (colIndex: number) => () => {
+    const track = logoTrackRefs.current[colIndex];
+    if (!track) return;
+    track.style.transform = "";
+    track.style.animationPlayState = "";
+  };
+
+  const [formValues, setFormValues] = useState({
+    nome: "",
+    empresa: "",
+    email: "",
+    telefone: "",
+    mensagem: "",
+  });
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const formatPhoneNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    const len = digits.length;
+    if (len === 0) return "";
+    if (len <= 2) return `(${digits}`;
+    if (len <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    if (len <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+  };
+
+  const handleFormChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = event.target;
+    const nextValue = name === "telefone" ? formatPhoneNumber(value) : value;
+    setFormValues((prev) => ({ ...prev, [name]: nextValue }));
+  };
+
+  const buildWhatsAppMessage = () =>
+    [
+      "Olá! Vim pelo site da Synergy EB Consultoria.",
+      formValues.nome && `Nome: ${formValues.nome}`,
+      formValues.empresa && `Empresa: ${formValues.empresa}`,
+      formValues.email && `E-mail: ${formValues.email}`,
+      formValues.telefone && `Telefone: ${formValues.telefone}`,
+      formValues.mensagem && `Mensagem: ${formValues.mensagem}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+  const handleWhatsAppClick = () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setFormStatus("error");
+      return;
+    }
+
+    setFormStatus("sending");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Novo contato pelo site — ${formValues.nome || "Visitante"}`,
+          from_name: "Site Synergy EB Consultoria",
+          Nome: formValues.nome,
+          Empresa: formValues.empresa,
+          "E-mail": formValues.email,
+          Telefone: formValues.telefone,
+          Mensagem: formValues.mensagem,
+        }),
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus("sent");
+        setFormValues({ nome: "", empresa: "", email: "", telefone: "", mensagem: "" });
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
+  };
+
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
   const currentArea = serviceAreas[activeArea];
@@ -4530,6 +4860,22 @@ export default function Inicial() {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((index) => (index + 1) % testimonials.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!activeLogo) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveLogo(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeLogo]);
 
   return (
     <main className="landing-shell">
@@ -4578,12 +4924,14 @@ export default function Inicial() {
           <div className="hero-grid" id="inicio">
             <div className="hero-copy">
               <h1 className="title-xl">
-                Excelência em <strong>QHSE, PEOTRAM e governança ESG</strong>.
+                Consultoria especializada e <strong>soluções integradas em QSMS</strong>.
               </h1>
               <p className="lead">
-                Oferecemos uma solução completa para simplificar a gestão de requisitos legais de Qualidade, Meio
-                Ambiente, Saúde e Segurança Ocupacional (QHSE) incluindo a preparação para o PEOTRAM
-                da Petrobras e a Estratégia de Governança ESG.
+                Do diagnóstico à implantação, desenvolvemos soluções sob medida em Qualidade,
+                Segurança do Trabalho, Saúde Ocupacional e Meio Ambiente, com gestão de riscos,
+                auditorias, treinamentos e resposta a emergências. Uma abordagem técnica e
+                estratégica que fortalece a cultura organizacional, previne perdas e gera valor
+                sustentável.
               </p>
 
               <div className="cta-row">
@@ -4769,9 +5117,11 @@ export default function Inicial() {
             <p className="kicker">Portfólio de serviços</p>
             <h2 className="title-lg">Soluções completas em QHSE, PEOTRAM e ESG.</h2>
             <p className="lead">
-              Metodologias e abordagens que garantem excelência em Qualidade, Meio Ambiente, Saúde e
-              Segurança Ocupacional e Governança. Selecione uma área para conhecer treinamentos,
-              serviços e auditorias.
+              Consultoria QHSE completa: metodologias e abordagens de consultoria de qualidade,
+              consultoria ambiental (incluindo licenciamento ambiental) e consultoria em segurança
+              do trabalho, com consultoria ISO 9001, 14001 e 45001, consultoria PEOTRAM para a
+              Petrobras e consultoria ESG. Selecione uma área para conhecer treinamentos, serviços
+              e auditorias.
             </p>
           </header>
 
@@ -5156,16 +5506,21 @@ export default function Inicial() {
 
               <article className="testimonial-card">
                 <div className="testimonial-photo" aria-hidden="true">
-                  <div className="testimonial-photo-placeholder">
-                    <span className="testimonial-photo-avatar">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="8" r="3.6" />
-                        <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
-                      </svg>
-                    </span>
-                    <span className="testimonial-photo-caption">Foto do cliente</span>
-                  </div>
-                  <span className="testimonial-photo-badge">{currentTestimonial.since}</span>
+                  {currentTestimonial.logo ? (
+                    <div className="testimonial-photo-logo">
+                      <img alt={currentTestimonial.role} src={currentTestimonial.logo} />
+                    </div>
+                  ) : (
+                    <div className="testimonial-photo-placeholder">
+                      <span className="testimonial-photo-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="8" r="3.6" />
+                          <path d="M4.5 20c1.2-3.6 4.2-5.6 7.5-5.6s6.3 2 7.5 5.6" />
+                        </svg>
+                      </span>
+                      <span className="testimonial-photo-caption">Foto do cliente</span>
+                    </div>
+                  )}
                 </div>
                 <div className="testimonial-copy">
                   <div className="testimonial-stars" aria-hidden="true">★★★★★</div>
@@ -5173,7 +5528,7 @@ export default function Inicial() {
                   <span className="testimonial-role">{currentTestimonial.role}</span>
                   <p className="testimonial-quote">“{currentTestimonial.quote}”</p>
                   <div className="testimonial-footer">
-                    <span className="testimonial-brand">Depoimento reservado</span>
+                    <span className="testimonial-brand">Depoimento de cliente</span>
                     <div className="testimonial-nav">
                       <button
                         aria-label="Depoimento anterior"
@@ -5202,15 +5557,27 @@ export default function Inicial() {
                   clientLogos.slice(0, Math.ceil(clientLogos.length / 2)),
                   clientLogos.slice(Math.ceil(clientLogos.length / 2)),
                 ].map((column, colIndex) => (
-                  <div className="clients-logos-col" key={colIndex}>
+                  <div
+                    className="clients-logos-col"
+                    key={colIndex}
+                    onMouseLeave={handleLogoMouseLeave(colIndex)}
+                    onWheel={handleLogoWheel(colIndex)}
+                  >
                     <div
                       className="clients-logos-track-v"
-                      style={{ animationDelay: `${colIndex * -8}s` }}
+                      ref={(el) => (logoTrackRefs.current[colIndex] = el)}
+                      style={{ animationDelay: `${colIndex * -19}s` }}
                     >
                       {[...column, ...column].map((logo, index) => (
-                        <div className="client-logo-tile" key={`${logo.name}-${index}`}>
+                        <button
+                          className="client-logo-tile"
+                          key={`${logo.name}-${index}`}
+                          onClick={() => setActiveLogo(logo)}
+                          tabIndex={-1}
+                          type="button"
+                        >
                           <img alt={logo.name} src={logo.src} loading="lazy" />
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -5243,51 +5610,95 @@ export default function Inicial() {
                 </div>
                 <div className="contact-item">
                   <span>E-mail</span>
-                  <strong>contato@ebconsultoria.com.br</strong>
+                  <strong>bruno.nobrega@synergyeb.com.br</strong>
+                  <strong>everaldo@synergyeb.com.br</strong>
                 </div>
               </div>
             </article>
 
             <article className="contact-form">
-              <div className="form-grid">
-                <div className="field">
-                  <label htmlFor="nome">Nome</label>
-                  <input id="nome" name="nome" placeholder="Seu nome" />
+              <form onSubmit={handleFormSubmit}>
+                <div className="form-grid">
+                  <div className="field">
+                    <label htmlFor="nome">Nome</label>
+                    <input
+                      id="nome"
+                      name="nome"
+                      onChange={handleFormChange}
+                      placeholder="Seu nome"
+                      value={formValues.nome}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="empresa">Empresa</label>
+                    <input
+                      id="empresa"
+                      name="empresa"
+                      onChange={handleFormChange}
+                      placeholder="Nome da empresa"
+                      value={formValues.empresa}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="email">E-mail</label>
+                    <input
+                      id="email"
+                      name="email"
+                      onChange={handleFormChange}
+                      placeholder="voce@empresa.com"
+                      type="email"
+                      value={formValues.email}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label htmlFor="telefone">Telefone</label>
+                    <input
+                      id="telefone"
+                      inputMode="numeric"
+                      maxLength={15}
+                      name="telefone"
+                      onChange={handleFormChange}
+                      placeholder="(21) 99999-9999"
+                      type="tel"
+                      value={formValues.telefone}
+                    />
+                  </div>
+
+                  <div className="field-full">
+                    <label htmlFor="mensagem">Mensagem</label>
+                    <textarea
+                      id="mensagem"
+                      name="mensagem"
+                      onChange={handleFormChange}
+                      placeholder="Conte sobre sua operação e o que precisa estruturar (QHSE, PEOTRAM, ESG)."
+                      value={formValues.mensagem}
+                    />
+                  </div>
                 </div>
 
-                <div className="field">
-                  <label htmlFor="empresa">Empresa</label>
-                  <input id="empresa" name="empresa" placeholder="Nome da empresa" />
+                <div className="form-actions">
+                  <button className="button button-primary" disabled={formStatus === "sending"} type="submit">
+                    {formStatus === "sending" ? "Enviando..." : "Enviar por e-mail"}
+                  </button>
+                  <button className="button button-secondary" onClick={handleWhatsAppClick} type="button">
+                    Continuar no WhatsApp
+                  </button>
                 </div>
 
-                <div className="field">
-                  <label htmlFor="email">E-mail</label>
-                  <input id="email" name="email" type="email" placeholder="voce@empresa.com" />
-                </div>
-
-                <div className="field">
-                  <label htmlFor="telefone">Telefone</label>
-                  <input id="telefone" name="telefone" placeholder="(11) 99999-9999" />
-                </div>
-
-                <div className="field-full">
-                  <label htmlFor="mensagem">Mensagem</label>
-                  <textarea
-                    id="mensagem"
-                    name="mensagem"
-                    placeholder="Conte sobre sua operação e o que precisa estruturar (QHSE, PEOTRAM, ESG)."
-                  />
-                </div>
-              </div>
-
-              <div className="form-actions">
-                <a className="button button-primary" href="mailto:contato@ebconsultoria.com.br">
-                  Enviar por e-mail
-                </a>
-                <a className="button button-secondary" href="https://wa.me/5511999999999">
-                  Continuar no WhatsApp
-                </a>
-              </div>
+                {formStatus === "sent" && (
+                  <p className="form-status form-status-success">
+                    Mensagem enviada! Em breve entraremos em contato.
+                  </p>
+                )}
+                {formStatus === "error" && (
+                  <p className="form-status form-status-error">
+                    Não foi possível enviar agora. Tente novamente ou use o WhatsApp.
+                  </p>
+                )}
+              </form>
             </article>
           </div>
         </div>
@@ -5296,11 +5707,52 @@ export default function Inicial() {
       <footer className="footer">
         <div className="container">
           <div className="footer-row">
-            <span>Synergy EB Consultoria</span>
+            <img alt="Synergy EB Consultoria" className="footer-logo" src={footerLogoSrc} />
             <span>Sistema de gestão de requisitos legais QMS-SSO.</span>
           </div>
         </div>
       </footer>
+
+      <button
+        aria-label="Voltar para o início"
+        className="back-to-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        type="button"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 19V5" />
+          <path d="M5 12l7-7 7 7" />
+        </svg>
+      </button>
+
+      {activeLogo && (
+        <div
+          className="logo-modal-backdrop"
+          onClick={() => setActiveLogo(null)}
+          role="presentation"
+        >
+          <div
+            className="logo-modal"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeLogo.name}
+          >
+            <button
+              aria-label="Fechar"
+              className="logo-modal-close"
+              onClick={() => setActiveLogo(null)}
+              type="button"
+            >
+              ×
+            </button>
+            <div className="logo-modal-image">
+              <img alt={activeLogo.name} src={activeLogo.src} />
+            </div>
+            <strong className="logo-modal-name">{activeLogo.name}</strong>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
