@@ -1,25 +1,37 @@
-import { useState } from "react";
-import { styles, brandLogoSrc, historyImageSrc, historyStats } from "./Inicial";
+import { useEffect, useState } from "react";
+import { styles, brandLogoSrc, brandLogoColorSrc, historyImageSrc, historyStats } from "./Inicial";
 
 const fullHistoryParagraphs = [
-  "Com uma trajetória consolidada de 10 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.",
-  "Ao longo de sua história, a Synergy EB Consultoria construiu uma reputação sólida baseada no compromisso com a segurança, a conformidade legal e a melhoria contínua. Com o passar dos anos, a experiência de uma década permitiu a expansão do portfólio, incorporando soluções avançadas em Meio Ambiente, Qualidade e Governança ESG.",
+  "Com uma trajetória consolidada de mais de 15 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.",
+  "Ao longo de sua história, a Synergy EB Consultoria construiu uma reputação sólida baseada no compromisso com a segurança, a conformidade legal e a melhoria contínua. Com o passar dos anos, a experiência de mais de 15 anos permitiu a expansão do portfólio, incorporando soluções avançadas em Meio Ambiente, Qualidade e Governança ESG.",
   "A sede no Rio de Janeiro posicionou a empresa estrategicamente para atender grandes players do mercado, oferecendo consultoria especializada em sistemas de gestão como a ISO 45001 (Saúde e Segurança), ISO 14001 (Meio Ambiente) e ISO 9001 (Qualidade). A evolução dos serviços acompanhou as tendências do mercado e as novas exigências regulatórias, culminando na criação de serviços especializados como o PEOTRAM e a Estratégia de Governança ESG.",
   "Consolidou-se como uma parceira estratégica para organizações que buscam transformar desafios de gestão em diferenciais competitivos, oferecendo não apenas o atendimento às exigências regulatórias, mas também o impulsionamento da performance e da sustentabilidade dos negócios de seus clientes.",
 ];
 
 export default function QuemSomos() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setNavScrolled(window.scrollY > 80);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <main className="landing-shell">
       <style>{styles}</style>
 
-      <nav className="nav-fixed" aria-label="Principal">
+      <nav className={`nav-fixed ${navScrolled ? "nav-scrolled" : ""}`} aria-label="Principal">
         <div className="container nav">
           <a className="brand" href="/" onClick={() => setMenuOpen(false)}>
             <span className="brand-logo-wrap">
-              <img className="brand-logo" alt="Synergy EB Consultoria" src={brandLogoSrc} />
+              <img
+                alt="Synergy EB Consultoria"
+                className={navScrolled ? "brand-logo-color" : "brand-logo"}
+                src={navScrolled ? brandLogoColorSrc : brandLogoSrc}
+              />
             </span>
           </a>
 
@@ -37,9 +49,9 @@ export default function QuemSomos() {
 
           <div className={`nav-right ${menuOpen ? "nav-right-open" : ""}`}>
             <div className="nav-links">
-              <a href="/#servicos" onClick={() => setMenuOpen(false)}>O sistema</a>
+              <a href="/#servicos" onClick={() => setMenuOpen(false)}>Nossos Serviços</a>
               <a href="/#metodo" onClick={() => setMenuOpen(false)}>Como funciona</a>
-              <a href="/#peotram" onClick={() => setMenuOpen(false)}>Vantagens</a>
+              <a href="/sistema.html" onClick={() => setMenuOpen(false)}>Sistema</a>
               <a href="/#atuacao" onClick={() => setMenuOpen(false)}>Diferenciais</a>
               <a href="/#clientes" onClick={() => setMenuOpen(false)}>Clientes</a>
             </div>
@@ -59,7 +71,7 @@ export default function QuemSomos() {
             ← Voltar para o site
           </a>
           <p className="kicker">Quem somos</p>
-          <h1 className="title-xl">Uma década de excelência em QHSE, PEOTRAM e ESG.</h1>
+          <h1 className="title-xl">Mais de 15 anos de excelência em QHSE, PEOTRAM e ESG.</h1>
           <p className="lead">
             Conheça a trajetória da Synergy EB Consultoria: como nascemos, o que nos trouxe até
             aqui e o compromisso que sustenta cada projeto que entregamos.

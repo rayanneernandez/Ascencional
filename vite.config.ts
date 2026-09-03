@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         main: "index.html",
         quemSomos: "quem-somos.html",
+        sistema: "sistema.html",
       },
     },
   },

@@ -10,7 +10,7 @@ const WEB3FORMS_ACCESS_KEY = "f398d681-89a5-45c8-bc64-35ff5d62f005";
 // internacional, só números: 55 + DDD + número). Ajuste se o telefone mudar.
 const WHATSAPP_NUMBER = "5521992675107";
 
-const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
+export const heroScreenImageSrc = new URL("./assets/analisando.png", import.meta.url).href;
 const heroBgVideoSrc = new URL("./assets/frame 1.mp4", import.meta.url).href;
 const heroBgVideoPosterSrc = new URL("./assets/hero-video-poster.jpg", import.meta.url).href;
 const transportesManchurLogoSrc = new URL("./assets/transportes-manchur.jpg", import.meta.url).href;
@@ -38,7 +38,8 @@ const sectorsImages = [
 // Para exibir uma foto real na seção "Nossa história", coloque o arquivo em ./assets
 // e troque a linha abaixo por: new URL("./assets/nome-do-arquivo.jpg", import.meta.url).href
 export const historyImageSrc = new URL("./assets/logocolorida.png", import.meta.url).href;
-const footerLogoSrc = new URL("./assets/logo-cor-sem-fundo.png", import.meta.url).href;
+export const brandLogoColorSrc = new URL("./assets/logo-cor-sem-fundo.png", import.meta.url).href;
+const footerLogoSrc = brandLogoColorSrc;
 const brunoNobregaPhotoSrc = new URL("./assets/bruno-nobrega.png", import.meta.url).href;
 const everaldoPhotoSrc = new URL("./assets/Everaldo.png", import.meta.url).href;
 const missionVisionPhotoSrc = new URL("./assets/nossa missão.png", import.meta.url).href;
@@ -332,10 +333,10 @@ const benefits = [
 ];
 
 const historyTeaser =
-  "Com uma trajetória consolidada de 10 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.";
+  "Com uma trajetória consolidada de mais de 15 anos de experiência no mercado, a Synergy EB Consultoria destaca-se pela excelência na prestação de serviços especializados, com foco em Qualidade, Saúde, Segurança Ocupacional e Meio Ambiente (QHSE). Fundada no Rio de Janeiro em outubro de 2016, a organização foi estruturada para atender às crescentes demandas por soluções integradas e sustentáveis em diversos ramos de atuação.";
 
 export const historyStats = [
-  { value: "10 anos", label: "de experiência no mercado" },
+  { value: "15+ anos", label: "de experiência no mercado" },
   { value: "2016", label: "fundada no Rio de Janeiro" },
   { value: "QHSE + ESG", label: "portfólio integrado e completo" },
 ];
@@ -411,7 +412,7 @@ const identitySteps = [
     shortLabel: "Valores",
     orbitLabel: "Valores",
     title: "Nossos valores",
-    description: "Os princípios que guiam nossa atuação há uma década.",
+    description: "Os princípios que guiam nossa atuação há mais de 15 anos.",
   },
 ];
 
@@ -745,6 +746,38 @@ export const styles = `
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .nav-fixed.nav-scrolled {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-fixed.nav-scrolled .brand {
+    color: var(--ink);
+    text-shadow: none;
+  }
+
+  .nav-fixed.nav-scrolled .nav-links {
+    color: var(--ink);
+    text-shadow: none;
+  }
+
+  .nav-fixed.nav-scrolled .nav-links a:hover {
+    color: var(--wine);
+  }
+
+  .nav-fixed.nav-scrolled .nav-toggle {
+    border-color: var(--line);
+    background: var(--bg-warm);
+  }
+
+  .nav-fixed.nav-scrolled .nav-toggle span {
+    background: var(--ink);
   }
 
   .nav {
@@ -786,6 +819,22 @@ export const styles = `
     max-width: none;
   }
 
+  .nav-scrolled .brand-logo-wrap {
+    overflow: visible;
+  }
+
+  .brand-logo-color {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    height: 46px;
+    max-width: none;
+    object-fit: contain;
+    object-position: left center;
+  }
+
   @media (max-width: 560px) {
     .brand-logo-wrap {
       width: 166px;
@@ -797,6 +846,10 @@ export const styles = `
       top: -99px;
       width: 226px;
       height: 226px;
+    }
+
+    .brand-logo-color {
+      height: 38px;
     }
   }
 
@@ -3153,6 +3206,13 @@ export const styles = `
     border: 1px solid var(--line);
     background: var(--panel);
     box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .policy-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow);
   }
 
   .policy-number {
@@ -3798,6 +3858,42 @@ export const styles = `
 
   .contact-item strong + strong {
     margin-top: 4px;
+  }
+
+  .contact-line {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .contact-line + .contact-line {
+    margin-top: 4px;
+  }
+
+  .contact-phone {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-phone:hover {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+
+  .contact-name {
+    color: rgba(255, 246, 242, 0.58);
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .contact-hint {
+    font-style: normal;
+    color: rgba(255, 246, 242, 0.5);
+    font-size: 0.78rem;
   }
 
   .form-grid {
@@ -4763,7 +4859,10 @@ export const styles = `
   /* ===== Pagina Quem somos ===== */
   .page-hero {
     padding: 150px 0 40px;
-    background: var(--bg-warm);
+    background:
+      radial-gradient(circle at 85% 8%, rgba(31, 61, 115, 0.1), transparent 30%),
+      radial-gradient(circle at 6% 90%, rgba(194, 150, 58, 0.06), transparent 32%),
+      var(--bg-warm);
   }
 
   .page-back-link {
@@ -4790,6 +4889,56 @@ export const styles = `
     max-width: 62ch;
   }
 
+  .page-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+    gap: 40px;
+    align-items: center;
+  }
+
+  .page-hero-grid .page-hero-copy .title-xl,
+  .page-hero-grid .page-hero-copy .lead {
+    max-width: none;
+  }
+
+  .page-hero-media {
+    width: 100%;
+  }
+
+  .page-hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .page-section-media {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-section-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 820px) {
+    .page-hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-hero-media {
+      max-width: 340px;
+      margin: 0 auto;
+      order: -1;
+    }
+  }
+
   .page-cta-section {
     padding: 56px 0 90px;
     text-align: center;
@@ -4809,12 +4958,60 @@ export const styles = `
   .page-cta-section .cta-row {
     justify-content: center;
   }
+
+  .page-section-header {
+    max-width: 720px;
+    margin: 0 auto 34px;
+    text-align: center;
+  }
+
+  .page-section-header .title-lg {
+    max-width: 30ch;
+    margin: 0 auto;
+  }
+
+  .page-section-header .lead {
+    max-width: 62ch;
+    margin: 16px auto 0;
+  }
+
+  .page-note {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 22px 26px;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 18px 18px 0;
+    background: var(--bg-warm);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .page-note strong {
+    display: block;
+    color: var(--wine);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+  }
+
+  .page-note p {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .page-section-blue {
+    background:
+      radial-gradient(circle at 12% 12%, rgba(31, 61, 115, 0.09), transparent 34%),
+      radial-gradient(circle at 88% 82%, rgba(194, 150, 58, 0.07), transparent 32%),
+      var(--bg-warm);
+  }
 `;
 
 export default function Inicial() {
   const [activeStep, setActiveStep] = useState(0);
   const [activeArea, setActiveArea] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeIdentity, setActiveIdentity] = useState(0);
   const [activeSectorImage, setActiveSectorImage] = useState(0);
@@ -4906,6 +5103,7 @@ export default function Inicial() {
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: `Novo contato pelo site — ${formValues.nome || "Visitante"}`,
           from_name: "Site Synergy EB Consultoria",
+          cc: "bruno.nobrega@synergyeb.com.br",
           Nome: formValues.nome,
           Empresa: formValues.empresa,
           "E-mail": formValues.email,
@@ -4925,6 +5123,13 @@ export default function Inicial() {
       setFormStatus("error");
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => setNavScrolled(window.scrollY > 80);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const currentStep = steps[activeStep];
   const currentHighlights = stepHighlights[activeStep];
@@ -5038,11 +5243,15 @@ export default function Inicial() {
     <main className="landing-shell">
       <style>{styles}</style>
 
-      <nav className="nav-fixed" aria-label="Principal">
+      <nav className={`nav-fixed ${navScrolled ? "nav-scrolled" : ""}`} aria-label="Principal">
         <div className="container nav">
           <a className="brand" href="#inicio" onClick={() => setMenuOpen(false)}>
             <span className="brand-logo-wrap">
-              <img className="brand-logo" alt="Synergy EB Consultoria" src={brandLogoSrc} />
+              <img
+                alt="Synergy EB Consultoria"
+                className={navScrolled ? "brand-logo-color" : "brand-logo"}
+                src={navScrolled ? brandLogoColorSrc : brandLogoSrc}
+              />
             </span>
           </a>
 
@@ -5060,9 +5269,9 @@ export default function Inicial() {
 
           <div className={`nav-right ${menuOpen ? "nav-right-open" : ""}`}>
             <div className="nav-links">
-              <a href="#servicos" onClick={() => setMenuOpen(false)}>O sistema</a>
+              <a href="#servicos" onClick={() => setMenuOpen(false)}>Nossos Serviços</a>
               <a href="#metodo" onClick={() => setMenuOpen(false)}>Como funciona</a>
-              <a href="#peotram" onClick={() => setMenuOpen(false)}>Vantagens</a>
+              <a href="/sistema.html" onClick={() => setMenuOpen(false)}>Sistema</a>
               <a href="#atuacao" onClick={() => setMenuOpen(false)}>Diferenciais</a>
               <a href="#clientes" onClick={() => setMenuOpen(false)}>Clientes</a>
             </div>
@@ -5121,7 +5330,7 @@ export default function Inicial() {
         <div className="container">
           <header className="section-header history-header">
             <p className="kicker">Nossa história</p>
-            <h2 className="title-lg">Uma década de excelência em QHSE.</h2>
+            <h2 className="title-lg">Mais de 15 anos de excelência em QHSE.</h2>
           </header>
 
           <div className="history-layout">
@@ -5382,7 +5591,7 @@ export default function Inicial() {
             <p className="kicker">Quem somos</p>
             <h2 className="title-lg">Missão, visão e valores que guiam cada projeto.</h2>
             <p className="lead">
-              Os princípios que sustentam nossa atuação há uma década, do planejamento estratégico à
+              Os princípios que sustentam nossa atuação há mais de 15 anos, do planejamento estratégico à
               entrega de cada consultoria.
             </p>
           </div>
@@ -5693,8 +5902,21 @@ export default function Inicial() {
 
               <div className="contact-list">
                 <div className="contact-item">
-                  <span>Telefone</span>
-                  <strong>(21) 99267-5107</strong>
+                  <span>
+                    Telefone <em className="contact-hint">(whats)</em>
+                  </span>
+                  <div className="contact-line">
+                    <a className="contact-phone" href="https://wa.me/5521992675107" target="_blank" rel="noreferrer">
+                      (21) 99267-5107
+                    </a>
+                    <span className="contact-name">- Everaldo</span>
+                  </div>
+                  <div className="contact-line">
+                    <a className="contact-phone" href="https://wa.me/5521994686515" target="_blank" rel="noreferrer">
+                      (21) 99468-6515
+                    </a>
+                    <span className="contact-name">- Bruno</span>
+                  </div>
                 </div>
                 <div className="contact-item">
                   <span>E-mail</span>
