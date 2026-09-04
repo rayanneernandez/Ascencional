@@ -1079,14 +1079,14 @@ export const styles = `
   }
 
   .hero-copy strong.hero-gold-dark {
-    background: linear-gradient(135deg, #b98a42 0%, #7a4f14 100%);
+    background: #e8cf8a;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
   .hero-copy strong.hero-gold-strong {
-    background: linear-gradient(135deg, #fff3b0 0%, #ffb400 100%);
+    background: #b56f08;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
