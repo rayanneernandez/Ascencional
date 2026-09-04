@@ -1078,6 +1078,20 @@ export const styles = `
     color: transparent;
   }
 
+  .hero-copy strong.hero-gold-dark {
+    background: linear-gradient(135deg, #b98a42 0%, #7a4f14 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-copy strong.hero-gold-strong {
+    background: linear-gradient(135deg, #fff3b0 0%, #ffb400 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .cta-row {
     display: flex;
     flex-wrap: wrap;
@@ -5306,7 +5320,8 @@ export default function Inicial() {
               <h1 className="title-xl">
                 Oferecemos consultorias e assessorias desburocratizadas, com soluções
                 personalizadas em{" "}
-                <strong>Meio Ambiente, Saúde e Segurança, QSMS, consultorias e auditorias</strong>.
+                <strong className="hero-gold-dark">Meio Ambiente, Saúde e Segurança</strong>,{" "}
+                <strong className="hero-gold-strong">QSMS, consultorias e auditorias</strong>.
               </h1>
               <p className="lead">
                 Para isso, contamos com uma equipe com aproximadamente 18 anos de experiência no
